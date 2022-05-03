@@ -1,0 +1,24 @@
+= Microsoft Office 365總覽
+:allow-uri-read: 
+
+
+
+
+== Microsoft Office 365總覽
+
+此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_Microsoft Office_ (https://chocolatey.org/)[] 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。
+
+
+WARNING: 此Microsoft Office 365安裝指令碼不包括Microsoft團隊或Microsoft One Drive。其中包括獨立的自動化指令碼、因為部分部署不需要這些應用程式、因此可提供更大的靈活度。您可以複製及編輯此部署、以納入其中（或變更任何其他部署） link:https://docs.microsoft.com/en-us/deployoffice/overview-office-deployment-tool["Office部署工具"] 設定）從VDS複製指令碼並編輯InstallMicrosoft Office365.ps1、將不同的值輸入XML組態檔。
+
+
+
+=== 預設捷徑路徑
+
+預設的捷徑路徑將輸入於下方、此應用程式的捷徑為：「\folders\Microsoft Office」
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallMicrosoftOffice365.png[指令碼library.activity。安裝Microsoft Office 365]

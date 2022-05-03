@@ -1,0 +1,59 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+VDS安裝程式能夠將新部署連線至現有的AD結構。這些指示將詳細說明該選項。本文並不獨立、而是詳細說明中所述的「新增AD」選項 link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html["AVD部署指南"]
+
+
+
+== Active Directory類型
+
+下一節定義VDS部署的Active Directory部署類型。在本指南中、我們將選擇現有的Windows Server Active Directory、以運用現有的AD架構。
+
+
+
+== 現有的AD網路
+
+VDS安裝程式會顯示VNets清單、以代表現有AD結構與Azure AD之間的連線。您選擇的vNet應具備您在Azure中設定的Azure代管DC。此外、vNet也會將自訂DNS設定指向Azure代管的DC。
+
+image:existingDNS.png[""]
+
+
+
+== 現有Active Directory網域名稱
+
+輸入要使用的現有網域名稱。附註：您不想使用Azure Portal Active Directory模組下的網域、因為它可能會造成DNS問題。其中的主要範例是使用者無法從桌面內部存取該網站（例如、<您的網域>.com）。
+
+
+
+== 現有的AD使用者名稱和密碼
+
+有三種方法可以提供必要的認證資料、以便使用現有的AD架構進行部署。
+
+. 提供Active Directory網域管理使用者名稱和密碼
++
+這是最簡單的方法、提供用於協助部署的網域管理認證。
+
++
+
+NOTE: 此帳戶可以一次性建立、一旦部署程序完成、就會被刪除。
+
+. 建立符合所需權限的帳戶
++
+此方法需要客戶管理員在此手動建立權限結構、然後在此輸入CloudWorkspaceSVC帳戶的認證資料、然後繼續進行。
+
+. 手動部署程序
++
+請聯絡NetApp VDS支援部門、以協助設定具有最低權限帳戶主體的AD存取。
+
+
+
+
+
+== 後續步驟
+
+本文說明部署至現有AD環境的獨特步驟。完成這些步驟之後、您可以返回標準部署指南 link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html#active-directory-type["請按這裡"]。

@@ -1,0 +1,11 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.delete_backup-f8c61.png[Management.command center.operations.delete備份f8c61]
+
+image::Management.command_center.operations.delete_backup-dabbb.png[Management.command center.operations.delete備份dabbb]

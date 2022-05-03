@@ -1,0 +1,15 @@
+= NVIDIA網格驅動程式總覽
+:allow-uri-read: 
+
+
+
+
+== NVIDIA網格驅動程式總覽
+
+此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_Nvidia Grid Drivers_ (https://chocolatey.org/)[] 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallNvidiaGridDrivers.png[scriptlibrary.activity：InstallNvidiaGridDrivers]

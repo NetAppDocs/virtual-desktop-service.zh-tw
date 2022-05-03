@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.NvidiaCudaDrivers.html 
+summary: 指令碼文件- Nvidia Cuda驅動程式 
+keywords:  
+---
+= 指令碼事件文件- Nvidia Cuda驅動程式
+:allow-uri-read: 
+
+
+
+
+== 全域指令碼總覽
+
+NetApp VDS包括一個預先定義的指令碼事件程式庫、可直接用於VDS環境及/或複製、並做為自訂指令碼事件的建置區塊。
+
+對於此應用程式、本文涵蓋安裝/啟用和解除安裝/停用動作。
+
+
+
+== 全域指令碼使用
+
+內建指令碼事件（例如此事件）已預先填入、核取「全域」篩選器核取方塊將會顯示這些事件。
+
+此類全域指令碼事件為唯讀。可以使用「現況」或「複製」功能來建立客戶複本、以供編輯和使用。
+
+Clone（複製）按鈕可在「Scripted Event（指令碼事件）」頁面的動作功能表中找到。
+
+image::scriptlibrary.overview-2ccb2.png[指令碼庫。概述2ccb2]
+
+
+
+== NVIDIA Cuda驅動程式總覽
+
+此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_Nvidia Cuda Drivers_ (https://chocolatey.org/)[] 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallNvidiaCudaDrivers.png[scriptlibrary.activity：InstallNvidiaCudaDrivers]
+
+
+
+=== 新增手動活動
+
+若要讓儲存庫中的指令碼採取任何行動、必須建立活動、以將該指令碼與選取的觸發程序建立關聯。在本範例中、當VDS管理員手動觸發指令碼時、便會執行活動。
+
+VDS指令碼事件提供許多其他類型的活動觸發程式、例如_Create Server_、可做為_Manual事件類型的替代方案。使用_Create Server_只需在VDS中所有新建立的VM上執行此指令碼即可。_建立伺服器_和其他觸發事件均已記錄下來、可供探索 link:Management.Scripted_Events.scripted_events.html["請按這裡"]。
+
+.若要建立活動並將此指令碼連結至行動：
+. 瀏覽至VDS中的「指令碼事件」區段
+. 按一下「_Activities」（活動）下方的「__」（+）「Add Activity
+. 在開啟的對話視窗中輸入下列資訊：
++
+** *姓名：*請為本活動命名
+** *說明：*（可選）輸入說明
+** *部署*從下拉式清單中選取所需的部署
+** *指令碼：*從下拉式清單中選取安裝（或解除安裝）指令碼。這可能是您複製及自訂的全域指令碼或客戶指令碼。
+** *引數：*保留空白
+** *已啟用核取方塊：*「勾選」方塊
+** *事件類型：*從下拉式清單中選取「手動」
+** *目標類型：*選取「伺服器」選項按鈕
+** *受管理的伺服器：*「勾選」每個應收到此解除安裝的VM方塊。
+
+
+

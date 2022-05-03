@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.printing_issues.html 
+summary: 疑難排解列印的逐步指南 
+keywords:  
+---
+= 疑難排解列印問題
+:allow-uri-read: 
+
+
+
+
+== 錯誤
+
+從雲端桌面列印到本機印表機無法運作。
+
+
+
+== 使用ThiPrint的遠端桌面服務
+
+VDS選擇性包含適用於遠端桌面服務（RDS）部署的ThiPrint。軟體與授權會在初始部署時自動設定。如果使用的是「思考列印」、下列各節可協助疑難排解列印問題。
+
+
+
+=== 原因
+
+有多種方法可連線至雲端桌面。這些方法在執行列印功能的方式上各有不同、因此您需要知道使用哪種存取方式來進行疑難排解：
+
+. 在Windows裝置上使用CloudJumper的存取用戶端
++
+.. ThinPrint可在本機裝置上執行、並在印表機與雲端桌面之間轉送通訊
+
+
+. 在任何裝置上使用HTML5瀏覽器
++
+.. 瀏覽器會以PDF格式呈現列印文件、以便在本機下載及列印
+
+
+. 在Mac或Linux機器上使用手動設定的RDP用戶端（通常）
++
+.. 在RDP用戶端中手動設定「本機資源」、即可將本機印表機與雲端桌面共用。
+
+
+
+
+
+
+=== 解決方案
+
+. 嘗試從本機裝置列印文件、以確認本機裝置已成功連線至印表機。
+. 如果在Windows裝置上使用Access Client、請解除安裝並重新安裝ThinPrint。 https://www.thinprint.com/en/resources-support/software/clientsandtools/[]
+. 請記下CloudJumper Support新案例中的存取類型和前兩個步驟的結果。
+
+
+
+
+== Azure虛擬桌面
+
+VDS未針對AVD環境實作任何列印解決方案或獨特的列印組態。列印問題應轉給Microsoft、或（若已實作）列印技術廠商。

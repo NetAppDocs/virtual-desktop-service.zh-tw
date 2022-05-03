@@ -1,0 +1,115 @@
+= 授權數常見問題集：
+:allow-uri-read: 
+
+
+VDS團隊很高興能回報、自2021年1月15日（星期五）起、服務已上線、準備好透過Azure Marketplace進行交易。這項全新的市場功能可為您帶來NetApp / Microsoft聯合客戶的多項重要優勢：
+
+* 由於您可以使用現有的企業協議承諾來支付透過Azure Marketplace購買的服務費用、因此您不需要為這項強大的AVD增強服務定義及分配全新預算、您可以運用現有的Azure承諾來啟用VDS、簡化AVD環境、 並降低整體雲端支出！
+* 強化營運而不需管理負擔：Microsoft只要在現有Azure發票中加入VDS服務、就能與其他基礎架構和服務一起使用。這是一種快速輕鬆的方法、可運用自動化和協調功能來簡化AVD部署、減少雲端基礎架構支出、 讓您的AVD投資發揮更大效益。
+
+
+
+
+=== 授權數常見問題集：
+
+* Azure Marketplace需要強制執行授權數容量、這表示您將無法為更多使用者啟用虛擬桌面、而非Azure Marketplace所購買的授權數量。
++
+** 例如：如果您為POC購買100位使用者、並想要啟用其他使用者、請瀏覽至Azure Marketplace、並增加透過Azure Marketplace購買的授權數量。
+
+
+* 由於必須強制執行授權數、如果管理員將透過Azure入口網站購買的授權數量減至低於在VDS中配置桌面的使用者數量、管理員在登入VDS UI時會看到錯誤提示。
++
+** 因此、如果需要減少所購買的VDS授權數量、最佳做法是在Azure Marketplace中減少授權數之前、先取消部署VDS中使用者的虛擬桌面。
+
+
+
+
+
+
+== 總覽
+
+. 搜尋Azure Marketplace
+
+
+image::Deploying.Azure.AVD.Azure_Marketplace-18287.png[正在部署.Azure .AVD.Azure Marketplace 18287]
+
+. 登入「私人優惠」
++
+image::Deploying.Azure.AVD.Azure_Marketplace-4cba8.png[部署.Azure .AVD.Azure Marketplace 4cba8]
+
+. 按一下「設定+訂閱」
++
+image::Deploying.Azure.AVD.Azure_Marketplace-885e1.png[正在部署.Azure .AVD.Azure Marketplace 8851]
+
+. 選擇「訂閱」、「名稱」和「使用者數」
++
+image::Deploying.Azure.AVD.Azure_Marketplace-36efc.png[部署.Azure .AVD.Azure Marketplace 36efc]
+
+. 檢閱條款並按一下「訂閱」
++
+image::Deploying.Azure.AVD.Azure_Marketplace-bbe9d.png[正在部署.Azure .AVD.Azure Marketplace beb9d]
+
+. 等待訂閱完成
++
+image::Deploying.Azure.AVD.Azure_Marketplace-9a2ef.png[正在部署.Azure .AVD.Azure Marketplace 9a2ef]
+
+. 訂閱完成後、請按一下「立即設定帳戶」
++
+image::Deploying.Azure.AVD.Azure_Marketplace-38a10.png[部署.Azure .AVD.Azure Marketplace 38a10]
+
+. 代表貴組織接受權限與同意
++
+image::Deploying.Azure.AVD.Azure_Marketplace-b914e.png[正在部署.Azure .AVD.Azure Marketplace b914e]
+
+. 輸入主要聯絡資訊
++
+image::Deploying.Azure.AVD.Azure_Marketplace-f9650.png[部署.Azure .AVD.Azure Marketplace f9650]
+
+. 登錄VDS管理帳戶
++
+image::Deploying.Azure.AVD.Azure_Marketplace-4f802.png[部署.Azure .AVD.Azure Marketplace 4f802.]
+
+. 確認輸入項目、然後按一下「註冊」
++
+image::Deploying.Azure.AVD.Azure_Marketplace-8a6d6.png[部署.Azure .AVD.Azure Marketplace 8a6d6]
+
+. 開始部署精靈。 link:Deploying.Azure.AVD.Deploying_AVD_in_Azure_v6.html["AVD部署精靈文件連結"]
++
+image::Deploying.Azure.AVD.Azure_Marketplace-6bb58.png[部署.Azure .AVD.Azure Marketplace 6bb58]
+
+
+
+
+
+== 解決常見問題
+
+
+
+=== 無法擷取Azure AD設定檔
+
+此一般錯誤訊息並不會告訴您實際發生的問題。使用者看到此訊息的原因與Cookie有關、如果使用者的瀏覽器封鎖了第三方Cookie、就可能發生此情況。此設定在Google Chrome的「無同名」模式中預設為啟用。重新啟用協力廠商Cookie可讓您透過Marketplace繼續訂購VDS。
+
+使用者可透過每個瀏覽器的「設定」區段來解決此問題。每個瀏覽器的特定位置為：
+
+* Chrome：這些設定位於「隱私權與安全性」區段
+* 邊際/邊緣鉻：這些設定位於「隱私權」區段
+* Firefox：這些設定位於「隱私權與安全性」區段
+* Internet Explorer：這些設定位於「信任的網站」區段
+
+
+附註：如果您位於公司網路（VPN等）、則貴組織可能已在瀏覽器中套用這些控制項。您可以查看其他瀏覽器、查看是否仍有啟用第三方Cookie、若未啟用、則應聯絡系統管理員。
+
+
+
+=== 無法存取VDS
+
+另一個因素可能會阻礙Marketplace購買、也就是組織對於使用者可以存取哪些網站的控制。很抱歉、使用者通常不清楚這一點、而且可能會出現使用者不確定如何繼續進行的情況。
+
+這可以透過多種方式顯示：
+
+* 組織明確禁止存取特定網站
+* 組織禁止存取任何網站、但明確允許的網站除外
+* 組織會在使用者第一次存取任何網站時隔離該網站（常見的Cisco保護傘/OpenDNS功能）
+
+
+使用者可以從公司網路外部或行動裝置嘗試相同的程序來測試此問題。如果這樣可以解決問題、而且您可以繼續進行、這是企業控制的網頁瀏覽器設定。請聯絡您的系統管理員、以便取得購買此服務的權限、以及此服務的未來更新。

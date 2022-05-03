@@ -1,0 +1,240 @@
+---
+sidebar: sidebar 
+permalink: Management.Deployments.provisioning_collections.html 
+summary: 資源配置集合摘要 
+keywords:  
+---
+= 資源配置集合
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+資源配置集合是VDS的一項功能、與建立及管理VM映像有關。
+
+.在較高層級、資源配置收集工作流程如下：
+. 暫用VM（例如 「CWT1」）是以現有映像（常用映像或先前儲存的資源配置集合）為基礎所建置。
+. VDS管理員使用自訂暫用VM以符合其需求 link:Management.Scripted_Events.scripted_events.html["指令碼事件"]、 link:#customizing-the-temporary-vm["連線至伺服器"] 和/或協力廠商管理工具。
+. 自訂之後、VDS管理員按一下* Validate（驗證）*並觸發驗證程序、以自動完成映像、執行SysPrep、刪除暫用虛擬機器、並使映像可供整個VDS部署。
+
+
+
+
+=== 影片示範：管理VDI工作階段主機的VM映像
+
+video::rRDPnDzVBTw[youtube, ]
+
+
+=== 資源配置集合類型
+
+有兩種不同類型的集合、分別有特定的使用案例：*共享_*和* VDI _*。
+
+
+
+==== 共享
+
+「*共享_*」類型是VM映像的集合、旨在部署具有多個不同VM映像和VM角色的整個環境。
+
+
+
+==== VDI
+
+「* VDI _*」類型是單一VM映像、設計用於部署多個相同的VM、通常用於裝載使用者工作階段。對於所有類型的AVD工作階段主機、應該選取_VDI_類型、即使是針對每個VM執行多個工作階段的主機。
+
+
+
+=== 建立新的資源配置集合
+
+資源配置集合可在每個部署的VDS介面中、於*資源配置集合_*子索引標籤下找到。
+
+image:Management.Deployments.provisioning_collections1.png["寬=75%"]
+
+.以建立新集合
+. 按一下「*_+新增收藏_*」按鈕。
+. 填寫下列欄位：
++
+.. *名稱*
+.. *說明*（選用）
+.. *類型*-共享或VDI
+.. *作業系統*
+.. *共享磁碟機*-如果此VM將用於裝載使用者設定檔或公司共用資料、請挑選要裝載的磁碟機代號。如果沒有、請保留為「C」
+.. *最小快取*-如果您和VDS要建立VM以供立即部署、請指定應維護的最小快取VM數。如果部署新的VM時、只要Hypervisor需要建立VM、就會等待一段時間、這可以設定為「0」、以節省成本。
+.. *新增伺服器*
++
+... *角色*（若選取「共享」類型）
++
+.... * TS*-此VM僅做為工作階段主機
+.... *資料*：此VM不會裝載任何使用者工作階段
+.... * TSData*-此VM將同時是工作階段主機和儲存主機（每個工作區最多一個TSData）
+
+
+... * VM範本*-從可用清單中選取、即可選取常用Hypervisor映像和先前儲存的資源配置集合。
++
+.... 附註：Azure Marketplace的Windows 7映像並未啟用PowerShell遠端處理。若要使用Windows 7映像、您必須在已啟用PowerShell遠端處理的共用映像庫中提供自訂映像。
+.... 附註：透過使用現有的資源配置集合、您可以在計畫性映像升級程序中更新及重新部署現有映像。
+
+
+... *儲存類型*：根據成本與效能、選擇作業系統磁碟的速度
+... *資料磁碟機*：選擇性地啟用附加至此映像的第二個磁碟、通常用於上述2.e.
++
+.... *資料磁碟機類型*：根據成本與效能、選擇第二個（資料）磁碟的速度
+.... *資料磁碟機大小（GB）*：根據容量、成本和效能、定義第二個（資料）磁碟的大小
+
+
+
+
+.. *新增應用程式*-從應用程式庫中選取任何將安裝在此映像上的應用程式、以及（2）由VDS應用程式權利所管理。（這僅適用於RDS部署。對於AVD工作區、此值應保持空白）
+
+
+
+
+
+
+=== 自訂暫用VM
+
+VDS包括可從VDS Web介面移除VM存取的功能。根據預設、本機Windows系統管理帳戶會以旋轉密碼建立、並傳遞至VM、讓VDS系統管理本機系統管理存取不需要知道本機系統管理認證。
+
+
+NOTE: 「連線至伺服器」功能有一個替代設定、會在每個連線中提示VDS管理員輸入認證。您可以從VDS的「管理」區段中編輯VDS管理帳戶來啟用/停用此設定。此功能稱為_Tech Account_、核取此方塊後、使用「連線至伺服器」時、將需要輸入認證資料、取消核取此方塊後、即可在每個連線自動輸入本機Windows管理員認證資料。
+
+VDS管理員只需使用「連線至伺服器」或其他程序連線至暫用VM、然後進行必要的變更以符合其需求。
+
+
+
+=== 正在驗證收藏
+
+自訂完成後、VDS管理員可按一下「動作」圖示中的「*驗證*」、關閉映像並加以Sysprep。
+
+image::Management.Deployments.provisioning_collections-ed97e.png[Management.Deployments.provisioning系列ed97e]
+
+
+
+=== 使用收藏
+
+驗證完成後、資源配置集合的狀態將變更為*可用*。從資源配置集合中、VDS管理員可以識別* VM範本*名稱、此名稱可用於識別整個VDS中的此資源配置集合。
+
+image::Management.Deployments.provisioning_collections-f5a49.png[Management.Deployments.provisioning系列f5a49]
+
+
+
+==== 新伺服器
+
+在「Workspace > Servers」（工作區>伺服器）頁面中、您可以建立新的伺服器、並在對話方塊中提示輸入VM範本。上述範本名稱將顯示在此清單中：
+
+image:Management.Deployments.provisioning_collections-fc8ad.png["寬=75%"]
+
+
+TIP: VDS提供一種簡單的方法、讓您使用資源配置集合和*新增伺服器*功能、來更新RDS環境中的工作階段主機。此程序可在不影響終端使用者的情況下完成、並在先前的映像迭代基礎上、以後續映像更新重複執行。如需此程序的詳細工作流程、請參閱 link:#rds-session-host-update-process["* RDS工作階段主機更新程序*"] 部分。
+
+
+
+==== 新的AVD主機集區
+
+在「工作區」>「AVD」>「主機資源池」頁面中、按一下「*+新增主機資源池*」即可建立新的AVD主機資源池、對話方塊將會提示您輸入VM範本。上述範本名稱將顯示在此清單中：
+
+image::Management.Deployments.provisioning_collections-ba2f5.png[Management.Deployments.provisioning集合ba2f5]
+
+
+
+==== 新的AVD工作階段主機
+
+在「Workspace > AVD > Host Pool > Session hosts」（工作區> AVD >主機集區>工作階段主機）頁面中、按一下「*+ Add Session Host*」即可建立新的AVD工作階段主機、對話方塊將會提示您輸入VM範本。上述範本名稱將顯示在此清單中：
+
+image::Management.Deployments.provisioning_collections-ba5e9.png[Management.Deployments.provisioning集合ba5e9]
+
+
+TIP: VDS提供一種簡易的方法、讓您使用資源配置集合和*新增工作階段主機*功能、來更新AVD主機資源池中的工作階段主機。此程序可在不影響終端使用者的情況下完成、並在先前的映像迭代基礎上、以後續映像更新重複執行。如需此程序的詳細工作流程、請參閱 link:#AVD-session-host-update-process["* AVD工作階段主機更新程序*"] 部分。
+
+
+
+==== 新工作區
+
+在「工作區」頁面中、按一下「*+新工作區*」即可建立新的工作區、對話方塊會提示您輸入「資源配置集合」。共享的資源配置集合名稱將在此清單中找到。
+
+image::Management.Deployments.provisioning_collections-5c941.png[Management.Deployments.provisioning系列5c941]
+
+
+
+==== 新的資源配置集合
+
+在「部署>資源配置收藏」頁面中、按一下「*+新增收藏*」即可建立新的資源配置集合。將伺服器新增至此集合時、對話方塊會提示輸入VM範本。上述範本名稱將顯示在此清單中：
+
+image::Management.Deployments.provisioning_collections-9eac4.png[Management.Deployments.provisioning集合9eac4]
+
+
+
+== 附錄1 - RDS工作階段主機
+
+
+
+=== RDS工作階段主機更新程序
+
+VDS提供一種簡單的方法、讓您使用資源配置集合和*新增伺服器*功能、來更新RDS環境中的工作階段主機。此程序可在不影響終端使用者的情況下完成、並在先前的映像迭代基礎上、以後續映像更新重複執行。
+
+.RDS工作階段主機更新程序如下：
+. 根據上述指示建立新的VDI資源配置集合、自訂及驗證集合。
++
+.. 一般而言、此資源配置集合會建置在先前的VM範本上、模擬「Open、Save As」程序。
+
+
+. 一旦資源配置集合通過驗證、請瀏覽至「_Workspace > Servers_」頁面、然後按一下「*+ Add Server*」
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning colles.RDS工作階段裝載e8204.]
+
+. 選擇* TS*作為*伺服器角色*
+. 選取最新的* VM範本*。根據您的需求、選擇適當的*機器尺寸*和*儲存類型*。保留*資料磁碟機*未核取。
+. 請針對環境所需的工作階段主機總數重複此步驟。
+. 按一下「*新增伺服器*」、工作階段主機將根據所選的VM範本建置、並在10到15分鐘內（視Hypervisor而定）開始上線。
++
+.. 請注意、環境中目前的工作階段主機最終會在這些新主機上線後停用。計畫建置足夠的新主機、以支援此環境中的整個工作負載。
+
+
+. 當新主機上線時、預設設定為保留*不允許新工作階段*。對於每個工作階段主機、可以使用*允許新工作階段*切換來管理哪些主機可以接收新的使用者工作階段。此設定可透過編輯每個個別工作階段主機伺服器的設定來存取。一旦建立足夠的新主機並確認功能、即可在新舊主機上管理此設定、將所有新工作階段路由傳送至新主機。將*允許新工作階段*設為*停用*的舊主機、可以繼續執行並裝載現有的使用者工作階段。
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning collections。RDS工作階段主機726d1]
+
+. 當使用者登出舊主機、且沒有新的使用者工作階段加入舊主機時、按一下*「Actions」（動作）*圖示並選取*「DELETE」（刪除）、即可刪除*工作階段= 0*的舊主機。
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning colles.RDS工作階段裝載45d32]
+
+
+
+
+
+== 附錄2 - AVD工作階段主機
+
+
+
+=== AVD工作階段主機更新程序
+
+VDS提供一種簡易的方法、讓您使用資源配置集合和*新增工作階段主機*功能、來更新AVD主機資源池中的工作階段主機。此程序可在不影響終端使用者的情況下完成、並在先前的映像迭代基礎上、以後續映像更新重複執行。
+
+.AVD工作階段主機更新程序如下：
+. 根據上述指示建立新的VDI資源配置集合、自訂及驗證集合。
++
+.. 一般而言、此資源配置集合會建置在先前的VM範本上、模擬「Open、Save As」程序。
+
+
+. 一旦資源配置集合通過驗證、請瀏覽至「_Workspace > AVD > Host Pools_」頁面、然後按一下主機資源池的名稱
+. 在「主機集區」>「工作階段主機」頁面中、按一下「*+新增工作階段主機*」
++
+image::Management.Deployments.provisioning_collections-9ed95.png[Management.Deployments.provisioning集合9ed95]
+
+. 選取最新的* VM範本*。根據您的需求、選擇適當的*機器尺寸*和*儲存類型*。
+. 輸入*執行個體數目*、等於所需的工作階段主機總數。這通常與目前在主機集區中的號碼相同、但可以是任何數字。
++
+.. 請注意、主機集區中目前的工作階段主機最終會在這些新主機上線後停用。規劃輸入的*執行個體數目*足以支援此主機集區中的整個工作負載。
+
+
+. 按一下「* Save（儲存）*」、工作階段主機將根據所選的VM範本建置、並在10到15分鐘內（視Hypervisor而定）開始上線。
+. 當新主機上線時、預設設定為保留*不允許新工作階段*。對於每個工作階段主機、可以使用*允許新工作階段*切換來管理哪些主機可以接收新的使用者工作階段。一旦建立足夠的新主機並確認功能、即可在新舊主機上管理此設定、將所有新工作階段路由傳送至新主機。將*允許新工作階段*設為*停用*的舊主機、可以繼續執行並裝載現有的使用者工作階段。
++
+image::Management.Deployments.provisioning_collections-be47e.png[Management.Deployments.provisioning系列be47e]
+
+. 當使用者登出舊主機、且沒有新的使用者工作階段加入舊主機時、按一下*「Actions」（動作）*圖示並選取*「DELETE」（刪除）、即可刪除*工作階段= 0*的舊主機。
++
+image::Management.Deployments.provisioning_collections-cefb9.png[Management.Deployments.provisioning集合cefb9.]
+
+

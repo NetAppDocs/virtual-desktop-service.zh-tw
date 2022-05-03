@@ -1,0 +1,117 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+虛擬桌面服務部署技術可根據基礎架構提供各種儲存選項、本指南將說明如何在部署後進行變更。
+
+虛擬桌面效能取決於各種關鍵資源、儲存效能是其中一項主要變數。隨著需求的變化和工作負載的演進、改變儲存基礎架構的需求是一項常見的工作。在幾乎所有情況Azure NetApp Files 下、這都涉及從檔案伺服器平台移轉至NetApp儲存技術（例如：VMware的VMware、Cloud Volumes Service Google的NetApp支援、Cloud Volumes ONTAP 或AWS的NetApp支援）、因為這些技術通常可為終端使用者運算環境提供最佳效能設定檔。
+
+
+
+=== 建立新的儲存層
+
+由於各種雲端與HCI基礎架構供應商的潛在儲存服務種類繁多、因此本指南假設已建立新的儲存服務、並採用已知的SMB路徑。
+
+
+
+=== 建立儲存資料夾
+
+. 在新的儲存服務中、建立三個資料夾：
++
+** /資料
+** /首頁
+** /Pro
++
+image:storage1.png[""]
+
+
+
+. 設定資料夾權限
++
+.. 在「資料夾內容」中、選取「安全性」、>「進階」>「停用繼承」
++
+image:storage2.png[""]
+
+.. 調整其餘設定、使其符合原先由部署自動化所建立的原始儲存層設定。
+
+
+
+
+
+
+=== 移動資料
+
+目錄、資料、檔案和安全性設定可透過多種方式移動。下列Robocopy語法將會達成必要的變更。路徑必須變更以符合您的環境。
+
+ robocopy c:\data\zucd \\uyy-1c37.deskapps.mobi\zucd-data /xd ~snapshot /MIR /CopyAll /R:1 /W:1 /tee /log:C:\temp\roboitD.txt
+
+
+=== 在轉換時重新導向SMB路徑
+
+當轉換時間到時、有幾項變更會將所有的儲存功能重新導向至VDS環境。
+
+
+
+==== 更新GPO
+
+. 使用者GPO（名稱為_、公司代碼>-user_）必須以新的共用路徑進行更新。選取「使用者組態」>「Windows設定」>「偏好設定」>「磁碟機地圖」
++
+image:storage3.png[""]
+
+. 在_H:_上按一下滑鼠右鍵、然後選取「內容」>「編輯」>「動作：取代」、然後輸入新的路徑
++
+image:storage4.png[""]
+
+. 使用傳統或混合式AD更新公司OU中ADUC中定義的共用區。這反映在VDS資料夾管理中。
++
+image:storage5.png[""]
+
+
+
+
+
+==== 更新FSLogix設定檔路徑
+
+. 在原始檔案伺服器和任何其他已配置的工作階段主機上開啟RegEdit。
++
+
+NOTE: 如有需要、也可透過GPO原則設定。
+
+. 使用新值編輯_VHDLocations值。這應該是新的SMB路徑加上_profilecontainers_、如下面的快照所示。
++
+image:storage6.png[""]
+
+
+
+
+
+==== 更新主目錄的資料夾重新導向設定
+
+. 開啟群組原則管理、選取使用者GPO連結至DC=domain,DC=obi/Cloud Workspace/Cloud Workspace Companies /////<公司代碼>/<公司代碼>-桌面使用者。
+. 在「使用者組態」>「原則」>「Windows設定」>「資料夾重新導向」下編輯資料夾重新導向路徑。
+. 只有桌面和文件需要更新、而且路徑應符合主磁碟區的新SMB路徑掛載點。
++
+image:storage7.png[""]
+
+
+
+
+
+==== 使用Command Center更新VDS SQL資料庫
+
+WMGR1包含名為Command Center的輔助程式公用程式應用程式、可大量更新VDS資料庫。
+
+.若要進行最終資料庫更新：
+. 連線至CWMGR1、瀏覽並執行CommandCenter.exe
++
+image:storage10.png[""]
+
+. 瀏覽至「_Operations」（作業）索引標籤、按一下「_Load Data_」（載入資料）以填入「公司代碼」下拉式清單、選取公司代碼、然後輸入儲存層的新儲存路徑、再按一下「_Execute Command_」（執行命令_）。
++
+image:storage11.png[""]
+
+

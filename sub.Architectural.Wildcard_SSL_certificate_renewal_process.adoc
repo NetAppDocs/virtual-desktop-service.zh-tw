@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: Architectural.Wildcard_SSL_certificate_renewal_process.html 
+summary: 萬用字元SSL憑證續約程序 
+keywords:  
+---
+= 萬用字元SSL憑證續約程序
+:allow-uri-read: 
+
+
+
+
+== 建立憑證簽署要求（CSR）：
+
+. 連線至CWMGR1
+. 從「管理員工具」開啟「IIS管理員」
+. 選取「CWMGR1」並開啟「伺服器憑證」
+. 按一下「動作」窗格中的「建立憑證要求」
++
+image:ssl1.png[""]
+
+. 在「Request Certificate Wizard」（申請憑證精靈）中填寫「Distinguished Name Properties」（辨別名稱內容）、然後按「
++
+.. 一般名稱：FQDN of Wildcard -*.domain.com
+.. 組織：貴公司合法註冊的名稱
+.. 組織單位：「IT」運作正常
+.. 城市：公司所在的城市
+.. 州/省：公司所在的州/省
+.. 國家/地區：公司所在的國家/地區
++
+image:ssl2.png[""]
+
+
+
+. 在「Cryptographic Service Provider Properties（密碼編譯服務提供者內容）」頁面上、確認下列項目出現、然後按「Next（下一步）
++
+image:ssl3.png[""]
+
+. 指定檔案名稱、然後瀏覽至您要儲存CSR的位置。如果您未指定位置、CSR將位於C：\Windows\System32..
++
+image:ssl4.png[""]
+
+. 完成後按一下「Finish（完成）」您將使用此文字檔將訂單提交給憑證註冊機構
+. 請聯絡登錄支援部門、以購買新的萬用字元SSL作為您的憑證：*.domain.com
+. 收到SSL憑證後、請將SSL憑證.cer檔案儲存在CWMGR1上的某個位置、然後依照下列步驟進行。
+
+
+
+
+== 安裝及設定CSR：
+
+. 連線至CWMGR1
+. 從「管理員工具」開啟「IIS管理員」
+. 選取「CWMGR1」並開啟「伺服器憑證」
+. 按一下「動作」窗格中的「完成憑證要求」
++
+image:ssl5.png[""]
+
+. 完成「完整憑證要求」中的下列欄位、然後按一下「確定」：
++
+image:ssl6.png[""]
+
++
+.. 檔案名稱：選取先前儲存的.cer檔案
+.. 易記名稱：*.domain.com
+.. 憑證存放區：選取「Web託管」或「個人」
+
+
+
+
+
+
+== 指派SSL憑證：
+
+. 確認「移轉模式」未啟用。您可以在VDS的「安全性設定」下的「工作區總覽」頁面上找到這項功能。
++
+image:ssl7.png[""]
+
+. 連線至CWMGR1
+. 從「管理員工具」開啟「IIS管理員」
+. 選取「CWMGR1」並開啟「伺服器憑證」
+. 按一下「動作」窗格中的「匯出」
+. 以.pfx格式匯出憑證
+. 建立密碼。儲存密碼以供日後匯入或重新使用.pfx檔案所需
+. 將.pfx檔案儲存至C：\installs\RDPcert目錄
+. 按一下「確定」並關閉「IIS管理員」
++
+image:ssl8.png[""]
+
+. 開啟DCConfig
+. 在"萬用字元憑證"下、將"憑證路徑"更新為新的.pfx檔案
+. 出現提示時輸入.pfx密碼
+. 按一下儲存
++
+image:ssl9.png[""]
+
+. 如果憑證的有效時間超過30天、請允許自動化在一週內的「每日早上行動」工作期間套用新的憑證
+. 定期檢查平台伺服器、確認新的憑證已傳播。驗證並測試使用者連線能力以確認。
++
+.. 在伺服器上、前往管理工具
+.. 選取「遠端桌面服務」>「遠端桌面閘道管理員」
+.. 在閘道伺服器名稱上按一下滑鼠右鍵、然後選取「內容」。按一下「SSL憑證」索引標籤以檢閱到期日
++
+image:ssl10.png[""]
+
+
+
+. 定期檢查執行連線代理人角色的用戶端VM
++
+.. 移至「伺服器管理員」>「遠端桌面服務」
+.. 在「部署總覽」下、選取「工作」下拉式清單、然後選擇「編輯部署內容」
++
+image:ssl11.png[""]
+
+.. 按一下「憑證」、選取「憑證」、然後按一下「檢視詳細資料」將會列出到期日。
++
+image:ssl12.png[""]
+
++
+image:ssl13.png[""]
+
+
+
+. 如果您想要立即推出新的憑證、請使用TestVdcTools強制更新。這應該在維護期間完成、因為任何登入的使用者都會失去連線、而且您與CWMGR1的連線也會中斷。
++
+.. 前往C:\Program Files\CloudWorkspace\TestVdcTools、按一下「Operations（作業）」索引標籤、然後選取「Wildcard Cert Install（萬用字元證書安裝）」命令
+.. 將伺服器欄位保留空白
+.. 核取力方塊
+.. 按一下「執行命令」
+.. 使用上述步驟驗證憑證傳播
++
+image:ssl14.png[""]
+
+
+
+

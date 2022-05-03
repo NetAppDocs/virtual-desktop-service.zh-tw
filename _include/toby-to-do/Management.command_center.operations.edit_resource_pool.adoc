@@ -1,0 +1,19 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.edit_resource_pool-4bc36.png[Management.command center.opers.Edit資源池4bc36]
+
+image::Management.command_center.operations.edit_resource_pool-e15e5.png[Management.command center.opers.Edit資源池e15e5]
+
+image::Management.command_center.operations.edit_resource_pool-6c466.png[Management.command center.opers.Edit資源池6c466]
+
+image::Management.command_center.operations.edit_resource_pool-40dbd.png[Management.command center.opers.Edit資源池40dbd]
+
+image::Management.command_center.operations.edit_resource_pool-bebd9.png[Management.command center.opers.Edit資源池bebd9.]
+
+image::Management.command_center.operations.edit_resource_pool-de40f.png[Management.command center.opers.Edit資源池de40f]

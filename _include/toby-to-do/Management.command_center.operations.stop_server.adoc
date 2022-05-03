@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.stop_server-57787.png[Management.command center.operations。停止伺服器57787]

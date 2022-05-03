@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: Management.Cost_Optimization.workload_schedule.html 
+summary: 在VDS中為終端使用者部署應用程式的逐步指南 
+keywords:  
+---
+= 資源最佳化
+:allow-uri-read: 
+
+
+
+
+== 工作負載排程
+
+工作負載排程功能可排程環境作用中的時間範圍。
+
+工作負載排程可設定為「永遠開啟」、「永遠關閉」或「排程」。設定為「已排程」時、開/關時間可設定為一週中每一天的不同時間範圍。
+
+image:Workload_schedule1.png[""]
+
+排定關閉時、無論是透過「永遠關閉」或「排程」、所有租戶虛擬機器都會關閉。平台伺服器（例如CWMGR1）將保持作用狀態、以利提供如隨需喚醒等功能。
+
+工作負載排程可搭配其他資源最佳化功能使用、包括即時擴充和隨需喚醒。
+
+
+
+== 隨選隨用
+
+隨需喚醒（wod）是正在申請專利的技術、可為終端使用者叫出適當的VM資源、以利全年無休地進行無人值守存取、即使資源已排定為非使用中。
+
+
+
+=== 適用於遠端桌面服務
+
+在RDS中、VDS Windows用戶端內建隨需喚醒整合功能、可在不需任何其他終端使用者動作的情況下、將適當的資源叫醒。他們只需啟動正常登入、用戶端就會在啟動虛擬機器的短暫延遲時通知他們。此用戶端（因此這會自動執行隨選功能）僅在從Windows裝置連線至RDS環境時可用。
+
+VDS Web用戶端內建類似功能、可用於RDS部署。VDS Web用戶端位於： link:https://login.cloudworkspace.com[""]
+
+隨需喚醒功能並未內建於Microsoft RD用戶端（適用於Windows或任何其他平台）或任何其他協力廠商RD用戶端。
+
+
+
+=== Azure Virtual Desktop隨需隨選功能
+
+在AVD中、唯一可用於連線的用戶端是Microsoft提供的、因此不含隨需喚醒功能。
+
+VDS確實包含透過VDS Web Client為AVD提供自助服務隨需叫醒功能。網路用戶端可用來叫出適當的資源、然後透過標準AVD用戶端啟動連線。
+
+.若要在AVD中叫醒VM資源：
+. 連線至VDS Web Client link:https://login.cloudworkspace.com[""]
+. 使用使用者AVD認證登入
++
+** 出現警告訊息時、會提示_「您有Microsoft的AVD服務可供使用。按一下此處以檢視狀態並啟動離線主機集區。"_
+
+
+. 按一下「_Here」之後、您會看到可用的主機資源池清單、以及狀態欄下方的「Click to Start（按一下以開始）」連結
++
+image:Wake_on_Demand_h5_1.png[""]
+
+. _按一下以開始_連結、然後等待1-5分鐘、讓狀態變更為「線上」、並顯示綠色狀態圖示
+. 使用一般程序連線至AVD
+
+
+
+
+== 即時擴充
+
+即時擴充可搭配工作負載排程一起運作、方法是依照工作負載排程中的設定、在排程作用中時間管理線上工作階段主機的數量。排定離線時、「即時擴充」將無法控制工作階段主機的可用度。即時擴充功能只會影響RDS和AVD環境中的共享使用者和共享伺服器、VDI使用者和VDI虛擬機器則不包括在這些計算中。所有其他VM類型均不受影響。
+
+
+NOTE: AVD _load balancer typ__設定會與此組態互動、因此在選擇該設定時也應注意。以深度第一的方式、將成本節約效益最大化、而以廣度第一的方式、將終端使用者效能最大化。
+
+啟用即時擴充功能而不核取任何選項、自動化引擎會自動為額外的「已啟用的伺服器」、「每個伺服器的共享使用者」和「每個伺服器的共享使用者上限」選取值。
+
+* 加值型伺服器_的數量預設為0、表示1部伺服器將全年無休執行。
+* _Shared Users per Server_預設為公司使用者人數除以伺服器數量。
+* 「每個伺服器的共享使用者上限」預設為無限。
+
+
+即時擴充功能可在使用者登入時開啟伺服器、並在使用者登出時關閉伺服器。
+
+一旦作用中使用者總數達到每部伺服器的共享使用者數乘以開啟電源的伺服器總數、就會自動觸發啟動額外伺服器的功能。
+
+ e.g. With 5 Shared Users per Server set (this is the default # we’ll use for all examples in this article) and 2 servers running, a 3rd server won’t be powered up until server 1 & 2 both have 5 or more active users. Until that 3rd server is available, new connections will be load balanced all available servers. In RDS and AVD Breadth mode, Load balancing sends users to the server with the fewest active users (like water flowing to the lowest point). In AVD Depth mode, Load balancing sends users to servers in a sequential order, incrementing when the Max Shared Users number is reached.
+「即時擴充」也會關閉伺服器以節省成本。當伺服器有0個作用中使用者、而另一部伺服器的可用容量低於_Shared Users per Server_時、空的伺服器將會關機。
+
+開啟下一部伺服器可能需要幾分鐘的時間。在某些情況下、登入速度可能會超過新伺服器的可用度。例如、如果15人在5分鐘內登入、他們就會在第一台伺服器上登入（或拒絕工作階段）、而第二台和第三台則會開機。在此案例中、有兩種策略可用來減輕單一伺服器的超載情形：
+
+. 啟用伺服器額外供電數量_、以便額外的伺服器開啟並可供接受連線、並讓平台有時間啟動額外的伺服器。
++
+.. 啟動時、數字會新增至計算需求。例如、如果設定為額外1部伺服器（並連接6位使用者）、則會因為使用者數而啟用兩部伺服器、再加上因為「_Extra Powered On Servers_」（_額外的Powered On Servers_）設定而啟用第3部伺服器。
+
+
+. 啟用「每部伺服器的共享使用者人數上限」、對每部伺服器允許的使用者人數設定硬限制。超過此限制的新連線將會遭到拒絕、終端使用者將會收到錯誤訊息、並在其他伺服器可用後幾分鐘內再試一次。如果設定、此數字也會定義AVD共享伺服器的深度。
++
+.. 假設每部伺服器_共享使用者_與每部伺服器_共享使用者_之間的差異是適當的、則在達到最大值之前、除了最極端的情況（異常大的登入風暴）、新的伺服器應該都可以使用。
+
+
+
+
+
+
+== 虛擬機器資源擴充
+
+VM資源擴充是一項選用功能、可變更環境中工作階段主機VM的大小和數量。
+
+啟動後、VDS會根據您所選的條件、計算適當的工作階段主機VM大小和數量。這些選項包括：作用中使用者、命名使用者、伺服器負載及固定。
+
+image:VMResource2.png[""]
+
+VM的大小包含在UI中選取的VM系列中、可透過下拉式清單加以變更。（例如 Azure中的標準dv3系列_）
+
+image:VMResource1.png[""]
+
+
+
+=== 根據使用者進行擴充
+
+
+NOTE: 下列功能在「作用中使用者」或「使用者計數」方面的運作方式相同。「使用者計數」只是指所有使用VDS桌面啟動的使用者數。作用中使用者是根據前2週使用者工作階段資料所計算的變數。
+
+根據使用者計算時、工作階段主機VM的大小（和數量）會根據定義的RAM和CPU需求來計算。管理員可以定義每位使用者的RAM GB、vCPU核心數、以及其他非變動資源。
+
+在下方螢幕快照中、每位使用者會被分配2GB RAM和1/2 vCPU核心。此外、伺服器的開頭還包括2個vCPU核心和8GB RAM。
+
+image:VMResource3.png[""]
+
+此外、系統管理員可以定義VM可以達到的最大容量。一旦到達、環境將會透過新增額外的VM工作階段主機來橫向擴充。
+
+在下方螢幕快照中、每個VM僅限32GB RAM和8vCPU核心。
+
+image:VMResource4.png[""]
+
+在定義所有這些變數之後、VDS可以計算適當的工作階段主機VM大小和數量、大幅簡化維護適當資源配置的程序、即使使用者已新增和移除也沒問題。
+
+
+
+=== 根據伺服器負載進行擴充
+
+根據伺服器負載進行計算時、工作階段主機VM的大小（和數量）會根據VDS在前2週期間觀察到的平均CPU / RAM使用率來計算。
+
+當超過最大臨界值時、VDS會增加大小或增加數量、使平均使用量回到範圍內。
+
+就像使用者型擴充一樣、也可以定義VM系列和最大VM大小。
+
+image:VMResource6.png[""]
+
+
+
+== 其他作用中資源
+
+工作負載排程無法控制平台伺服器（例如：CWMGR1）、因為它們是觸發「隨需喚醒」功能及協助其他平台工作所需的伺服器、因此應全年無休執行以進行正常環境作業。
+
+停用整個環境可實現額外的儲存、但僅建議用於非正式作業環境。這是可在VDS的「部署」區段中執行的手動動作。若要將環境恢復為正常狀態、也需要在同一頁面上手動執行步驟。
+
+image:Stop_Deployment.png[""]
+image:Start_deployment.png[""]

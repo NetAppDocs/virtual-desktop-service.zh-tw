@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.load_hypervisor_type-e9558.png[Management.command center.operes.load Hypervisor類型e9558]

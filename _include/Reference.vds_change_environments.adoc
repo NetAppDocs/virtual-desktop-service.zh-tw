@@ -1,0 +1,63 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+NetApp的虛擬桌面服務可讓組織管理先前版本上的部署、預覽未來版本、以及管理執行先前版本（N -1方法）的環境。
+
+
+
+=== 虛擬桌面服務URL
+
+虛擬桌面服務是系統管理員可用來持續管理VDS部署的管理主控台。
+
+[cols="20,20,20,20,20"]
+|===
+| 環境 | 說明 | URL | 程式碼庫 | API文件 
+
+
+| 預覽 | 預覽即將推出的版本 | https://preview.manage.cloudworksace.com/[] | 5.4. | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+
+
+| *目前* | *目前版本* | * https://manage.vds.netapp.com/* | * 6.0 * | * https://api.cloudworkspace.com/6.0/swagger/ui/index* 
+
+
+| 上一步 | 先前版本 | https://manage.cloudworkspace.com/[] | 5.4. | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+|===
+
+
+=== 虛擬桌面服務部署
+
+VDS提供精靈導向的部署程序、可讓系統管理員大幅簡化AVD和/或虛擬桌面環境的資源配置程序。
+
+系統管理員無法將部署資源配置到舊環境、只能部署到目前或預覽環境中。
+
+[cols="20,20,20,20,20"]
+|===
+| 環境 | 說明 | URL | 程式碼庫 | 部署指南 
+
+
+| *目前* | *目前版本* | * https://manage.vds.netapp.com/deployments/add* | * 5.4* | *link:Deploying.Azure.AVD.Deploying_AVD_in_Azure_v6.html["VDS v6.0部署指南"]* 
+
+
+| 上一步 | 先前版本 | https://cwasetup.cloudworkspace.com[] | 5.4. | 聯絡支援部門 
+|===
+
+
+=== VDS成本評估工具
+
+VDS成本估算工具是專為特定用途打造的加值工具、可讓組織預估其公有雲端成本將在Azure或Google Cloud中的多少。此工具包括各種不同的方法、以及最佳化預算、以在組織預算範圍內提供所需的解決方案。
+
+[cols="33,33,33"]
+|===
+| 環境 | 說明 | URL 
+
+
+| 驗證 | 預覽即將推出的版本 | https://val.manage.vds.netapp.com/cost-estimator[] 
+
+
+| *目前* | *目前版本* | * https://manage.vds.netapp.com/cost-estimator* 
+|===

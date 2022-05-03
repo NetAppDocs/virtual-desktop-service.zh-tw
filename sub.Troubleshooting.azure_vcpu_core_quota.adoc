@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.azure_vcpu_core_quota.html 
+summary: Azure vCPU核心配額疑難排解逐步指南 
+keywords:  
+---
+= Azure VCPU核心配額
+:allow-uri-read: 
+
+
+
+
+== 檢視目前配額
+
+. 登入Azure主控台、瀏覽至「訂閱」模組、然後按一下「配額」。接著、選取供應商下拉式清單中的所有供應商、選取最右下拉式清單中的全部顯示、然後選取部署Cloud Workspace的Azure區域。
++
+image:quota1.png[""]
+
+. 然後您將看到您所耗用的資源與可用的配額量。在下圖中、CloudJumper在BS系列VM可用的350個CPU中使用42個CPU。增加配額
++
+image:quota2.png[""]
+
+. 如果您想要增加配額、請按一下「Request增大（申請增加）」、然後告訴它您想要增加多少（99%的時間是運算/ CPU）。
++
+image:quota3.png[""]
+
+. 選取雲端工作區部署的區域、以及您要增加配額的VM系列。
++
+image:quota4.png[""]
+
+. 輸入您的聯絡資訊、然後按一下「建立」、將申請提交給Microsoft。他們通常很快就會增加這一點。
+

@@ -1,0 +1,21 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.create_server_from_template-83e84.png[Management.command center.operations。從範本83e84建立伺服器]
+
+image::Management.command_center.operations.create_server_from_template-82622.png[Management.command center.operations。從範本82622建立伺服器]
+
+image::Management.command_center.operations.create_server_from_template-83e84.png[Management.command center.operations。從範本83e84建立伺服器]
+
+image::Management.command_center.operations.create_server_from_template-211d7.png[Management.command center.operations。從範本211d7建立伺服器]
+
+image::Management.command_center.operations.create_server_from_template-644c1.png[Management.command center.operations.create server from模板644c1]
+
+image::Management.command_center.operations.create_server_from_template-4a22f.png[Management.command center.operations。從範本4a22f建立伺服器]
+
+image::Management.command_center.operations.create_server_from_template-70fa8.png[Management.command center.operations。從範本70fa8建立伺服器]

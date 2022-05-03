@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.should_pool_be_running-d7849.png[Management.command center.operations。資源池應執行d7849]

@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.load_storage_types-e47d0.png[Management.command center.opers.load儲存類型e47d0]

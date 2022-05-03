@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.load_server_resource_report_data-7c205.png[Management.command center.opers.load伺服器資源報告資料7c205]

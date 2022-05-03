@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.allow_new_AVD_connections-74385.png[Management.command center.operations。允許新的AVD連線74385]

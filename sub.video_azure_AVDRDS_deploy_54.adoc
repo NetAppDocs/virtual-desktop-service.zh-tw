@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVDRDS_deploy_54.html 
+summary: 使用NetApp VDS v5.4將AVD或RDS部署至Azure 
+keywords:  
+---
+= 使用NetApp VDS v5.4將AVD或RDS部署至Azure
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+video::Gp2DzWBc0Go[youtube, ]

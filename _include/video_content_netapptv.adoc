@@ -1,0 +1,13 @@
+= VDS、GFC和ANF -適用於全球部署雲端桌面的解決方案
+:allow-uri-read: 
+
+
+
+
+== VDS、GFC和ANF -適用於全球部署雲端桌面的解決方案
+
+支援高效能儲存、而虛擬桌面服務和全域檔案快取則可從單一控制面板管理工作區和站台區域、以供部署於全球各地的雲端桌面使用。Azure NetApp Files
+
+image:netapptv1.png["連結：https://tv.netapp.com/detail/video/6182654694001"]
+
+link:https://tv.netapp.com/detail/video/6182654694001[""]

@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVDRDS_optimize_resources_54.html 
+summary: 在VDS 5.4中最佳化Azure資源使用量 
+keywords:  
+---
+= 在VDS 5.4中最佳化Azure資源使用量
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+video::IABgjxLCWkI[youtube, ]
+=

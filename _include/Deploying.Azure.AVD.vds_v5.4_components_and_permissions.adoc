@@ -1,0 +1,498 @@
+= AVD與VDS安全實體與服務
+:allow-uri-read: 
+
+
+
+
+== AVD與VDS安全實體與服務
+
+Azure Virtual Desktop（AVD）需要Azure AD和本機Active Directory中的安全帳戶和元件、才能執行自動化動作。NetApp的虛擬桌面服務（VDS）會在部署程序期間建立元件和安全性設定、讓系統管理員能夠控制AVD環境。本文件說明兩種環境中的相關VDS帳戶、元件及安全性設定。
+
+部署自動化程序的元件和權限大多與最終部署環境的元件不同。因此本文分為部署自動化區段和部署環境區段兩個主要區段。
+
+image:Reference Architecture AVD v1.jpg["寬=75%"]
+
+
+
+== AVD部署自動化元件與權限
+
+VDS部署運用多個Azure和NetApp元件及安全權限來實作部署和工作區。
+
+
+
+== VDS部署服務
+
+
+
+=== 企業應用程式
+
+VDS利用租戶Azure AD網域中的企業應用程式與應用程式登錄。企業應用程式是針對Azure資源管理程式、Azure圖表的通話管道、以及（如果使用AVD Fall版本）Azure AD執行個體安全性內容的AVD API端點、其委派的角色和權限會授予相關的服務主體。根據租戶透過VDS初始化AVD服務的狀態、可能會建立應用程式登錄。
+
+為了能夠建立及管理這些VM、VDS在Azure訂閱中建立多個支援元件：
+
+
+
+==== 雲端工作區
+
+這是企業應用程式管理員在VDS安裝精靈的部署程序期間所授予及使用的初始Enterprise應用程式管理員。
+
+Cloud Workspace企業應用程式會在VDS安裝程序期間要求一組特定權限。這些權限包括：
+
+* 以登入使用者身分存取目錄（委派）
+* 讀寫目錄資料（委派）
+* 登入並讀取使用者設定檔（委派）
+* 登入（委派）使用者
+* 檢視使用者的基本設定檔（委派）
+* 以組織使用者身分存取Azure服務管理（委派）
+
+
+
+
+==== 雲端工作區API
+
+處理Azure PaaS功能的一般管理需求。Azure PaaS功能的範例包括Azure運算、Azure備份、Azure檔案等。本服務負責人在初始部署期間必須擁有目標Azure訂閱的擁有者權利、以及持續管理的貢獻者權利（附註： 使用Azure檔案需要訂閱擁有者權限、才能針對Azure檔案物件設定每個使用者權限）。
+
+Cloud Workspace API Enterprise應用程式會在VDS安裝程序期間要求一組特定權限。這些權限包括：
+
+* 訂閱參與者（若使用Azure檔案則為訂閱擁有者）
+* Azure AD圖表
++
+** 讀寫所有應用程式（應用程式）
+** 管理本應用程式所建立或擁有的應用程式（應用程式）
+** 讀寫裝置（應用程式）
+** 以登入使用者身分存取目錄（委派）
+** 讀取目錄資料（應用程式）
+** 讀取目錄資料（委派）
+** 讀寫目錄資料（應用程式）
+** 讀寫目錄資料（委派）
+** 讀寫網域（應用程式）
+** 讀取所有群組（委派）
+** 讀寫所有群組（委派）
+** 讀取所有隱藏的成員資格（應用程式）
+** 讀取隱藏成員資格（委派）
+** 登入並讀取使用者設定檔（委派）
+** 讀取所有使用者的完整設定檔（委派）
+** 讀取所有使用者的基本設定檔（委派）
+
+
+* Azure服務管理
++
+** 以組織使用者身分存取Azure服務管理（委派）
+
+
+
+
+
+
+=== NetApp VDS
+
+NetApp VDS元件可透過VDS控制面板來自動化AVD角色、服務和資源的部署與組態。
+
+
+
+=== 自訂角色
+
+自動化貢獻者角色是透過權限最低的方法來協助部署。此角色可讓CWMGR1 VM存取Azure自動化帳戶。
+
+
+
+=== 自動化帳戶
+
+自動化帳戶是在部署期間建立的帳戶、是資源配置程序中的必要元件。Automation帳戶包含變數、認證資料、模組和所需的狀態組態、並參考Key Vault。
+
+
+
+==== 所需的狀態組態
+
+這是用來建置CWMGR1組態的方法、組態檔會下載到VM、並透過VM上的本機組態管理員套用。組態元素範例包括：
+
+* 安裝Windows功能
+* 安裝軟體
+* 套用軟體組態
+* 確保套用適當的權限集
+* 套用Let的Encrypt憑證
+* 確保DNS記錄正確無誤
+* 確保將CWMGR1加入網域
+
+
+
+
+==== 模組：
+
+* ActiveDirectory Dsc:所需的狀態組態資源、可用於Active Directory的部署與組態。這些資源可讓您設定新的網域、子網域和高可用度網域控制器、建立跨網域信任關係、以及管理使用者、群組和OU。
+* AZ.Accounts：Microsoft提供的模組、用於管理Azure模組的認證和一般組態元素
+* AZ.Automation：Microsoft提供的Azure Automation指令模組
+* Az.Compute:A Microsoft提供Azure運算命令的模組
+* AZ.KeyVault：Microsoft提供的Azure Key Vault指令模組
+* AZ.Resources：Microsoft提供的Azure資源管理程式命令模組
+* cChocco：使用chocatey下載及安裝套件所需的狀態組態資源
+* cjAz：此NetApp建立的模組可為Azure自動化模組提供自動化工具
+* cjAzACS：此NetApp建立的模組包含環境自動化功能和PowerShell程序、可從使用者內容中執行。
+* cjAzBuild：此NetApp建立的模組包含從系統內容執行的建置與維護自動化與PowerShell程序。
+* cNtfsAccessControl：NTFS存取控制管理所需的狀態組態資源
+* ComputerManagementDsc:所需的狀態組態資源、可讓您執行電腦管理工作、例如加入網域和排程工作、以及設定虛擬記憶體、事件記錄、時區和電源設定等項目。
+* cUserRightsAssignment：所需的狀態組態資源、可讓您管理登入權限和權限等使用者權限
+* 網路：網路所需的狀態組態資源
+* xCertificate：所需的狀態組態資源、可簡化Windows Server上的憑證管理。
+* xDnssServer：所需的狀態組態資源、用於Windows Server DNS伺服器的組態與管理
+* xNetworking：與網路相關的所需狀態組態資源。
+* link:https://github.com/PowerShell/xRemoteDesktopAdmin["xRemoteDesktopAdmin"]：此模組使用儲存庫、其中包含所需的狀態組態資源、可在本機或遠端機器上設定遠端桌面設定和Windows防火牆。
+* xRemoteDesktopSessionHost：所需的狀態組態資源（xRDS分離 部署、xRDS分離 集合、xRDS分離 集合組態和xRDRemoteApp）、可用來建立及設定遠端桌面工作階段主機（RDSH）執行個體
+* XSmbShare：所需的狀態組態資源、可用於設定及管理SMB共用區
+* xSystemSecurity：所需的狀態組態資源、可用於管理UAC和IE Esc
+
+
+
+NOTE: Azure Virtual Desktop也會安裝Azure元件、包括Azure Virtual Desktop和Azure Virtual Desktop Client的企業應用程式和應用程式註冊、AVD租戶、AVD主機集區、AVD應用程式群組和AVD註冊虛擬機器。雖然VDS Automation元件會管理這些元件、但AVD會控制其預設組態和屬性集、因此請參閱AVD文件以取得詳細資料。
+
+
+
+=== 混合式AD元件
+
+為了協助整合公有雲中的現有AD、現有的AD環境需要額外的元件和權限。
+
+
+
+==== 網域控制器
+
+現有的網域控制器可透過AD Connect和（或）站台對站台VPN（或Azure ExpressRoute）整合至AVD部署。
+
+
+
+==== AD Connect
+
+為了透過AVD PaaS服務順利進行使用者驗證、AD連線可用於同步網域控制器與Azure AD。
+
+
+
+==== 安全性群組
+
+VDS使用名為CW-Infrastructure的Active Directory安全性群組、來包含自動化Active Directory相依工作（例如網域加入和GPO原則附加）所需的權限。
+
+
+
+==== 服務帳戶
+
+VDS使用名為CloudworkspaceSVC的Active Directory服務帳戶、做為VDS Windows服務和IIS應用程式服務的識別身分。此帳戶是非互動式（不允許RDP登入）、是CW-Infrastructure帳戶的主要成員
+
+
+
+==== VPN或ExpressRoute
+
+站台對站台VPN或Azure ExpressRoute可用於直接將Azure VM加入現有網域。這是可選的組態、可在專案需求決定時使用。
+
+
+
+==== 本機AD權限委派
+
+NetApp提供可簡化混合式AD程序的選用工具。如果使用NetApp的選用工具、則必須：
+
+* 在伺服器作業系統上執行、而非在工作站作業系統上執行
+* 在加入網域或網域控制器的伺服器上執行
+* 在執行此工具的伺服器（如果未在網域控制器上執行）和網域控制器上、均已安裝PowerShell 5.0或更新版本
+* 由具有網域管理權限的使用者執行、或由具有本機系統管理員權限且能夠提供網域管理員認證的使用者執行（適用於RunAs）
+
+
+無論是手動建立或由NetApp工具套用、所需的權限如下：
+
+* CW-Infrastructure群組
++
+** Cloud Workspace Infrastructure（* CW-Infrastructure*）安全性群組已獲授予對Cloud Workspace OU層級和所有後代物件的完整控制權
+** 部署程式碼>.cloudWorks.app DNS區域–CW-Infrastructure群組授予的「建立子項目」、「刪除子項目」、「清單子項目」、「ReadProperty」、「刪除樹狀結構」、 ExtendedRight、Delete、GenericWrite
+** DNS伺服器–CW-Infrastructure Group授予ReadPropy、Generic執行
+** 所建立VM的本機管理存取權（CWMGR1、AVD工作階段VM）（由受管理AVD系統上的群組原則執行）
+
+
+* CW-CWMGRAccess群組此群組可在所有範本、單一伺服器、新原生Active Directory範本上、利用內建的群組伺服器操作員遠端桌面使用者和網路組態操作員、為CWMGR1提供本機管理權限。
+
+
+
+
+== AVD環境元件與權限
+
+部署自動化程序完成後、部署與工作區的持續使用與管理作業將需要一組不同的元件與權限、如下所定義。上述的許多元件和權限仍然相關、但本節著重於定義已部署的架構。
+
+VDS部署和工作區的元件可分為多個邏輯類別：
+
+* 終端使用者用戶端
+* VDS控制面板元件
+* Microsoft Azure AVD-PaaS元件
+* VDS平台元件
+* Azure租戶中的VDS工作區元件
+* 混合式AD元件
+
+
+
+
+=== 終端使用者用戶端
+
+使用者可以連線至AVD桌面及/或從各種端點類型連線。Microsoft已針對Windows、MacOS、Android和iOS發佈用戶端應用程式。此外、網路用戶端也可供無用戶端存取。
+
+有些Linux精簡型用戶端廠商已針對AVD發佈端點用戶端。這些資訊列於 https://docs.microsoft.com/en-us/azure/virtual-desktop/linux-overview[]
+
+
+
+=== VDS控制面板元件
+
+
+
+==== VDS REST API
+
+VDS以完整記錄的REST API為基礎、因此也可透過API取得Web應用程式中的所有可用動作。API文件如下： https://api.cloudworkspace.com/5.4/swagger/ui/index#[]
+
+
+
+==== VDS Web應用程式
+
+VDS管理員可以透過VDS Web應用程式與ADS應用程式互動。此入口網站位於： https://manage.cloudworkspace.com[]
+
+
+
+==== 控制面資料庫
+
+VDS資料與設定儲存在由NetApp代管及管理的控制面板SQL資料庫中。
+
+
+
+==== VDS通訊
+
+
+
+=== Azure租戶元件
+
+VDS部署自動化會建立單一Azure資源群組、以包含其他AVD元件、包括VM、網路子網路、網路安全群組、以及Azure Files Container或Azure NetApp Files F動即可 容納的資源集區。注意：預設值為單一資源群組、但VDS有工具可在其他資源群組中建立資源（若有需要）。
+
+
+
+==== Microsoft Azure AVD-PaaS元件
+
+
+
+===== AVD REST API
+
+Microsoft AVD可透過API進行管理。VDS廣泛運用這些API來自動化及管理AVD環境。文件位於： https://docs.microsoft.com/en-us/rest/api/desktopvirtualization/[]
+
+
+
+===== 工作階段代理程式
+
+代理程式會決定授權給使用者的資源、並協調使用者與閘道的連線。
+
+
+
+===== Azure診斷
+
+Azure診斷專為支援AVD部署而打造。
+
+
+
+===== AVD Web用戶端
+
+Microsoft提供Web用戶端、讓使用者無需在本機安裝用戶端即可連線至AVD資源。
+
+
+
+===== 工作階段閘道
+
+本機安裝的RD用戶端會連線至閘道、以便安全地與AVD環境通訊。
+
+
+
+==== VDS平台元件
+
+
+
+===== CWMGR1
+
+CMWDR1是每個部署的VDS控制VM。依預設、此功能會在目標Azure訂閱中建立為Windows 2019 Server VM。如需安裝在WMGR1上的VDS和協力廠商元件清單、請參閱本機部署一節。
+
+AVD要求AVD VM加入Active Directory網域。為了簡化此程序並提供管理VDS環境的自動化工具、上述的CWMGR1 VM上安裝了數個元件、並將數個元件新增至AD執行個體。這些元件包括：
+
+* * Windows服務*- VDS使用Windows服務從部署中執行自動化與管理動作：
++
+** *連續波自動化服務*是部署在每個AVD部署中的CWMGR1上的Windows服務、可在環境中執行許多使用者導向的自動化工作。此服務在* CloudWorkspaceSVC* AD帳戶下執行。
+** *連續波VM自動化服務*是部署在每個AVD部署中的WMGR1上的Windows服務、可執行虛擬機器管理功能。此服務在* CloudWorkspaceSVC* AD帳戶下執行。
+** *連續波代理服務*是一項Windows服務、部署至VDS管理下的每部虛擬機器、包括CWMGR1。此服務在虛擬機器的*本機系統*內容下執行。
+** * CWManagerX API*是每個AVD部署中安裝在CWMGR1上的一個以IIS應用程式集區為基礎的接聽程式。這會處理來自全域控制面板的傳入要求、並在* CloudWorkspaceSVC* AD帳戶下執行。
+
+
+* * SQL Server 2017 Express*–VDS在WMGR1 VM上建立SQL Server Express執行個體、以管理自動化元件所產生的中繼資料。
+* *網際網路資訊服務（IIS*）*：在CWMGR1上啟用IIS、以裝載CWManagerX和CWApps IIS應用程式（僅在啟用RDS RemoteApp功能時）。VDS需要使用IIS 7.5版或更新版本。
+* * HTML5 Portal（選用）*：VDS會安裝Spark Gateway服務、以便透過HTML5存取部署中的VM及VDS Web應用程式。這是以Java為基礎的應用程式、如果不需要此存取方法、可以停用和移除。
+* * RD閘道（選用）*–VDS可讓CWMGR1上的RD閘道角色、提供RDP存取RDS集合型資源集區的權限。如果只需要AVD反向連線存取、則可停用/解除安裝此角色。
+* * RD Web（選用）*–VDS可啟用RD Web角色並建立CWApps IIS Web應用程式。只要需要AVD存取權限、就可以停用此角色。
+* * DC組態*：用於執行部署與VDS站台特定組態與進階組態工作的Windows應用程式。
+* *測試VDC-Tool*：一種Windows應用程式、可支援直接執行虛擬機器和用戶端層級的組態變更、適用於需要修改API或Web應用程式工作以進行疑難排解的罕見情況。
+* * Let’s Encrypt通配符證書（可選）*（由VDS建立和管理）：所有需要HTTPS流量的VM都會在夜間更新憑證。續約作業也由自動化工作處理（憑證為90天、所以續約作業不久前就開始）。客戶可視需要提供自己的萬用字元憑證。VDS也需要數個Active Directory元件來支援自動化工作。設計目的是利用最少數量的AD元件和新增權限、同時仍支援自動化管理環境。這些元件包括：
+* *雲端工作區組織單位（OU）*–此組織單位將做為必要子元件的主要AD容器。將在此層級及其子元件上設定CW-Infrastructure和用戶端DHP存取群組的權限。請參閱附錄A以瞭解此OU中建立的子OU。
+* *雲端工作空間基礎架構群組（CW-Infrastructure）*是在本機AD中建立的安全群組、可將必要的委派權限指派給VDS服務帳戶（* CloudWorkspaceSVC*）
+* *用戶端DHP存取群組（ClientDHPAccess）*是在本機AD中建立的安全性群組、可讓VDS管理公司共用、使用者主目錄及設定檔資料所在的位置。
+* * CloudWorkspaceSVC*服務帳戶（Cloud Workspace Infrastructure Group成員）
+* *部署程式碼>.cloudWorkspace應用程式網域*的DNS區域（此網域可管理工作階段主機VM的自動建立DNS名稱）–由部署組態所建立。
+* * NetApp專屬的GPO *連結至雲端工作區組織單位的各種子OU。這些GPO包括：
++
+** * Cloud Workspace GPO（連結至Cloud Workspace OU）*–定義CW-Infrastructure Group成員的存取傳輸協定與方法。也會將群組新增至AVD工作階段主機上的本機系統管理員群組。
+** * Cloud Workspace防火牆GPO（連結至專屬客戶伺服器、遠端桌面及暫存OU）-建立原則、確保工作階段主機與平台伺服器之間的連線並加以隔離。
+** * Cloud Workspace RDS*（專屬客戶伺服器、遠端桌面和暫存OU）：設定工作階段品質、可靠性、中斷連線逾時限制的原則限制。對於RDS工作階段、會定義TS授權伺服器值。
+** * Cloud Workspace Companies *（預設為未連結）–選用的GPO、可防止存取管理工具和區域、以「鎖定」使用者工作階段/工作區。可連結/啟用以提供受限的活動工作區。
+
+
+
+
+
+NOTE: 您可應要求提供預設的群組原則設定組態。
+
+
+
+==== VDS工作區元件
+
+
+
+===== 資料層
+
+
+
+====== Azure NetApp Files
+
+如果您在VDS設定中選擇「支援資料層」選項、就會建立一個「支援能力資源池」和相關的Volume。Azure NetApp Files Azure NetApp FilesVolume可裝載使用者設定檔（透過FSLogix容器）、使用者個人資料夾和公司資料共用資料夾的共享歸檔儲存設備。
+
+
+
+====== Azure檔案
+
+如果您在CWS設定中選擇Azure Files做為Data Layer（資料層）選項、則會建立Azure檔案共用及其相關的Azure儲存帳戶。Azure檔案共用主控使用者設定檔（透過FSLogix容器）、使用者個人資料夾和公司資料共用資料夾的共用歸檔儲存設備。
+
+
+
+====== 具有受管理磁碟的檔案伺服器
+
+如果您在VDS安裝程式中選擇「檔案伺服器」作為「資料層」選項、Windows Server VM就會以託管磁碟建立。檔案伺服器裝載共用歸檔的儲存設備、以供使用者設定檔（透過FSLogix容器）、使用者個人資料夾和公司資料共用資料夾使用。
+
+
+
+===== Azure網路
+
+
+
+====== Azure虛擬網路
+
+VDS會建立Azure虛擬網路及支援的子網路。VDS需要一個獨立的子網路、用於CWMGR1、AVD主機機器和Azure網域控制器、以及子網路之間的對等關係。請注意、AD控制器子網路通常已經存在、因此部署的VDS子網路需要與現有子網路連接。
+
+
+
+====== 網路安全群組
+
+建立網路安全群組、以控制對CWMGR1 VM的存取。
+
+* 租戶：包含供工作階段主機和資料VM使用的IP位址
+* 服務：包含PaaS服務所需的IP位址（Azure NetApp Files 例如、功能不完整）
+* 平台：包含IP位址、可做為NetApp平台VM（WMGR1和任何閘道伺服器）
+* 目錄：包含用於Active Directory VM的IP位址
+
+
+
+
+===== Azure AD
+
+VDS自動化與協調功能可將虛擬機器部署至目標Active Directory執行個體、然後將機器加入指定的主機集區。AVD虛擬機器在電腦層級受到AD結構（組織單位、群組原則、本機電腦管理員權限等）和AVD結構（主機集區、工作區應用程式群組成員資格）的成員資格（由Azure AD實體和權限管理）的管理。VDS使用VDS Enterprise應用程式/ Azure服務主體進行AVD動作、並使用本機AD服務帳戶（CloudWorkspaceSVC）進行本機AD和本機電腦動作、來處理此「雙重控制」環境。
+
+建立AVD虛擬機器並將其新增至AVD主機集區的特定步驟包括：
+
+* 從Azure範本建立虛擬機器、與AVD相關的Azure訂閱可見（使用Azure服務主要權限）
+* 使用在VDS部署期間指定的Azure vnet檢查/設定新虛擬機器的DNS位址（需要本機AD權限（所有委派給CW-Infrastructure的權限皆在上方）、使用標準VDS命名配置*_｛companyCode｝TS｛seriencenumber｝_*來設定虛擬機器名稱。範例：XYZTS3。（需要本機AD權限（置於我們建立的內部部署（遠端桌面/公司代碼/共享）OU結構中）（與上述相同的權限/群組說明）
+* 將虛擬機器放置在指定的Active Directory組織單位（AD）中（需要委派OU結構的權限（在上述手動程序期間指定））。
+* 使用新的機器名稱/ IP位址更新內部AD DNS目錄（需要本機AD權限）
+* 將新的虛擬機器加入本機AD網域（需要本機AD權限）
+* 使用新的伺服器資訊更新VDS本機資料庫（不需要額外權限）
+* 將VM加入指定的AVD主機集區（需要AVD服務主要權限）
+* 將chlchatey元件安裝到新的虛擬機器（* CloudWorkspaceSVC*帳戶需要本機電腦管理權限）
+* 安裝AVD執行個體的FSLogix元件（需要本機AD中AVD OU的本機電腦管理權限）
+* 更新AD Windows防火牆GPO以允許流量傳輸到新的VM（需要針對與AVD OU及其相關聯虛擬機器相關的原則建立/修改AD GPO。需要在本機AD的AVD OU上建立/修改AD GPO原則。如果未透過VDS管理VM、則可在安裝後關閉。）
+* 在新虛擬機器上設定「允許新連線」旗標（需要Azure服務主要權限）
+
+
+
+
+====== 將VM加入Azure AD
+
+Azure租戶中的虛擬機器需要加入網域、但VM無法直接加入Azure AD。因此、VDS會在VDS平台中部署網域控制器角色、然後使用AD Connect將該DC與Azure AD同步。替代的組態選項包括使用Azure AD網域服務（AADDS）、使用AD Connect同步至混合式DC（內部部署或其他地方的VM）、或透過站台對站台VPN或Azure ExpressRoute將VM直接加入混合式DC。
+
+
+
+===== AVD主機集區
+
+主機集區是Azure Virtual Desktop環境中一或多個相同虛擬機器（VM）的集合。每個主機集區都可以包含應用程式群組、使用者可以像在實體桌面上一樣與這些應用程式群組互動。
+
+
+
+====== 工作階段主機
+
+在任何主機集區中、都有一或多個相同的虛擬機器。連線到此主機集區的這些使用者工作階段會由AVD負載平衡器服務進行負載平衡。
+
+
+
+====== 應用程式群組
+
+根據預設、桌面使用者應用程式群組會在部署時建立。此應用程式群組中的所有使用者都能享有完整的Windows桌面體驗。此外、您也可以建立應用程式群組來提供串流應用程式服務。
+
+
+
+===== 記錄分析工作區
+
+建立記錄分析工作區、以儲存來自部署和DSC程序及其他服務的記錄。部署後可以刪除此項目、但不建議這麼做、因為它會啟用其他功能。根據預設、記錄保留30天、不需支付保留費用。
+
+
+
+===== 可用度集
+
+可用度集是部署程序的一部分、可在故障網域之間分隔共享VM（共享AVD主機集區、RDS資源集區）。若有需要、可在部署後刪除此選項、但會停用為共用VM提供額外容錯能力的選項。
+
+
+
+===== Azure恢復保存庫
+
+恢復服務資料庫是由VDS Automation在部署期間所建立。這項功能目前預設為啟動、因為Azure備份會在部署程序期間套用至CWMGR1。若有需要、可停用及移除此功能、但若在環境中啟用Azure備份、則會重新建立此功能。
+
+
+
+===== Azure金鑰保存庫
+
+Azure Key Vault是在部署過程中建立的、用於儲存Azure Automation帳戶在部署期間使用的憑證、API金鑰和認證。
+
+
+
+== 附錄A–預設的Cloud Workspace組織單位結構
+
+* 雲端工作區
++
+** 雲端工作空間公司
+** 雲端工作空間伺服器
++
+*** 專屬客戶伺服器
+*** 基礎架構
+
+
+
+
+* CWMGR伺服器
+* 閘道伺服器
+* FTP伺服器
+* 範本VM
++
+** 遠端桌面
+** 接移
++
+*** 雲端工作區服務帳戶
+
+
+** 用戶端服務帳戶
+** 基礎架構服務帳戶
++
+*** 雲端工作空間技術使用者
+
+
+** 群組
+** 技術3技術人員
+
+
+

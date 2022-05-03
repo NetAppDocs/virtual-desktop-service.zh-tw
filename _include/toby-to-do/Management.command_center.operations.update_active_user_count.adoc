@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.update_active_user_count-4ae14.png[Management.command center.opers.update作用中使用者計數為4ae14]

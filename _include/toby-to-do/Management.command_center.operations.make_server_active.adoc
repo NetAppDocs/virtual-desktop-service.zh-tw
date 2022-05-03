@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.make_server_active-6dc9b.png[Management.command center.operations。使伺服器成為作用中的6dc9b]

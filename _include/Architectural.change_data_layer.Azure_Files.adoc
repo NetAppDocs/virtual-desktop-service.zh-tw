@@ -1,0 +1,179 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+虛擬桌面服務部署技術可根據基礎架構、提供各種儲存選項。本指南說明如何在部署後變更使用Azure Files。
+
+
+
+=== 先決條件
+
+* 已安裝並設定AD Connect
+* Azure全域管理員帳戶
+* AZFilesHybrid PowerShell模組 https://github.com/Azure-Samples/azure-files-samples/releases[]
+* AZ PowerShell模組
+* ActiveDirectory PowerShell模組
+
+
+
+
+=== 建立新的儲存層
+
+. 使用全域管理員帳戶登入Azure
+. 在與工作區相同的位置和資源群組中建立新的儲存帳戶
++
+image:Architectural.ChangeDataLayer.AzureFiles1.png[""]
+
+. 在儲存帳戶下建立資料、主檔案和專業檔案共用
++
+image:Architectural.ChangeDataLayer.AzureFiles2.png[""]
+
+
+
+
+
+=== 設定Active Directory
+
+. 在Cloud Workspace > Cloud Worksapce Service Accounts OU下建立名為「儲存帳戶」的新組織單位
++
+image:Architectural.ChangeDataLayer.AzureFiles3.png[""]
+
+. 啟用AD DS驗證（必須使用PowerShell執行） https://docs.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable[]
++
+.. 網域帳戶類型應為「服務登入帳戶」
+.. OraganizationalUndingingishedName是上一步建立之OU的辨別名稱（亦即「'OID=Storage Account,OID=Cloud Workspace Service Accounts,OID=Cloud Workspace,DC=訓練Krisg,DC=onmicrosoft,DC=com'」）
+
+
+
+
+
+
+=== 設定共用的角色
+
+. 在Azure入口網站中、為CloudWorkspaceSVC和Level 3技術人員提供「『儲存檔案資料SMB共用提升貢獻者」角色
++
+image:Architectural.ChangeDataLayer.AzureFiles4.png[""]
+
+. 將「儲存檔案資料SMB共用貢獻者」角色賦予「'<公司代碼>-all user'」群組
++
+image:Architectural.ChangeDataLayer.AzureFiles5.png[""]
+
+
+
+
+
+=== 建立目錄
+
+. 在每個共用區（資料、主目錄、專業人員）中建立一個目錄、使用公司代碼做為名稱（在此範例中、公司代碼為「Kift」）。
++
+image:Architectural.ChangeDataLayer.AzureFiles6.png[""]
+
+. 在專業共享區的<公司代碼>目錄中、建立「ProfileContainers'」目錄
++
+image:Architectural.ChangeDataLayer.AzureFiles7.png[""]
+
+
+
+
+
+=== 設定NTFS權限
+
+. 連線至共用區
++
+.. 瀏覽至Azure入口網站儲存帳戶下的共用區、按一下三個點、然後按一下「Connect（連線）」
++
+image:Architectural.ChangeDataLayer.AzureFiles8.png[""]
+
+.. 選擇Active Directory做為驗證方法、然後按一下程式碼右下角的複製到剪貼簿圖示
++
+image:Architectural.ChangeDataLayer.AzureFiles9.png[""]
+
+.. 以屬於Level 3技術人員群組成員的帳戶登入CWMGR1伺服器
+.. 在PowerShell中執行複製的程式碼、以對應磁碟機
+.. 針對每個共用區執行相同的作業、同時為每個共用區選擇不同的磁碟機代號
+
+
+. 停用<公司代碼>目錄的繼承
+. 系統和AD群組ClientDHPAccess應擁有對<公司代碼>目錄的完整控制權
+. 網域電腦應擁有對專業共用區中<公司代碼>目錄的完整控制權、以及內部的ProfileContainer目錄
+. 所有使用者AD群組的主共享區和專業共享區中、都應該有「List」（清單）資料夾/「Read」（讀取）資料權限
+. 所有使用者AD群組的資料共用區中的目錄應具有下列特殊權限
++
+image:Architectural.ChangeDataLayer.AzureFiles10.png[""]
+
+. 「所有使用者AD」群組應擁有ProfileContainer目錄的「修改」權限
+
+
+
+
+=== 更新群組原則物件
+
+. 更新位於Cloud Workspace > Cloud Workspace Companies >><公司代碼>><公司代碼>桌面使用者下的GPO <公司代碼>使用者
++
+.. 變更主磁碟機對應以指向新的主共用區
++
+image:Architectural.ChangeDataLayer.AzureFiles11.png[""]
+
+.. 變更「資料夾重新導向」以指向桌面和文件的主共用區
++
+image:Architectural.ChangeDataLayer.AzureFiles12.png[""]
+
++
+image:Architectural.ChangeDataLayer.AzureFiles13.png[""]
+
+
+
+
+
+
+
+=== 更新Active Directory使用者和電腦中的共用區
+
+. 使用傳統或混合式AD時、公司代碼OU中的共享區必須更新至新位置
++
+image:Architectural.ChangeDataLayer.AzureFiles14.png[""]
+
+
+
+
+
+=== 更新VDS中的資料/主目錄/專業路徑
+
+. 使用Level 3技術人員群組中的帳戶登入CWMGR1、然後啟動Command Center
+. 在命令下拉式清單中、選取變更資料/主目錄/專業資料夾
+. 按一下「Load Data（載入資料）」按鈕、然後確定從下拉式清單中選取適當的公司代碼
+. 輸入資料、主目錄和專業人員位置的新patsh
+. 取消核取「是Windows伺服器」方塊
+. 按一下「執行命令」按鈕
++
+image:Architectural.ChangeDataLayer.AzureFiles15.png[""]
+
+
+
+
+
+=== 更新FSLogix設定檔路徑
+
+. 在工作階段主機上開啟登錄暫時功能
+. 編輯HKLM \software\FSLogix\Profiles中的VHDLocations項目、將其做為新ProfileContainer目錄的UNC路徑
++
+image:Architectural.ChangeDataLayer.AzureFiles16.png[""]
+
+
+
+
+
+=== 設定備份
+
+. 建議您為新共用區設定備份原則
+. 在相同的資源群組中建立新的恢復服務資料庫
+. 瀏覽至保存庫、然後在「Getting Started（使用入門）」下選取「Backup（備份
+. 選擇Azure作為工作負載的執行位置、Azure檔案共用則為您要備份的項目、然後按一下「Backukp」
+. 選取用來建立共用的儲存帳戶
+. 新增要備份的共用
+. 編輯並建立符合您需求的備份原則
+

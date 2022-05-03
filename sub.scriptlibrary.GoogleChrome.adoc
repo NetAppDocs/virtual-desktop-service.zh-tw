@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.GoogleChrome.html 
+summary: 指令碼文件- Google Chrome 
+keywords:  
+---
+= 指令碼活動文件- Google Chrome
+:allow-uri-read: 
+
+
+
+
+== 全域指令碼總覽
+
+NetApp VDS包括一個預先定義的指令碼事件程式庫、可直接用於VDS環境及/或複製、並做為自訂指令碼事件的建置區塊。
+
+對於此應用程式、本文涵蓋安裝/啟用和解除安裝/停用動作。
+
+
+
+== 全域指令碼使用
+
+內建指令碼事件（例如此事件）已預先填入、核取「全域」篩選器核取方塊將會顯示這些事件。
+
+此類全域指令碼事件為唯讀。可以使用「現況」或「複製」功能來建立客戶複本、以供編輯和使用。
+
+Clone（複製）按鈕可在「Scripted Event（指令碼事件）」頁面的動作功能表中找到。
+
+image::scriptlibrary.overview-2ccb2.png[指令碼庫。概述2ccb2]
+
+
+
+== Google Chrome總覽
+
+此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_Google Chrome (https://chocolatey.org/)[] 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。
+
+
+
+=== 預設捷徑路徑
+
+下方將輸入預設的捷徑路徑、此應用程式的捷徑為：「\shortcutes\Google Chrome。lnk」
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallGoogleChrome.png[指令碼library.activity：InstallGoogleChrome]
+
+
+
+=== 新增應用程式安裝/解除安裝活動
+
+若要讓儲存庫中的指令碼採取任何行動、必須建立活動、以將該指令碼與選取的觸發程序建立關聯。在本範例中、當應用程式新增至工作區或從工作區移除（從VDS的「工作區」>「應用程式」頁面）時、將會安裝/解除安裝此應用程式。
+
+VDS指令碼事件提供許多其他類型的活動觸發程式、例如_Create Server_、可作為_Application Install_（或_Application Uninstall_）事件類型的替代選項。使用_Create Server_只需針對VDS中所有新建立的VM執行此應用程式安裝即可。_建立伺服器_和其他觸發事件均已記錄下來、可供探索 link:Management.Scripted_Events.scripted_events.html["請按這裡"]。
+
+
+NOTE: 此應用程式必須存在於VDS應用程式庫中。這 link:Management.Applications.application_entitlement_workflow.html#add-applications-to-the-app-catalog["區段"] 《RDS應用程式權利》文章中的內容涵蓋新增應用程式至程式庫。
+
+.若要建立活動並將此指令碼連結至行動：
+. 瀏覽至VDS中的_指令碼事件_區段
+. 按一下「_Activities」（活動）下方的「__」（+）「Add Activity
+. 在開啟的對話視窗中輸入下列資訊：
++
+** *姓名：*請為本活動命名
+** *說明：*（可選）輸入說明
+** *部署*從下拉式清單中選取所需的部署
+** *指令碼：*從下拉式清單中選取安裝（或解除安裝）指令碼。這可能是您複製及自訂的全域指令碼或客戶指令碼。
+** *引數：*保留空白
+** *已啟用核取方塊：*「勾選」方塊
+** *事件類型：*從下拉式清單中選取「應用程式安裝」（或「應用程式解除安裝」）
+** *應用程式：*從下拉式清單中選取此應用程式
+** *捷徑路徑：*輸入此應用程式的預設捷徑路徑（如上所述）
+
+
+

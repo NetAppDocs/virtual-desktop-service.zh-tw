@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.configure_antivirus.html 
+summary: 防毒考量 
+keywords:  
+---
+= 套用監控和防毒軟體
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+虛擬桌面服務（VDS）管理員負責監控其平台基礎架構（至少由WMGR1組成）、以及所有其他基礎架構和虛擬機器（VM）。在大多數情況下、系統管理員會直接與資料中心/ IaaS供應商安排基礎架構（Hypervisor / SAN）監控。系統管理員負責監控終端機伺服器和資料伺服器、通常是部署他們偏好的遠端管理與監控（RMM）解決方案。
+
+防毒是系統管理員的責任（適用於平台基礎架構和終端機/資料伺服器VM）。為了簡化此程序、Azure伺服器的VDS預設會套用Windows Defender。
+
+
+NOTE: 安裝協力廠商解決方案時、請勿納入可能會干擾VDS自動化的防火牆或任何其他元件。
+
+更具體地說、如果預設已有非常特定的防毒原則、當這些防毒代理程式安裝在由Virtual Desktop Service管理的伺服器上時、可能會產生不良影響。
+
+我們的整體指引是、雖然VDS平台自動化通常不會受到防毒或防惡意軟體產品的影響、但最佳實務做法是在所有平台伺服器（WMGR1、RDGDS、HTML5閘道、FTP等）上新增下列程序的例外/排除項目：
+
+....
+*\paexec.exe
+*\paexec_1_25.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CW Automation Service\cw.automation.service.exe
+C:\Program Files\CloudWorkspace\CwVmAutomationService\CwVmAutomationService.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Printer.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Services.exe
+....
+此外、我們建議在用戶端伺服器上安全列出下列程序：
+
+....
+C:\Program Files\CloudWorkspace\CwAgent\paexec.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CwRemoteApps\cwra.exe
+C:\Program Files\CloudWorkspace\Pen\Pen.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgent.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgentMonitor.exe
+....

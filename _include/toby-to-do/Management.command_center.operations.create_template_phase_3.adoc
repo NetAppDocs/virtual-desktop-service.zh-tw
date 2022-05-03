@@ -1,0 +1,11 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.create_template_phase_3-6d3e1.png[Management.command center.operations。建立範本階段3 6d3e1]
+
+image::Management.command_center.operations.create_template_phase_3-5c591.png[Management.command center.opers.create範本階段3 5c591]

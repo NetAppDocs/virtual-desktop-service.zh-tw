@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.load_virtual_machines-da7e2.png[Management.command center.operes.load虛擬機器da72.]

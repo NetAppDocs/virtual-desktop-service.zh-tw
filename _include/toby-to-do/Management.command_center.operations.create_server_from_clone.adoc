@@ -1,0 +1,17 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.create_server_from_clone-098a1.png[Management.command center.operations。從Clone 098a1建立伺服器]
+
+image::Management.command_center.operations.create_server_from_clone-2b8e0.png[Management.command center.opers.create server from clone 2b8e0]
+
+image::Management.command_center.operations.create_server_from_clone-b252d.png[Management.command center.operations：從實體複本b252d建立伺服器]
+
+image::Management.command_center.operations.create_server_from_clone-3b909.png[Management.command center.operations：從實體複本3b909建立伺服器]
+
+image::Management.command_center.operations.create_server_from_clone-68dc9.png[Management.command center.opers.create server from clone 68dc9]

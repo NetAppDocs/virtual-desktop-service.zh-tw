@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.exclude_server_from_monitoring-f1bdb.png[Management.command center.opers.exclude伺服器無法監控f1bdbb]

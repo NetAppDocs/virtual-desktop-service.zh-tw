@@ -1,0 +1,175 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+本文涵蓋移除 VDS 和 NetApp 控制權、同時維持 AVD 終端使用者存取權。未來的管理將會採用原生的 Azure / Windows 管理工具。完成此程序後、建議聯絡 support@spotpc.netapp.com 、以便 NetApp 清理我們的後端與帳單系統。
+
+
+
+== 初始狀態
+
+* AVD部署
+* TDS1是FS Logix Fileshare
+* TS1是工作階段主機
+* 使用者已登入、並在下列位置建立FS Logix磁碟：
++
+ \\****TSD1\****-Pro$\ProfileContainers (**** = Unique Company Code)
+
+
+
+
+== 刪除連續波代理程式服務
+
+連續波代理程式會在環境中的每部機器上執行。在環境中的每部VM上、應使用下列命令來解除安裝啟動此程序的服務。可跳過CWMGR1、因為大多數情況下會關閉並最終刪除該VM。理想情況下、此行動將透過指令碼自動化來執行。以下影片顯示手動完成。
+
+ C:\Program files\CloudWorkspace\CwAgent\CwAgent.exe -u
+
+
+=== 刪除連續波代理服務影片
+
+video::l9ASmM5aap0[youtube, ]
+
+
+== 刪除連續波代理程式目錄
+
+先前的解除安裝會移除啟動連續波代理程式的服務、但檔案仍會保留。刪除目錄：
+
+ "C:\Program Files\CloudWorkspace"
+
+
+=== 刪除連續波代理目錄影片
+
+video::hMM_z4K2-iI[youtube, ]
+
+
+== 移除啟動捷徑
+
+「啟動項目」目錄包含前一個步驟中刪除檔案的兩個捷徑。為了避免終端使用者出現錯誤訊息、應刪除這些檔案。
+
+....
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\Pen.lnk"
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\CwRemoteApps.lnk"
+....
+
+
+=== 移除開機捷徑影片
+
+video::U0YLZ3Qfu9w[youtube, ]
+
+
+== 取消「使用者」與「公司」GPO的連結
+
+VDS實作了三個GPO。我們建議您取消連結其中兩個項目、然後檢閱第三個項目的內容。
+
+取消連結：
+
+* AADDC使用者>雲端工作空間公司
+* AADDC使用者> Cloud Workspace使用者
+
+
+檢視：
+
+* AADDC電腦>雲端工作區電腦
+
+
+
+
+=== 取消「使用者」與「公司」GPO的連結影片
+
+video::cb68ri3HKUw[youtube, ]
+
+
+== 關閉CWMGR1
+
+套用GPO變更之後、我們現在可以關閉CWMGR1 VM。一旦確認繼續使用AVD功能、此VM便可永久刪除。
+
+在極少數情況下、如果另一個伺服器角色正在執行（例如 DC、FTP伺服器…）。在此情況下、可停用三項服務來停用CWMGR1上的VDS功能：
+
+* 連續波代理程式（請參閱上述內容）
+* 連續波自動化服務
+* 連續波VM自動化
+
+
+
+
+=== 關閉CWMGR1視訊
+
+video::avk9HyIiC_s[youtube, ]
+
+
+== 刪除NetApp VDS服務帳戶
+
+VDS使用的Azure AD服務帳戶可以移除。登入Azure Management Portal並刪除使用者：
+
+* CloudWorkspaceSVC
+* CloudWorkspaceCASvC
+
+
+其他使用者帳戶可保留：
+
+* 終端使用者
+* Azure系統管理員
+* TECH網域管理員
+
+
+
+
+=== 刪除NetApp VDS服務帳戶影片
+
+video::_VToVNp49cg[youtube, ]
+
+
+== 刪除應用程式註冊
+
+部署VDS時會進行兩次應用程式登錄。可以刪除：
+
+* 雲端工作區API
+* 雲端工作空間AVD
+
+
+
+
+=== 刪除應用程式註冊影片
+
+video::iARz2nw1Oks[youtube, ]
+
+
+== 刪除企業應用程式
+
+部署VDS時會部署兩個企業應用程式。可以刪除：
+
+* 雲端工作區
+* 雲端工作空間管理API
+
+
+
+
+=== 刪除企業應用程式影片
+
+video::3eQzTPdilWk[youtube, ]
+
+
+== 確認已停止CWMGR1
+
+在測試終端使用者仍可連線之前、請確認已停止CWMGR1以進行實際測試。
+
+
+
+=== 確認CWMGR1已停止影片
+
+video::Ux9nkDk5lU4[youtube, ]
+
+
+== 登入與終端使用者
+
+若要確認成功、請以終端使用者身分登入、並確認功能是否維持正常。
+
+
+
+=== 登入與終端使用者影片
+
+video::SuS-OTHJz7Y[youtube, ]

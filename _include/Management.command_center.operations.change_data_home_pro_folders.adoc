@@ -1,0 +1,29 @@
+= 變更資料/專業/主資料夾總覽
+:allow-uri-read: 
+
+
+
+
+== 變更資料/專業/主資料夾總覽
+
+image::Management.command_center.operations.change_data_home_pro_folders-678cd.png[Management.command center.operations.change data homePro資料夾678cd]
+
+資料、設定檔和使用者主資料夾的儲存位置由作用中目錄管理。Command Center包含變更這些位置的作業。
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command center.operations。複製範本至圖庫ed821]
+
+
+
+== 選取資源池
+
+當「資源池」選項為空白時、會全域套用這些設定。
+
+選取特定的資源池（又稱為主機資源池）、即可針對該資源池個別定義使用者的設定檔路徑
+
+image::Management.command_center.operations.change_data_home_pro_folders-3ac43.png[][]
+
+
+
+== 是Windows Server
+
+如果是儲存服務（例如 選擇儲存位置。Azure NetApp Files

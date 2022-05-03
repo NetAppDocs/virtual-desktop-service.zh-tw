@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.unlocking_user_accounts.html 
+summary: 解除鎖定使用者帳戶的逐步指南 
+keywords:  
+---
+= 解除鎖定使用者帳戶
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+解除鎖定終端使用者的鎖定帳戶是一項簡單的程序、可解決一般使用者所回報的一般問題。
+
+在四次登入嘗試失敗後、使用者將被鎖定。除非客戶帳戶已啟用密碼複雜度、否則時間為30分鐘、此時只能手動執行鎖定。
+
+使用者帳戶可從「工作區」的「使用者與群組」頁面或「使用者詳細資料」頁面上的使用者清單中解除鎖定。
+
+
+
+== 使用者與群組頁面
+
+image:unlock_user_accounts1.png[""]
+image:unlock_user_accounts2.png[""]
+
+
+
+== 使用者詳細資料頁面
+
+image:unlock_user_accounts3.png[""]

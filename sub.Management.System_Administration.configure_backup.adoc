@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.configure_backup.html 
+summary: 備份組態 
+keywords:  
+---
+= 設定備份排程
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+VDS能夠在某些基礎架構供應商（包括Azure）中設定及管理原生備份服務。
+
+
+
+== Azure
+
+在Azure中、VDS可以使用原生環境自動設定備份 link:https://azure.microsoft.com/en-us/services/backup/["Azure Cloud Backup"] 使用本機備援儲存設備（LRS）。如有需要、可在Azure管理入口網站中設定地理備援儲存設備（GRS）。
+
+* 您可以針對每個伺服器類型定義個別的備份原則（附有預設建議）。此外、可從VDS UI中指派獨立排程（從伺服器類型）給個別機器、只要按一下「工作區」頁面上的「伺服器名稱」、即可導覽至「伺服器詳細資料檢視」、以套用此設定（請參閱下方影片：設定個別備份原則）
++
+** 資料
++
+*** 備份方式包括每日7次、每週5次及每月2次備份。根據業務需求增加保留期間。
+*** 這適用於專屬資料伺服器、以及應用程式和資料庫的附加VPS VM。
+
+
+** 基礎架構
++
+*** CWMGR1：每日備份、每日備份7次、每週5次、每月2次。
+*** RDS閘道：每週備份、每週保留4次。
+*** HTML5閘道：每週備份、每週保留4次。
+
+
+** PowerUser（又稱為VDI使用者）
++
+*** 請勿備份VM、因為資料應儲存在D1或TSD1伺服器上。
+*** 請注意、有些應用程式確實在本機儲存資料、如果發生這種情況、則應特別考量。
+*** 如果VM發生故障、可以透過複製另一個VM來建置新VM。如果只有一個VDI VM（或一個獨特的VM組建）、建議您備份它、以便不需要完整重新建置該VM。
+*** 如果需要、您可以手動設定單一VM、直接在Azure管理入口網站中進行備份、而非備份所有VDI伺服器、將成本降至最低。
+
+
+** TS
++
+*** 請勿備份VM、因為資料應儲存在D1或TSD1伺服器上。
+*** 請注意、有些應用程式確實在本機儲存資料、如果發生這種情況、則應特別考量。
+*** 如果VM發生故障、可以透過複製另一個VM來建置新VM。如果只有一個TS VM、建議備份、以便不需要完整重建該VM。
+*** 如果需要、您可以手動設定單一VM、直接在Azure管理入口網站中進行備份、而非備份所有TS伺服器、將成本降至最低。
+
+
+** TSData
++
+*** 備份方式包括每日7次、每週5次及每月2次備份。根據業務需求增加保留期間。
+
+
+
+
+* 原則可設定為每日或每週進行備份、Azure不支援更頻繁的排程。
+* 如需每日排程、請輸入偏好的備份時間。針對每週排程、輸入偏好的備份日期和時間。附註：將時間設定為準確的12:00 AM可能會導致Azure備份發生問題、因此建議您在上午12：01時進行備份。
+* 定義應保留多少每日、每週、每月和每年備份。
+
+
+
+
+=== 設定部署預設值
+
+image:Backup_gif.gif[""]
+
+.若要為整個部署設定Azure備份、請依照下列步驟進行：
+. 瀏覽至「部署詳細資料」頁面、選取「備份預設值」
+. 從下拉式功能表中選取伺服器類型。伺服器類型包括：
++
+....
+Data: these are for LOB/database server types
+Infrastructure: these are platform servers
+Power User: these are for Users with a TS server dedicated solely to them
+TS: these are terminal servers that Users launch sessions on
+TSData: these are servers doubling as terminal and data servers.
+....
++
+** 這將定義整個部署的整體備份設定。如果需要、可以覆寫這些項目、並在稍後設定伺服器專屬層級。
+
+
+. 按一下設定輪、然後出現「編輯」快顯視窗。
+. 選取下列備份設定：
++
+....
+On or off
+Daily or weekly
+What time of day backups take place
+How long each backup type (daily, weekly, etc.) should be retained
+....
+. 最後、按一下「Create（or Edit）排程」（建立（或編輯）排程）以將這些設定放在定位。
+
+
+
+
+=== 設定個別備份原則
+
+.若要套用伺服器專屬的整合式備份設定、請瀏覽至「工作區詳細資料」頁面。
+. 向下捲動至「Servers（伺服器）」區段、然後按一下伺服器名稱
+. 按一下新增排程
+. 視需要套用備份設定、然後按一下建立排程
+
+
+
+
+=== 從備份還原
+
+.若要還原特定VM的備份、請先瀏覽至該「工作區詳細資料」頁面。
+. 向下捲動至「Servers（伺服器）」區段、然後按一下伺服器名稱
+. 向下捲動至備份區段、然後按一下定位輪以展開選項、然後選取任一選項
+. 還原至伺服器或還原至磁碟（從備份附加磁碟機、以便將資料從備份複製到現有的VM版本）。
+. 從這個點繼續還原、如同在任何其他還原案例中一樣。
+
+
+
+NOTE: 成本取決於您想要維護的排程、而且完全由Azure備份成本所帶動。您可在Azure成本計算機上找到VM的備份價格： https://azure.microsoft.com/en-us/pricing/calculator/[]

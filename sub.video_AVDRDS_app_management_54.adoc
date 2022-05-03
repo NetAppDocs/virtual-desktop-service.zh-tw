@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_AVDRDS_app_management_54.html 
+summary: 利用NetApp VDS v5.4自動化AVD和RDS的應用程式管理 
+keywords:  
+---
+= 利用NetApp VDS v5.4自動化AVD和RDS的應用程式管理
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+video::19NpO8v15BE[youtube, ]

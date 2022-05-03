@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.manage_folders_and_permissions.html 
+summary: 管理資料權限 
+keywords:  
+---
+= 管理資料權限
+:allow-uri-read: 
+
+
+
+
+== 終端使用者觀點
+
+虛擬桌面終端使用者可以存取多個對應的磁碟機。這些磁碟機包括可存取的FTPS團隊共用區、公司檔案共用區及其主磁碟機（適用於其文件、桌面等）。 。所有這些對應磁碟機都會參考儲存服務（例如Azure NetApp Files 、還原）或檔案伺服器VM上的中央儲存層。
+
+視使用者的組態而定、可能沒有H:或F:磁碟機曝光、他們可能只看到桌面、文件等... 資料夾：此外、VDS管理員在部署時也會設定不同的磁碟機代號。image:manage_data1.png[""]
+
+image:manage_data2.png[""]
+
+
+
+=== 管理權限
+
+VDS可讓管理員從VDS入口網站編輯安全性群組和資料夾權限。
+
+
+
+=== 安全性群組
+
+若要管理安全性群組、請按一下「Groups（群組）」區段下方的「Workspace（工作區）」>「Tenant Name（租戶名稱）」>「Users
+
+.在本節中、您可以：
+. 建立新的安全性群組
+. 新增/移除使用者至群組
+. 將應用程式指派給群組
+. 啟用/停用本機磁碟機對群組的存取
+
+
+image:manage_data3.gif[""]
+
+
+
+== 資料夾權限
+
+按一下「Workspace（工作區）」>「Tenant Name（租戶名稱）」>「Manage（管理）」（在「Folders（資料夾）」區段中）
+
+.在本節中、您可以：
+. 新增/刪除資料夾
+. 指派權限給使用者或群組
+. 將權限自訂為唯讀、完全控制及無
+
+
+image:manage_data4.gif[""]

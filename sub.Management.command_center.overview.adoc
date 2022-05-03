@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: Management.command_center.overview.html 
+summary: VDS命令中心總覽 
+keywords:  
+---
+= Command Center命令：總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+Command Center是可執行檔、可在部署中的CWMGR1平台伺服器上執行。可透過連線至CWMGR1 VM並在該VM本機上執行來存取。
+
+此應用程式是專為疑難排解、診斷及進階管理功能所設計。此應用程式主要供NetApp內部開發與支援團隊使用、但客戶管理員偶爾會使用某些功能。本文件是為了支援使用選擇功能而提供。這些命令的使用必須謹慎、並與NetApp支援團隊合作。
+
+
+
+== 執行Command Center
+
+.若要執行Command Center應用程式：
+. 從「_VDS >部署>平台伺服器_」頁面連線至伺服器、按一下「_Actions」（動作）圖示、然後選取「Connect」（連線）
++
+image::Management.command_center_overview-68087.png[Management.command中心總覽68087]
+
+. 當系統提示輸入認證時、請輸入網域管理員認證
++
+.. 使用者必須是「CW-Infrastructure」安全性群組的成員。為了保持一致、我們建議您將使用者加入_AD > Cloud Workspace > Cloud Workspace Tech Users > Groups_的「Level 3技術人員」群組
++
+image::Management.command_center_overview-1c42d.png[Management.command中心總覽1c42d]
+
+
+
+. 找到_Command Center_的桌面圖示並執行
++
+image::Management.command_center_overview-3c860.png[Management.command中心總覽3c860]
+
++
+.. 若要啟用進階索引標籤、請使用「-showadvancedtab」開關啟動應用程式。
+
+
+
+
+
+
+=== 「營運」標籤
+
+image::Management.command_center_overview-b614e.png[Management.command中心總覽b614e]
+
+從* Command*功能表中、您可以從行動清單中選取（如下所列）。
+
+選取命令後、即可從* Load Data*（載入資料*）按鈕填入部署資料。一旦先前選擇資料（例如 從下拉式清單中選取特定VM之後、載入可用的備份日期清單）
+
+image::Management.command_center_overview-85417.png[Management.command中心總覽85417]
+
+在命令上進行選擇之後、按一下*執行命令*將會執行所選的程序。
+
+若要檢閱記錄、請按一下*檢視所有記錄*按鈕。原始文字檔隨即開啟、最新的項目位於底部。
+
+
+
+==== 命令清單
+
+* link:Management.command_center.operations.copy_template_to_gallery.html["將範本複製到圖庫"]
+

@@ -1,0 +1,34 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+部署完成後、您應該會收到電子郵件通知、並透過電子郵件收到大量成功與錯誤報告。以下是這些電子郵件的相關資訊、以及如何變更交付選項： link:Unlisted.Whats_with_all_these_emails.html["這些電子郵件有哪些功能？"]
+
+完整文件可在以下網址找到： https://docs.netapp.com/us-en/virtual-desktop-service/[] 但以下所選項目是個好開始：
+
+
+
+== 快速入門
+
+* link:https://www.youtube.com/playlist?list=PLQ1wYDzid2pRl74Y4SnFVvTHL7kbN9GQZ["YouTube上的VDS簡介影片播放清單"]
+* link:Management.User_Administration.manage_user_accounts.html["管理使用者"]
+* link:Management.Applications.application_entitlement_workflow.html["管理應用程式"]
+* link:Management.User_Administration.manage_folders_and_permissions.html["管理資料與權限"]
+* link:Reference.end_user_access.html["雲端工作空間系統需求：終端使用者總覽"]
+
+
+
+
+== 精簡部署：秘訣與技巧
+
+* link:Management.User_Administration.multi-factor_authentication.html["利用MFA強化安全性"]
+* link:Management.System_Administration.configure_backup.html["設定Azure備份"]
+* link:Management.System_Administration.configure_antivirus.html["設定防毒軟體"]
+* link:Management.Cost_Optimization.workload_schedule.html["最佳化伺服器成本"]
+* link:Management.Scripted_Events.scripted_events.html["利用指令碼事件部署自動化"]
+* link:Architectual.migrate_data_into_vds.html["資料移轉"]
+

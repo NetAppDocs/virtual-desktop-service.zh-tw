@@ -1,0 +1,25 @@
+= AVD畫面擷取保護總覽
+:allow-uri-read: 
+
+
+
+
+== AVD畫面擷取保護總覽
+
+此指令碼套件可透過PowerShell執行（相關）命令來啟用/停用原生AVD功能_SCREEN CAPTURE protection：
+
+啟用：
+
+"REg add "HKL\software\policies \microsoft\Windows NT\終端 服務"/v fEnablef作家 保護/t reg_d字 節/d 1"
+
+停用：
+
+"REg DELETE "HKL\software\policies \microsoft\Windows NT\終端 機服務"/v fEnablefScreenCaptureProtection /f"
+
+您可以在這裡找到Microsoft關於此AVD功能的文件：https://docs.microsoft.com/en-us/azure/virtual-desktop/security-guide#session-host-security-best-practices[]
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.AVDScreenCaptureProtection-216a6.png[指令碼程式庫.AVDScreenCapureProtection 216a6.]

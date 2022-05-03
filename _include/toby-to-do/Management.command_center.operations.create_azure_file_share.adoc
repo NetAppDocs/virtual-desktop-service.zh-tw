@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.create_azure_file_share-4eabe.png[Management.command center.opers.create azure檔案共用4eabe]

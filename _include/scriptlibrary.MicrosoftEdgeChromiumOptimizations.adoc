@@ -1,0 +1,11 @@
+= Microsoft Edge Chromium最佳化
+:allow-uri-read: 
+
+
+
+
+== Microsoft Edge Chromium最佳化
+
+在Microsoft Edge Chromium 89中、Microsoft新增功能來限制Microsoft Edge Chromium瀏覽器索引標籤的資源使用量。此全域指令碼會套用設定、將背景索引標籤限制為逾時、並在15分鐘後停止耗用資源。播放音訊的背景索引標籤不受影響。
+
+詳情請見 link:https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/["請按這裡"]。

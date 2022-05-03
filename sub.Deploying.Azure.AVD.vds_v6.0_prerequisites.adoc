@@ -1,0 +1,455 @@
+---
+sidebar: sidebar 
+permalink: Deploying.Azure.AVD.vds_v6.0_prerequisites.html 
+summary: AVD和VDS先決條件 
+---
+= AVD和VDS v6.0先決條件
+:allow-uri-read: 
+
+
+
+
+== AVD和VDS要求與注意事項
+
+本文件說明使用NetApp虛擬桌面服務（VDS）部署Azure Virtual Desktop（AVD）所需的要素。「快速檢查清單」提供所需元件的簡短清單、以及為了確保有效部署所需採取的部署前步驟。本指南的其餘部分將根據所做的組態選擇、提供更詳細的每個元素細節。
+
+
+
+== 快速檢查清單
+
+
+
+=== Azure要求
+
+* Azure AD租戶
+* Microsoft 365授權支援AVD
+* Azure訂閱
+* Azure虛擬機器可用的Azure配額
+* 具備全域管理員和訂閱所有權角色的Azure管理帳戶
+* 具有「企業管理員」角色的網域管理員帳戶、可用於AD Connect設定
+
+
+
+
+=== 部署前資訊
+
+* 判斷使用者總數
+* 判斷Azure區域
+* 判斷Active Directory類型
+* 判斷儲存類型
+* 識別工作階段主機VM映像或需求
+* 評估現有的Azure和內部部署網路組態
+
+
+
+
+== VDS部署詳細要求
+
+
+
+=== 終端使用者連線需求
+
+.下列遠端桌面用戶端支援Azure Virtual Desktop：
+* Windows桌面
+* 網路
+* MacOS
+* iOS
+* IGEL思考用戶端（Linux）
+* Android（預覽）
+
+
+
+NOTE: Azure Virtual Desktop不支援RemoteApp和桌面連線（RADC）用戶端或遠端桌面連線（MSTSC）用戶端。
+
+
+IMPORTANT: Azure Virtual Desktop目前不支援Windows Store的遠端桌面用戶端。此用戶端的支援將會新增至未來版本。
+
+*遠端桌面用戶端必須能夠存取下列URL：*
+
+[cols="25,25,25,25"]
+|===
+| 地址 | 傳出TCP連接埠 | 目的 | 用戶端 
+
+
+| *.wvd.microsoft.com | 443.. | 服務流量 | 全部 
+
+
+| *.servicebus.windows.net | 443.. | 疑難排解資料 | 全部 
+
+
+| go.microsoft.com | 443.. | Microsoft FWLink | 全部 
+
+
+| aka.ms | 443.. | Microsoft URL簡寫器 | 全部 
+
+
+| docs.microsoft.com | 443.. | 文件 | 全部 
+
+
+| privacy.microsoft.com | 443.. | 隱私聲明 | 全部 
+
+
+| query.prod.cms.rt.microsoft.com | 443.. | 用戶端更新 | Windows桌面 
+|===
+
+NOTE: 開啟這些URL是可靠用戶端體驗的必要條件。不支援封鎖這些URL的存取、並會影響服務功能。這些URL僅對應用戶端站台和資源、不包含Azure Active Directory等其他服務的URL。
+
+
+
+=== VDS安裝精靈的起點
+
+VDS安裝精靈可處理成功部署AVD所需的大部分必要設定。安裝精靈（link:https://cwasetup.cloudworkspace.com[""]）建立或使用下列元件。
+
+
+
+==== Azure租戶
+
+*必填：* Azure租戶與Azure Active Directory
+
+Azure中的AVD啟動為租戶整體設定。VDS支援每個租戶執行一個AVD執行個體。
+
+
+
+==== Azure訂閱
+
+*必填：* Azure訂閱（請注意您要使用的訂閱ID）
+
+所有已部署的Azure資源都應以單一專屬訂閱方式進行設定。如此一來、AVD的成本追蹤就變得更簡單、而且簡化了部署程序。附註：Azure免費試用版不受支援、因為其點數不足、無法部署功能性AVD部署。
+
+
+
+==== Azure核心配額
+
+為您要使用的VM系列提供足夠的配額、特別是在初始平台部署時、至少要有10個DS v3系列核心（最多只能使用2個核心、但每個初始部署可能性都有10個核心）。
+
+
+
+==== Azure管理帳戶
+
+*必填：* Azure全域系統管理員帳戶。
+
+VDS安裝精靈會要求Azure管理員將委派的權限授予VDS服務主體、並安裝VDS Azure Enterprise應用程式。管理員必須指派下列Azure角色：
+
+* 租戶上的全域管理員
+* 訂閱的擁有者角色
+
+
+
+
+==== VM映像
+
+*必要：*支援多工作階段Windows 10的Azure映像。
+
+Azure Marketplace提供最新版本的基礎Windows 10映像、而且所有Azure訂閱都能自動存取這些映像。如果您想要使用不同的映像或自訂映像、請希望VDS團隊針對建立或修改其他映像提供建議、或是讓我們知道Azure映像的一般問題、我們可以安排對話時間。
+
+
+
+==== Active Directory
+
+AVD要求使用者身分識別必須是Azure AD的一部分、且VM必須加入與該Azure AD執行個體同步的Active Directory網域。VM無法直接附加至Azure AD執行個體、因此必須設定網域控制器、並與Azure AD同步。
+
+.這些支援選項包括：
+* 在訂閱中自動建置Active Directory執行個體。AD執行個體通常是由VDS在VDS控制VM（WMGR1）上建立、適用於使用此選項的Azure虛擬桌面部署。AD Connect必須設定並設定為與Azure AD同步、作為設定程序的一部分。
++
+image:AD Options New.png[""]
+
+* 整合至現有的Active Directory網域、可透過Azure訂閱存取（通常透過Azure VPN或Express Route）、並使用AD Connect或協力廠商產品將其使用者清單與Azure AD同步。
++
+image:AD Options Existing.png[""]
+
+
+
+
+
+==== 儲存層
+
+在AVD中、儲存策略的設計目的是讓AVD工作階段VM上不會有持續的使用者/公司資料。使用者設定檔、使用者檔案和資料夾的持續資料、以及公司/應用程式資料、均裝載在獨立資料層上的一或多個資料Volume上。
+
+FSLogix是一種設定檔容器化技術、可在工作階段初始化時、將使用者設定檔容器（VHD或VHDX格式）安裝至工作階段主機、以解決許多使用者設定檔問題（例如資料過度擴張和登入緩慢）。
+
+由於此架構、因此需要資料儲存功能。此功能必須能夠處理每天早上/下午大量使用者同時登入/登出時所需的資料傳輸。即使是中等規模的環境、也可能需要大量的資料傳輸需求。資料儲存層的磁碟效能是主要的終端使用者效能變數之一、因此必須特別注意適當調整此儲存設備的效能大小、而不只是儲存容量。一般而言、儲存層的規模應能支援每位使用者5-15 IOPS。
+
+.VDS安裝精靈支援下列組態：
+* 設定及組態Azure NetApp Files 設定（ANF）（建議）。_anf標準服務層級最多可支援150位使用者、建議使用150至500位使用者的環境、以提供優質服務。對於超過500位使用者、建議使用ANF Ultra。_
++
+image:Storage Layer 1.png[""]
+
+* 設定及設定檔案伺服器VM
++
+image:Storage Layer 3.png[""]
+
+
+
+
+
+==== 網路
+
+*必填：*所有現有網路子網路的詳細目錄、包括Azure透過Azure Express Route或VPN訂閱所能看到的任何子網路。部署必須避免重複的子網路。
+
+VDS設定精靈可讓您定義網路範圍、以便在需要或必須避免範圍的情況下、將其納入與現有網路的計畫整合。
+
+在部署期間決定使用者的IP範圍。根據Azure最佳實務做法、僅支援私有範圍內的IP位址。
+
+.支援的選項包括下列項目、但預設為/20範圍：
+* 從192到168、255、168、0到255
+* 從172.16.0.0到172.31.255
+* 10.0.0.0到10.255.255.255
+
+
+
+
+==== CWMGR1
+
+VDS的某些獨特功能（例如節省成本的工作負載排程和即時擴充功能）需要在租戶內部安裝管理功能、才能訂購。因此、將名為CWMGR1的管理VM部署為VDS安裝精靈自動化的一部分。除了VDS自動化工作之外、此虛擬機器也會將VDS組態保存在SQL Express資料庫、本機記錄檔和稱為DCConfig的進階組態公用程式中。
+
+.視VDS設定精靈中的選擇而定、此VM可用於裝載其他功能、包括：
+* RDS閘道（僅用於RDS部署）
+* HTML 5閘道（僅用於RDS部署）
+* RDS授權伺服器（僅用於RDS部署）
+* 網域控制器（若已選擇）
+
+
+
+
+=== 部署精靈中的決策樹狀結構
+
+在初始部署中、我們會回答一系列問題、以自訂新環境的設定。以下是要做出的重大決策概要。
+
+
+
+==== Azure地區
+
+決定要裝載AVD虛擬機器的Azure地區或地區。請注意Azure NetApp Files 、支援GPU的某些VM系列（例如、支援GPU的VM）具有已定義的Azure區域支援清單、而AVD則適用於大部分地區。
+
+* 此連結可用於識別 link:https://azure.microsoft.com/en-us/global-infrastructure/services/["Azure產品供應情況依地區而定"]
+
+
+
+
+==== Active Directory類型
+
+決定您要使用的Active Directory類型：
+
+* 現有內部Active Directory
+* 請參閱 link:Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html["AVD VDS元件與權限"] 請參閱文件、以瞭解Azure和本機Active Directory環境中所需的權限和元件
+* 全新Azure訂閱型Active Directory執行個體
+* Azure Active Directory網域服務
+
+
+
+
+==== 資料儲存
+
+決定使用者設定檔、個別檔案和公司共用的資料放置位置。選項包括：
+
+* Azure NetApp Files
+* Azure檔案
+* 傳統檔案伺服器（使用託管磁碟的Azure VM）
+
+
+
+
+== 現有元件的NetApp VDS部署需求
+
+
+
+=== 使用現有Active Directory網域控制器進行NetApp VDS部署
+
+此組態類型可延伸現有的Active Directory網域、以支援AVD執行個體。在這種情況下、VDS會在網域中部署一組有限的元件、以支援AVD元件的自動化資源配置與管理工作。
+
+.此組態需要：
+* 現有的Active Directory網域控制器、可由Azure Vnet上的VM存取、通常是透過Azure VPN或Express Route、或是Azure中建立的網域控制器。
+* 加入VDS元件和權限、以便在VDS加入網域時管理AVD主機集區和資料磁碟區。AVD VDS元件與權限指南定義所需的元件與權限、而部署程序則要求具有網域權限的網域使用者執行指令碼、以建立所需的元素。
+* 請注意、VDS部署預設會為VDS建立的VM建立Vnet。vnet可與現有Azure網路VNets進行對等連接、或將CWMGR1 VM移至已預先定義子網路的現有Vnet。
+
+
+
+
+==== 認證與網域準備工具
+
+系統管理員必須在部署程序的某個階段提供網域管理員認證。您可以在稍後建立、使用及刪除暫用網域管理員認證（部署程序完成後）。此外、需要協助建置先決條件的客戶也可以利用網域準備工具。
+
+
+
+=== NetApp VDS部署搭配現有檔案系統
+
+VDS會建立Windows共用區、以便從AVD工作階段VM存取使用者設定檔、個人資料夾和公司資料。根據預設、VDS會部署檔案伺服器或Azure NetApp檔案選項、但如果您有現有的檔案儲存元件、VDS可在VDS部署完成後、將共用指向該元件。
+
+.使用和現有儲存元件的需求：
+* 元件必須支援SMB v3
+* 元件必須與AVD工作階段主機加入相同的Active Directory網域
+* 元件必須能夠公開一個用於VDS組態的UNC路徑、所有三個共用區都可以使用一個路徑、或是分別為每個共用區指定不同的路徑。請注意、VDS會設定這些共用的使用者層級權限、因此請參閱VDS AVD元件與權限文件、以確保已將適當的權限授予VDS自動化服務。
+
+
+
+
+=== NetApp VDS部署搭配現有Azure AD網域服務
+
+此組態需要程序來識別現有Azure Active Directory網域服務執行個體的屬性。請聯絡您的客戶經理、申請部署此類型的系統。採用現有AVD部署的NetApp VDS部署此組態類型假設已存在必要的Azure vnet、Active Directory和AVD元件。VDS部署的執行方式與「採用現有AD的NetApp VDS部署」組態相同、但新增下列需求：
+
+* AVD租戶的RD擁有者角色必須授予Azure中的VDS企業應用程式
+* 需要使用VDS Web App中的VDS匯入功能、將AVD主機集區和AVD主機集區VM匯入VDS此程序會收集AVD主機集區和工作階段VM中繼資料、並將其儲存在VDS中、以便由VDS管理這些元素
+* 需要使用CRA工具將AVD使用者資料匯入VDS使用者區段。此程序會將每位使用者的中繼資料插入VDS控制面板、以便VDS管理其AVD應用程式群組成員資格和工作階段資訊
+
+
+
+
+== 附錄A：VDS控制面板URL和IP位址
+
+Azure訂閱中的VDS元件會與VDS全域控制面板元件通訊、例如VDS Web應用程式和VDS API端點。若要進行存取、必須安全地將下列基礎URI位址設定為連接埠443的雙向存取：
+
+link:api.cloudworkspace.com[""]
+link:autoprodb.database.windows.net[""]
+link:vdctoolsapiprimary.azurewebsites.net[""]
+link:cjbootstrap3.cjautomate.net[""]
+link:https://cjdownload3.file.core.windows.net/media[""]
+
+如果您的存取控制裝置只能依IP位址安全列出清單、則應安全列出下列IP位址清單。請注意、VDS使用Azure Traffic Manager服務、因此此清單可能會隨著時間而變更：
+
+13.67.190.243 13.67.215.62 13.89.50.12213.67.227.115 13.67.227.230 13.67.227.227223.99.136.91 40.122.119.157 40.78.132.16640.78.129.17 40.122.52.167.70.147.2 40.899.2013.68.178 13.68.118.118.114.118.618.618.618.618.6120811.811.12.811.12.811.811.611.611.611.611.611.611.811.811.811.0.811.0.811.0.811.12.911.0.811.0.611.0.611.0.811.12.911.0.611.0.613.613.613.811.12.911.0.911.0.611.0.613.613.613.611.0.
+
+
+
+== 附錄B：Microsoft AVD要求
+
+本Microsoft AVD需求一節摘要說明Microsoft的AVD需求。完整且最新的AVD需求請參閱此處：
+
+https://docs.microsoft.com/en-us/azure/virtual-desktop/overview#requirements[]
+
+
+
+=== Azure Virtual Desktop工作階段主機授權
+
+Azure Virtual Desktop支援下列作業系統、因此請根據您計畫部署的桌面和應用程式、確定您擁有適當的使用者授權：
+
+[cols="50,50"]
+|===
+| 作業系統 | 必要授權 
+
+
+| Windows 10 Enterprise多工作階段或Windows 10 Enterprise | Microsoft 365 e3、E5、A3、a5、f3、 Business Premium Windows e3、E5、A3、a5 
+
+
+| Windows 7企業版 | Microsoft 365 e3、E5、A3、a5、f3、 Business Premium Windows e3、E5、A3、a5 
+
+
+| Windows Server 2012 R2、2016、2019年 | 具有軟體保證的RDS用戶端存取授權（CAL） 
+|===
+
+
+=== AVD機器的URL存取
+
+您為Azure Virtual Desktop建立的Azure虛擬機器必須能夠存取下列URL：
+
+[cols="25,25,25,25"]
+|===
+| 地址 | 傳出TCP連接埠 | 目的 | 服務標籤 
+
+
+| *.AVD.microsoft.com | 443.. | 服務流量 | Windows虛擬桌面 
+
+
+| mrsglobalsteus2prod.blob.core.windows.net | 443.. | 代理程式和Sxs堆疊更新 | AzureCloud 
+
+
+| *.core.windows.net | 443.. | 代理程式流量 | AzureCloud 
+
+
+| *.servicebus.windows.net | 443.. | 代理程式流量 | AzureCloud 
+
+
+| prod.warmpath.msftcloudes.com | 443.. | 代理程式流量 | AzureCloud 
+
+
+| catalogartifact.azureedge.net | 443.. | Azure Marketplace | AzureCloud 
+
+
+| kms.core.windows.net | 1688 | Windows啟動 | 網際網路 
+
+
+| AVDportalstorageblob.blob.core.windows.net | 443.. | Azure入口網站支援 | AzureCloud 
+|===
+下表列出Azure虛擬機器可存取的選用URL：
+
+[cols="25,25,25,25"]
+|===
+| 地址 | 傳出TCP連接埠 | 目的 | 服務標籤 
+
+
+| *.microsoftonline.com | 443.. | 驗證MS Online Services | 無 
+
+
+| *.events.data.microsoft.com | 443.. | 遙測服務 | 無 
+
+
+| www.msftconnecttest.com | 443.. | 偵測作業系統是否已連線至網際網路 | 無 
+
+
+| *.prod.do.dsp.mp.microsoft.com | 443.. | Windows Update | 無 
+
+
+| login.windows.net | 443.. | 登入MS Online Services、Office 365 | 無 
+
+
+| *。SFX。ms | 443.. | OneDrive用戶端軟體更新 | 無 
+
+
+| *.digicert.com | 443.. | 憑證撤銷檢查 | 無 
+|===
+
+
+=== 最佳效能因素
+
+若要獲得最佳效能、請確定您的網路符合下列需求：
+
+* 從用戶端網路到已部署主機集區之Azure區域的往返（RTT）延遲應低於150毫秒。
+* 當裝載桌面和應用程式的VM連線至管理服務時、網路流量可能會流向國外/地區邊界。
+* 若要最佳化網路效能、建議工作階段主機的VM與管理服務配置在同一個Azure區域。
+
+
+
+
+=== 支援的虛擬機器OS映像
+
+Azure Virtual Desktop支援下列x64作業系統映像：
+
+* Windows 10 Enterprise多工作階段、版本1809或更新版本
+* Windows 10 Enterprise、1809版或更新版本
+* Windows 7企業版
+* Windows Server 2019
+* Windows Server 2016
+* Windows Server 2012 R2
+
+
+Azure Virtual Desktop不支援x86（32位元）、Windows 10 Enterprise N或Windows 10 Enterprise KN作業系統映像。由於磁區大小限制、Windows 7也不支援託管Azure儲存設備上託管的任何VHD或VHDX型設定檔解決方案。
+
+可用的自動化和部署選項取決於您選擇的作業系統和版本、如下表所示：
+
+[cols="40,15,15,15,15"]
+|===
+| 作業系統 | Azure影像庫 | 手動部署VM | 整合範本ARM | 在Azure Marketplace上配置主機集區 
+
+
+| Windows 10多工作階段、1903版 | 是的 | 是的 | 是的 | 是的 
+
+
+| Windows 10多工作階段、版本1809 | 是的 | 是的 | 否 | 否 
+
+
+| Windows 10 Enterprise、1903版 | 是的 | 是的 | 是的 | 是的 
+
+
+| Windows 10 Enterprise、版本1809 | 是的 | 是的 | 否 | 否 
+
+
+| Windows 7企業版 | 是的 | 是的 | 否 | 否 
+
+
+| Windows Server 2019 | 是的 | 是的 | 否 | 否 
+
+
+| Windows Server 2016 | 是的 | 是的 | 是的 | 是的 
+
+
+| Windows Server 2012 R2 | 是的 | 是的 | 否 | 否 
+|===

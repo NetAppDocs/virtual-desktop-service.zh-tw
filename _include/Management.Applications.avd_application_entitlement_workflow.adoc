@@ -1,0 +1,122 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+在Azure Virtual Desktop（AVD）環境中、應用程式存取是由應用程式群組成員資格來管理。
+
+
+NOTE: 此工作流程僅適用於AVD部署。如需RDS應用程式權益文件、請參閱 link:Management.Applications.application_entitlement_workflow.html["RDS的應用程式權利工作流程"]
+
+
+TIP: AVD是一項記錄完善的服務、而且有許多 link:https://docs.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups["資訊的公共資源"]。VDS並不會以AVD的標準運作方式來進行超種子。相反地、本文旨在說明VDS如何在所有AVD部署中採用標準概念。
+
+
+TIP: 檢閱 link:Management.Deployments.logical_hierarchy_overview.html["VDS邏輯階層總覽"] 本文在審查本文之前或審查期間可能會有所幫助。
+
+
+
+=== 終端使用者檢視
+
+在Azure Virtual Desktop中、每位終端使用者的AVD管理員都會指派對RemoteApp和（或）桌面的存取權。這是透過VDS中的應用程式群組指派來完成。
+
+*遠端應用程式*是指在工作階段主機上遠端執行、但在本機裝置上顯示而沒有桌面內容的應用程式。這些應用程式通常稱為「串流應用程式」、看起來就像本機裝置上的本機應用程式、但會在安全性內容中執行、也會在工作階段主機的儲存與運算層上執行。
+
+*桌面*是指在工作階段主機上執行並顯示在本機裝置上的完整Windows體驗、通常是在全螢幕視窗中。此桌面本身通常稱為「遠端桌面」、它會包含安裝在該工作階段主機上的任何應用程式、使用者可從桌面工作階段視窗中啟動這些應用程式。
+
+登入時、終端使用者會看到系統管理員指派給他們的資源。以下是終端使用者使用AVD用戶端登入時可能看到的檢視範例。這是更複雜的範例、一般使用者只會指派單一桌面或RemoteApp給他們。終端使用者可以按兩下任一資源來啟動該應用程式/桌面。
+
+image::Management.Deployments.vds_sites-0e49c.png[管理部署。VDS站台0e49c]
+
+在此較複雜的範例中、此使用者可存取兩個不同的桌面工作階段和4個不同的串流應用程式：
+
+* *可用的桌面*
++
+** NVIDIA GPU桌面
+** 共享AVD Pool桌面
+** 作業2 Pool桌面
+
+
+* *可用的RemoteApps*
++
+** AutoCad 2021
+** Revit 2021
+** Microsoft Edge
+** 記事本
+
+
+
+
+這些應用程式和桌面在幕後的託管範圍涵蓋多種工作階段主機、AVD工作區、甚至可以託管在不同的Azure地區。
+
+以下圖表說明這些資源的裝載位置、以及如何指派給此終端使用者。
+
+image::Management.Deployments.vds_sites-0e880.png[Management．ed部署。VDS站台0e880]
+
+如上所示、此終端使用者可用的各種資源都裝載於不同的工作階段主機、不同的主機集區、而且可能由不同AVD工作區中的不同IT組織管理。雖然本範例中未顯示這些資源、但這些資源也可以使用VDS站台功能、裝載於不同的Azure地區和/或訂閱。
+
+
+
+=== 提供桌面存取
+
+根據預設、每個主機集區都會以單一應用程式群組開始、用來指派Windows桌面體驗的存取權。指派給此應用程式群組的終端使用者將可存取安裝在這些工作階段主機上的所有應用程式。
+
+.若要為VDS中的使用者啟用桌面資源：
+. 瀏覽至「工作區」>「AVD」>「主機集區」>「應用程式群組」頁面、然後按一下「桌面」資源的「應用程式」群組。
++
+image::Management.Applications.AVD_application_entitlement_workflow-349fe.png[Management.Applications.AVD應用程式權益工作流程349fe]
+
+. 進入應用程式群組後、按一下「Edit（編輯）」
++
+image::Management.Applications.AVD_application_entitlement_workflow-3bcfc.png[Management.Applications.AVD應用程式權益工作流程3bcfc]
+
+. 在編輯對話方塊中、您可以依使用者和/或群組、將使用者新增或移除至此應用程式群組。
++
+image::Management.Applications.AVD_application_entitlement_workflow-07ff0.png[Management.Applications.AVD應用程式權益工作流程07ff0]
+
+
+
+
+
+=== 提供RemoteApp存取
+
+若要配置對RemoteApps的存取權、必須在主機集區內建立新的應用程式群組。建立之後、必須將適當的應用程式指派給此應用程式群組。
+
+
+NOTE: 指派給此主機集區「桌面」AppGroup的任何使用者、都可以使用這些工作階段主機上的任何應用程式。也不需要透過RemoteApp應用程式群組來配置存取權限、只需提供應用程式的存取權限即可。只有在本機裝置上以串流應用程式的形式執行應用程式時、才需要使用RemoteApp應用程式群組。
+
+
+
+==== 建立新的應用程式群組
+
+. 瀏覽至「Workspaces（工作區）」>「AVD（AVD）」>「Host Pool（主機資源池）」>「App Groups（應用程式群組）」頁面、然後按一下「__ Add App Group
++
+image::Management.Applications.AVD_application_entitlement_workflow-d33da.png[Management.Applications.AVD應用程式權利工作流程d33da]
+
+. 輸入此應用程式群組的名稱、工作區和易記名稱。選取應指派的使用者和/或群組、然後按一下「_Sav__」
++
+image::Management.Applications.AVD_application_entitlement_workflow-242eb.png[Management.Applications.AVD應用程式權益工作流程242eb]
+
+
+
+
+
+==== 新增應用程式至應用程式群組
+
+. 瀏覽至「工作區」>「AVD」>「主機集區」>「應用程式群組」頁面、然後按一下「應用程式」群組以取得「RemoteApp」資源。
++
+image::Management.Applications.AVD_application_entitlement_workflow-3dcde.png[Management.Applications.AVD應用程式權益工作流程3dcde]
+
+. 進入應用程式群組後、按一下「Edit（編輯）」
++
+image::Management.Applications.AVD_application_entitlement_workflow-27a41.png[Management.Applications.AVD應用程式權益工作流程27a41.]
+
+. 向下捲動至「遠端應用程式」區段。由於VDS直接查詢工作階段主機以顯示可用的串流應用程式、因此本節可能需要一些時間。
++
+image::Management.Applications.AVD_application_entitlement_workflow-1e9f2.png[Management.Applications.AVD應用程式權益工作流程1e9f2]
+
+. 搜尋並選取此應用程式群組中的使用者應能以RemoteApp資源存取的任何應用程式。
+

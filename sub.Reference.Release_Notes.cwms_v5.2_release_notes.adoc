@@ -1,0 +1,596 @@
+---
+sidebar: sidebar 
+permalink: Reference.Release_Notes.cwms_v5.2_release_notes.html 
+summary: NetApp VDS發行說明v5.2 
+keywords:  
+---
+= Cloud Workspace管理套件–5.2版
+:allow-uri-read: 
+
+
+
+NOTE: 對於WMS v5.2、將不會再有後續版本、所有版本都將視為即時修補程式。
+
+
+
+== CWMS 5.2版本：2019年12月2日
+
+元件：5.2 Cloud Workspace Management Suite：2019年12月2日（星期一）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+此發行週期沒有更新。
+
+
+
+== CWMS 5.2版本：2019年11月14日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年11月14日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+此發行週期沒有更新。
+
+
+
+== CWMS 5.2版本：2019年10月31日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年10月31日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+此發行週期沒有更新。
+
+
+
+== CWMS 5.2版本：2019年10月17日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年10月17日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+此發行週期沒有更新。
+
+
+
+== CWMS 5.2版本：2019年10月3日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年10月3日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+此發行週期沒有更新。
+
+
+
+== CWMS 5.2版本：2019年9月19日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年9月19日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== Cloud Workspace管理套件
+
+Azure部署的資源配置類型預設為固定； 在選擇VM系列/大小為由管理員在WMS中定義的VM的情況下、新增使用者活動稽核功能的搜尋功能錯誤修正功能、可在5分鐘後錯誤顯示工作階段閒置逾時警告、而非55分鐘使用者支援角色修正（即具有此角色的管理員子集） 無法查看組織使用者排序修正的使用者清單：依使用者名稱排序、而非依狀態排序、確保主用戶端報告存在；隱藏非主軟體合作夥伴的不適用SPLA報告
+
+
+
+=== 雲端工作空間工具與服務
+
+如果WMGR1中的系統管理員將密碼過期日期設為null、則使用「下次登入時變更密碼」功能的「密碼強制通知」（pen）的「錯誤修正」功能無法正常運作時、會在幕後進行增強式密碼加密
+
+
+
+=== 適用於Azure設定應用程式的Cloud Workspace
+
+國際系統管理員的修正：如果國家不是美國、則較長的時間需要國家/地區。透過合作夥伴管理連結（PAL）套用CloudJumper、以訂閱層級呈現及未來的Azure部署
+
+
+
+== CWMS 5.2版本：2019年9月5日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年9月5日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== Cloud Workspace管理套件
+
+使用者支援專屬角色的更新： *新增搜尋/篩選使用者功能*包含使用者及其連線的連線狀態欄*提供「下次登入時強制密碼變更」功能的存取權限*移除刪除用戶端功能的可見度強制在1小時無活動後登出CMS修復顯示問題 當檢視的VM角色資源配置類型設為「固定修正」時、VM系列/大小顯示不正確、因為工作負載排程設定為「永遠關閉」的環境在WMS中顯示不正確的設定、 雖然已正確設定為「永遠關閉幕後權限」更新、但如果WMS管理員無法存取WMS中的「資源」功能、請移除「資源排程」索引標籤
+
+
+
+=== 雲端資源應用程式
+
+更新功能：支援命令列使用
+
+
+
+=== 雲端工作空間工具與服務
+
+支援vCloud REST介面
+
+
+
+== CWMS 5.2版本：2019年8月22日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年8月22日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== Cloud Workspace管理套件
+
+修正某些顯示器大小的使用者設定檔中的顯示問題新增非動態應用程式服務的說明訊息、通知管理員變更可能需要幾分鐘時間才能生效新增非動態應用程式服務的重新傳送按鈕、以便更容易判斷新的用戶端/使用者是否擁有 已新增
+
+
+
+=== 雲端工作區、適用於Azure設定
+
+將MFA的註冊程序連結至現有的WMS帳戶改善項目、以取得資源配置後指示的支援（連結至新增及改善的Public KB Improvement、以取得資源配置後指示）、連結會在新索引標籤中開啟
+
+
+
+=== 雲端工作空間工具與服務
+
+舊版（2008 R2）環境中SSL憑證管理的錯誤修正其他健全狀況檢查、可用於憑證強制執行和生命週期管理
+
+
+
+== CWMS 5.2版本：2019年8月8日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年8月8日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+此版本無更新。
+
+
+
+== CWMS 5.2版本：2019年7月25日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年7月25日（星期四）晚上10點至晚上11點（東部地區）影響：使用雲端工作區桌面及終端使用者應用程式服務的存取將不中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 CWA設定
+
+顯示一則訊息：資源配置後會將CWA設定使用者導向CloudJumper Public KB、讓他們在登錄過程中檢閱後續步驟、以及如何調整部署、改善對美國境外國家的處理方式、新增欄位以確認新建立的CMS密碼 在執行CWA設定程序期間登入移除SPLA授權區段、不需要RDS授權
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+改善單一伺服器部署中的WMS Admins HTML5連線處理錯誤修正、適用於重新啟動使用者處理的案例（先前失敗的情況） 導致出現「內部伺服器錯誤」訊息「移除SPLA授權」區段、此時不需要RDS授權、包括自動SSL憑證處理、以及將自動SMTP移至WMS內部的Provising精靈
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+當VDI使用者一次登出虛擬機器時、如果虛擬機器設定為關機、則在將TSD1伺服器還原為虛擬機器時、請關閉VM Azure備份增強功能、 還原為TS VM、而非額外的TSD VM Steamping準備Azure VM、以處理後端處理速度和安全性改善
+
+
+
+=== 5.2 REST API
+
+改善伺服器資訊的處理、加快隨需喚醒伺服器的載入時間
+
+
+
+== CWMS 5.2版本：2019年7月11日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年7月11日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+持續幕後安全性增強功能持續增強自動產生的憑證穩定性最小權限方法改善：調整以使用權限較少/受一般鎖定影響較少的帳戶、以執行夜間重新開機改善整合式備份、改善整合式備份的GCP部署錯誤修正 如果伺服器已正確增強處理程序、而且需要手動管理憑證、則不再需要重新開機伺服器來套用資源調整
+
+
+
+== CWMS 5.2版本：2019年6月20日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年6月20日（星期四）晚上10點至晚上11點（東部地區）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+透過CRA流程改善匯入至CWMS的使用者處理、工作區模組「伺服器」區段會顯示正確的儲存設備、以顯示於WMS Web介面底部的一年更新案例子集
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+增強的自動化憑證自動化功能
+
+
+
+=== 5.2 REST API
+
+顯示修正–再次開啟「即時調整規模」功能時、顯示先前在「即時調整規模」功能中輸入的正確值、允許為「超級使用者」角色（VDI使用者）建立預設的備份排程。
+
+
+
+== CWMS 5.2版本：2019年6月6日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年6月6日（星期四）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+針對工作負載排程無法正確關閉伺服器的情況子集、改善多封電子郵件的平台通知處理錯誤修正錯誤針對從Azure備份還原伺服器並未還原適當儲存類型與的情況子集進行錯誤修正預設儲存類型
+
+
+
+=== 5.2 CWA設定
+
+持續增強CWA設定程序的安全性改善了自動處理子網路和閘道設定的功能、改善了登錄程序中處理使用者帳戶的幕後程序、包括在使用者仍在CWA設定程序中超過1小時時、重新整理權杖的程序
+
+
+
+== CWMS 5.2版本：2019年5月23日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年5月23日（星期四）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+工作區模組錯誤修正中AVD索引標籤中的改良連結、如果您在資料中心模組中按一下工作區連結、就無法取得「工作區錯誤修正」、因為更新主要管理員的聯絡資訊將會移除這些錯誤修正 指定為主要管理員
+
+
+
+== CWMS 5.2版本：2019年5月9日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年5月9日（星期四）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+針對數百至數千部VM的部署進行擴充性改善
+
+
+
+== CWMS 5.2版本：2019年4月25日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年4月25日（星期四）晚上10點至晚上11點（東部地區）影響：存取Cloud Workspace桌面和終端使用者的應用程式服務將不中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+介面改善：如果Azure或GCP中的伺服器未啟用備份、請從伺服器的備份區段中移除「大小」欄
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+錯誤修復：變更RDP和（或）HTML5閘道伺服器資源的案例、在資源變更完成後、將無法重新連線
+
+
+
+=== 5.2 REST API
+
+無論情境為何、都能改善初始MFA組態的處理
+
+
+
+=== 5.2 CWA設定
+
+支援現有的CMS帳戶、讓間接CSP能夠正確配置資源、並簡化現有合作夥伴的程序Azure Active Directory網域服務的額外驗證–如果選擇Azure Active Directory網域服務、但該服務已就緒、就會顯示錯誤
+
+
+
+== CWMS 5.2版本：2019年4月11日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年4月11日（星期四）晚上10點至晚上11點（東部地區）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+資源配置集合的錯誤修正：使用沒有桌面圖示的應用程式儲存資源配置集合後、再也不會在WMS錯誤修正中顯示錯誤訊息–解決從WMS啟動停止的平台伺服器時、因為沒有合作夥伴而顯示錯誤訊息的問題 附加程式碼
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+在vCloud部署中刪除伺服器的穩定性增強：如果在一個vApp中找到多個FMS、 僅刪除VM而非刪除vApp新增選項、以避免在基礎架構伺服器上安裝萬用字元憑證在伺服器資源報告的AzureAD改良功能中複製TSD伺服器的改善功能–在清單中處理多個IP位址的伺服器錯誤修正部分案例的錯誤 嘗試以Azure Classic前置碼複製VM時、未在AzureRM錯誤修正程式中載入伺服器備份以供檢閱（所有新部署和近期部署均使用AzureRM） Server 2008 R2伺服器資源報告中未正確報告DNS錯誤的錯誤修正錯誤、錯誤修正是在VM從Hypervisor刪除（但非從AD）時、無法傳送公司資源報告 而WMS無法在Hypervisor本身找到Azure備份（僅適用於AzureRM部署）
+
+
+
+=== 5.2 CWA設定
+
+新增方法來驗證所選的資源配置區域是否有Azure Active Directory網域服務可供使用新增額外檢查、以解決部分案例中的DNS逾時問題、將B2S移除為CMGR1部署的目標、因為它會拖慢部署程序
+
+
+
+== CWMS 5.2版本：2019年3月28日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年3月28日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+將Azure Virtual Desktop區段新增至WMS介面、可讓WMS管理員在「設定」->「自訂應用程式目錄中更新應用程式時、外部ID的標誌新增需求」下、不設定公司標誌
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+進一步簡化及改善Cloud Workspace for Azure（CWA）部署程序Premium Storage帳戶不再需要在Azure RM部署中使用Premium Storage建立VM、解決應用程式使用追蹤報告無法解決使用量資料問題的部分案例 更新HTML5入口網站伺服器上的憑證會導致錯誤、因為使用Azure Active Directory網域服務調整位置時、已更新HTML5入口網站伺服器授權的密碼過期通知錯誤修正未更新密碼
+
+
+
+=== 5.2 REST API
+
+資料中心模組中用於啟動/停止平台伺服器（而非客戶伺服器）的錯誤修復
+
+
+
+=== 5.2 CWA設定
+
+部署期間的FTP角色設定改良機制、可確保管理員每次存取CWA設定程序時、都能看到最新版本、改善部署期間發生逾時的元素處理錯誤修正方案中的部署錯誤標記為使用Azure AD的情況
+
+
+
+== CWMS 5.2次要版本：2019年3月14日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年3月14日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+將「應用程式監控」功能的名稱變更為「應用程式使用追蹤」。套用修正程式以重新整理「指令碼事件」的搜尋作業、不會重新使用所選的開始/結束日期預設檔案稽核、以日期篩選器設定為目前日期的前一天開始、 簡化Azure整合式備份所傳回的錯誤修正資料量、將備份還原至伺服器時、無法在部分案例中正常運作、可解決更新應用程式服務用戶端時出現的應用程式錯誤提示
+
+
+
+=== 5.2 REST API
+
+Azure安全措施：新增Azure AD使用者時、請確定其電子郵件地址尚未新增至帳戶。錯誤修復：新增用戶端應用程式並同時建立群組時、 依預期新增使用者至群組新增驗證步驟停用RDSH伺服器的存取權限、以確保伺服器重新開機後仍套用此功能。將應用程式新增至受影響的群組時、可針對部分案例進行CWA工作流程自動化錯誤修正 該群組的其他使用者
+
+
+
+=== 5.2 CWA設定
+
+在部署程序期間新增訂閱清單的重新整理選項自動設定降級舊版移動磁碟服務的部署旗標、以利在Azure中提供額外的自動化保護與檢查功能
+
+
+
+== WMS 5.2次要版本：2019年2月28日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年2月28日（星期四）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+在WMS介面中取消選取使用者的「VDI使用者」核取方塊（刪除VDI使用者的伺服器）時會發生什麼事、以及如果您不想刪除伺服器後端對時間戳記處理的改善、該如何繼續進行、將會有更清楚的確認訊息
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+Azure網域服務中授權伺服器名稱的更新設定、可在使用者登入雲端工作區後、對原生2FA進行更新、以反映啟用極少數設定時CloudJumper影像錯誤修正2FA
+
+
+
+=== 5.2 CWA設定
+
+CWA設定精靈中的其他說明/支援內容將合約條款與定價新增至CWA設定精靈、改善偵測訂閱配額與權限的機制、簡化Azure Active Directory網域服務部署的幕後作業、改善儲存帳戶名稱格式錯誤修復的FTP伺服器 案例子集的設定
+
+
+
+== CWMS 5.2次要版本：2019年2月14日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年2月14日（星期四）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+使用者管理動作的效能提升其他記錄功能可在資料中心工作歷程記錄中顯示誰要求變更群組、以解決標準應用程式目錄中的問題、其中應用程式未顯示在部分案例中、可解決App Services with Dynamic中的問題 如果兩個名稱相同的應用程式都從WMS 5.1介面移除SDDC建立精靈、則會顯示錯誤*如果您執行的是5.1版的SDDC、而且想要配置新的SDDC、 請聯絡support@cloudjumper.com、安排升級至WMS 5.2、以修正WMS API使用者建立畫面中的拼字錯誤
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+在以vCloud為基礎的SDDC中、如果連線在以vCloud為基礎的SDDC中過期、請重新登入Hypervisor、在等待伺服器開機時增加預設逾時時間、並改善CloudJumper管理存取的限制
+
+
+
+=== 5.2 REST API
+
+透過WMS的5.1介面配置新的SDDC時、會顯示「只有使用WMS的v5.2時才支援新的資料中心建立」訊息。
+
+
+
+=== 5.2 CWA設定
+
+改善自動錯誤處理
+
+
+
+== CWMS 5.2次要版本：2019年1月31日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年1月31日（星期四）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+將Cloud Workspace用戶端伺服器的連線資訊新增至Cloud Workspace用戶端的「總覽」區段、在WMS帳戶設定中新增可編輯的欄位、讓您輸入Azure AD租戶ID、以便在新的Azure部署中使用最新版本的Microsoft Standard Storage、改善Azure整合。 要求在Azure部署中保留整合式備份至少1天、以改善在「應用程式服務的動態資源配置」部署中的處理方式、將伺服器儲存設備的庫存日期新增至「伺服器」模組的該區段、顯示應用程式是在部署時配置給使用者 使用者狀態仍為「Pending Cloud Workspace」（待處理雲端工作區）如果使用者是VDI使用者、請在「User」（使用者）頁面上顯示VDI Server（如果伺服器是VDI使用者）、 在「伺服器」頁面上顯示「使用者」、可解決某些情況下的問題、如果使用者的使用者名稱有相關的開放式服務板工作、則從WMS遠端存取VM時會失敗
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+隨著使用者一整天登入、即時擴充功能的處理能力更完善。新增未來隨需喚醒功能的自動化先決條件新增未來工作負載排程改善的自動化先決條件、可解決使用Windows 10 for VDI伺服器無法在Azure Active中正確啟用遠端登錄服務的問題 目錄網域服務部署解決了使用Windows 10 for VDI伺服器時、未在Azure Active Directory網域服務部署中正確設定本機遠端桌面使用者群組的安全性群組、因此若未啟用PCI法規遵循設定功能、而非強制實施、則不會採取任何行動的問題 預設組態設定可解決工作負載排程中的問題、讓啟用「隨需喚醒」功能的使用者在排定要關機的情況下登出伺服器、就能關機。請在ProfitBricks公有雲中複製伺服器時修正錯誤、以利複製伺服器檢查 在VDI使用者案例中、該伺服器名稱的伺服器前置碼不會重複。如果快取的客戶代碼未使用有效的資源配置集合、則會在夜間報告中新增檢查報告、以改善當VM不在Hypervisor中時的例外處理方式、而WAgent則需要更新解決問題 透過密碼過期通知重設密碼、以正確強制執行密碼歷程記錄
+
+
+
+=== CWA設定
+
+實作選項以自動設定新增位置清單驗證選項的SMTP設定、以檢查訂閱是否有足夠的配額和權限、以便在所選Azure區域新增功能中建立VM、以便在結束時移除不需要的CloudWorkspace和其他具有管理權限的服務帳戶 Azure通知使用者手動上傳DNS憑證的資源配置程序已通過驗證、解決在某些情況下不會安裝Thin Print的問題
+
+
+
+== CWMS 5.2次要版本：2019年1月17日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2019年1月17日（星期四）晚上10點至晚上11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+工作負載排程介面現在會將「Description（說明）」顯示為第一欄、並將「排程」的名稱變更為「Custom排程錯誤修正」、以便在Azure部署中顯示平台伺服器的備份。如有組織無法使用「終端使用者自助管理應用程式服務」的情況、請參閱「錯誤修正」 設定任何雲端工作區服務
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+新增PCI v3法規遵循安全性增強支援：新的WMS部署將使用本機管理員與執行WAgent程序的網域管理員。支援AzureRM部署中的Windows Server 2019 *注意：在此版本中、Microsoft不支援Microsoft Office、但改善了「隨選即用」使用者的處理方式、如果組織排定要關閉VM、但「隨需喚醒」使用者仍在積極運作、 在複製VM時、請勿關閉組織VM的穩定性改善、請從新建立的VM中移除Connection Broker等角色、這些角色來自於複製的VM。改善安裝Thin Print授權伺服器角色的程序改良AzureRM範本手冊–根據執行於Azure中的硬體、傳回適用於Azure中VM的所有範本。 不僅租戶Azure區域中可用的範本、更針對vSphere部署進行改良的自動化測試也包括夜間電子郵件報告、查看是否已安裝Thin Print授權伺服器；在特定案例中、針對特定案例中的複製伺服器、針對即時擴充問題修正錯誤 vCloud部署錯誤修復AzureRM部署中的VM名稱前置詞錯誤修正在Google Cloud Platform中使用自訂機器大小時報告錯誤錯誤修正報告使用者使用啟用的「思想列印」功能時、會從AzureRM提供的範本清單中排除中文版本的Windows
+
+
+
+=== CWA設定
+
+修正未接受符合最低字元數的密碼的案例、請在CSP的租戶選擇程序中、將「ID」欄變更為「客戶網域」、以更新至簡化信用卡輸入的註冊程序
+
+
+
+== WMS 5.2次要版本：2018年12月20日、週四
+
+元件：5.2 Cloud Workspace Management Suite 2018年12月20日（星期四）晚上10點至11點（東部時間）影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2雲端工作區設定
+
+在單一伺服器部署的情況下新增了FTP DNS登錄功能、並在部署程序期間選取自動SSL、以自動填入Azure AD資訊。（TenantId、ClientID、Key）放入後端表格、自動化安裝程序現在將安裝Thin Print授權伺服器11、而非10
+
+
+
+=== 5.2 CWA設定
+
+修正註冊程序完成後、將管理員重新導向至登入頁面的問題
+
+
+
+== WMS 5.2次要版本：2018年12月6日、週四
+
+元件：5.2 Cloud Workspace Management Suite：2018年12月6日（星期四）晚上10點至11點（東部時間）影響：使用雲端工作區桌面及終端使用者應用程式服務的存取將不中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2雲端工作區工具與服務
+
+支援使用Win10 OS建立伺服器、可提升從Hypervisor載入VM時的速度。在Azure中建立伺服器時、會傳回正確的可用儲存類型。將每日報告記錄到控制面板的後端、避免在Azure中自動擴充暫存磁碟 選擇範本以進行資源配置錯誤修正、以便在使用Azure Active Directory網域服務時、不自動擴充GCP錯誤修正中的磁碟機、以便在設定多個管理程式伺服器時實現部署自動化、為未來變更顯示伺服器OS奠定基礎。 請注意、針對公有雲（Azure、GCP）的自動測試、夜間報告錯誤修正 VMware部署中的備份錯誤修正可判斷透過HyperV部署所建立的新VM上的磁碟空間錯誤修正可在AD root OU空白時收集伺服器資料、而複製伺服器時、會根據設定錯誤的Hypervisor進行穩定性改善
+
+
+
+=== 5.2 REST API
+
+在公有雲部署中啟用機器系列支援、可針對SDDC新增DataCollectedDateUTC至伺服器的儲存詳細資料、停用預設資源配置新增運算資源值的功能新增方法以取得詳細的使用者連線狀態顯示CMS中的錯誤 刪除同時具有管理權限的使用者時、針對啟用資料的應用程式服務、解決磁碟機對應問題、但在建立新使用者並指派應用程式給新使用者時、並不一定會出現「修正問題」、透過透過CWA匯入的CMS更新用戶端和/或使用者 所有使用者群組、新使用者將不會收到應用程式捷徑。
+
+
+
+== WMS 5.2次要版本：2018年11月1日、週四
+
+元件：5.2 Cloud Workspace管理套件何時：2018年11月1日（星期四）晚上10點至11點東部地區影響：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+針對CRA部署中特定使用案例的整合式備份錯誤修正
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+建立伺服器ARM 時、可讓您傳回Azure支援的儲存類型。支援多站台Active Directory拓撲解決使用Azure Active Directory網域服務錯誤修正時、使用TestVDCTools的問題、以便在AD根OU為空白時回報夜間電子郵件
+
+
+
+=== 5.2 REST API
+
+支援Azure Active Directory網域服務解除鎖定使用者。附註：請注意、複寫可能會延遲20分鐘。
+
+
+
+== WMS 5.2次要版本：2018年10月18日、週四
+
+元件：5.2 Cloud Workspace管理套件何時：2018年10月18日（星期四）晚上10點至晚上11點東部地區影響：使用雲端工作區桌面及終端使用者應用程式服務的存取將不中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+在資料中心精靈中、 啟用萬用字元憑證的驗證一般幕後改善與錯誤修復在應用程式表格中新增搜尋功能在應用程式表格中改善排序新增詳細資料以在資料中心資源配置程序中完成DNS登錄、包括API中的所有子合作夥伴使用者與群組動態呼叫回應 應用程式服務可修正錯誤、因為特定執行個體中的租戶無法持續移轉模式新增額外的加電型伺服器、 每部伺服器的共享使用者數和每部伺服器的最大共享使用者數可即時擴充詳細資料透過新的資料中心精靈進行資源配置時、將DNS驗證新增至萬用字元憑證測試
+
+
+
+=== 5.2雲端工作區工具與服務
+
+啟用選項可傳回依VM系列分組的所有VM大小、在計算應用程式服務使用者時、會將Hypervisor修復中可用的所有VM大小傳回為資源配置啟用選項、以便為CWMGR1自動更新資源、包括萬用字元憑證狀態DataCenterResources Report啟用未來的DNS增強功能錯誤修正 修復GCP部署中的自動磁碟擴充
+
+
+
+=== 5.2 REST API
+
+列出用戶端/使用者時的效能提升可支援新的即時擴充功能–設定ExtraPoweredOnServers、SharedUsersPerServer和MaxSharedUsersPerServer API現在可在建立新的平台部署時、驗證萬用字元憑證網域提供新的API方法、以取得所有合作夥伴用戶端的使用者活動資料
+
+已知問題：當使用「作用中使用者」或「使用者計數」動態配置方法來調整Azure ARM 更新部署中的資源集區大小時、「每部伺服器的運算資源」摘要錯誤地將「機器大小」顯示為「基本A」系列類型、而非正確的「標準D」系列類型。
+
+
+
+== WMS 5.2次要版本：2018年9月27日、週四
+
+元件：5.2 Cloud Workspace管理套件何時：2018年9月27日（星期四）晚上10點至晚上11點東部地區影響：使用雲端工作區桌面及終端使用者應用程式服務的存取將不中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+簡化在快取中資源配置收集VM的顯示作業在管理應用程式服務時、請修正顯示問題
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+修正使用者MFA更新API的使用案例模糊不清、以便與Azure RM最新的Azure RM更新測試介面、以VDI使用者更新電子郵件報告使用最新的API取代超級使用者術語、以納入伺服器的額外CPU和RAM 更新位址報告的來源：而非來自dcnotfications@cloudjumper.com的dcnotifications@independenceit.com訊息、可在啟動停止的SDDC/部署安全性增強功能時、透過即時擴充效能改善功能、定義每個伺服器的使用者及其他VM、不允許有多個SDDC/部署的合作夥伴從一個連線至 另一項穩定性改善：如果自動化無法傳回使用者數、請勿對資源數進行任何變更
+
+
+
+== WMS 5.2次要版本：2018年9月6日、週四
+
+元件：5.2 Cloud Workspace Management Suite 2018年9月6日（星期四）晚上10點至11點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+新增了在自訂應用程式目錄中搜尋子合作夥伴的功能、修正了一個錯誤、即重新整理資料中心模組中的畫面會導致錯誤提示移除最大資料夾名稱大小的限制、並讓瀏覽資料夾變得更容易、確保虛擬機器上的資源數 永遠不會低於指定的最低CPU和RAM值、將超級使用者術語重新命名為VDI使用者可修正錯誤、即使後端程序在「資料中心建立精靈」中成功完成改善的伺服器名稱顯示、仍會顯示一般錯誤。修正帳戶到期日不會顯示儲存的到期日 在WMS中
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+修正MFA的錯誤：選取電子郵件的使用者有時未收到允許為使用者計數資源配置類型輸入額外CPU和RAM的程式碼。修正自動引擎無法在「修復」時開啟所有機器類型的電源的錯誤、有時可能會造成時間問題 複製伺服器以將先前手動安裝在FTP伺服器上的萬用字元憑證自動化、在更新萬用字元憑證之後、新增清除舊憑證的程序、可解決使用「啟用資料的應用程式服務」時、X：磁碟機並不一定會對應終端使用者的問題。
+
+
+
+== CWMS 5.2一般供應版本：2018年8月10日、週四
+
+元件：5.2 Cloud Workspace Management Suite 2018年8月10日（星期四）晚上10點（東部時間）：使用者可存取Cloud Workspace桌面及應用程式服務、不會中斷。仍可存取Cloud Workspace Management Suite。
+
+
+
+=== 5.2 Cloud Workspace管理套件
+
+發行Web介面元件、以啟用上述總覽中的功能
+
+
+
+=== 5.2雲端工作空間工具與服務
+
+發行後端工具、以啟用上述總覽中的功能
+
+
+
+=== 5.2 REST API
+
+ Release API to production to enable the features found in the overview above

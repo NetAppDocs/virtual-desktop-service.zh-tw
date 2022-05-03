@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: Management.Deployments.logical_hierarchy_overview.html 
+summary: 指令碼文件- AMD Radeon本能驅動程式 
+keywords:  
+---
+= VDS邏輯階層總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+VDS會將概念組織到邏輯階層的各個層級中。本文有助於概述如何搭配使用。
+
+
+
+=== VDS組織方案
+
+VDS管理入口網站位於 https://manage.vds.netapp.com[]。此Web介面是單一窗口、用於管理所有VDS相關物件。在VDS Web UI中、存在下列元件和邏輯容器階層。
+
+
+
+==== VDS部署
+
+_Deployment_是一種VDS概念、可組織並包含_VDS Workspace（s）_。在某些部署架構中、部署可以包含多個VDS工作區。
+
+
+NOTE: 在單一部署中執行多個VDS工作區稱為「多租戶」、只是RDS部署的一項選項、AVD部署不支援此方法。
+
+部署是由Active Directory網域定義、AD網域與部署之間有1：1的關聯。
+
+部署某些VM資源以支援部署中所有VDS工作區之間共用的部署。例如、每個部署都包含一個名為「CWMGR1」的VM、該VM是執行VDS應用程式的伺服器、SQL Express資料庫、可協助管理部署內的VDS工作區（及所含資源）。
+
+
+
+==== VDS工作區
+
+
+WARNING: 「* VD* Workspace」與「* AVD* Workspace」之間有差異。
+
+VDS工作區是用戶端（終端使用者）資源部署內部的邏輯容器。這些資源包括虛擬機器（用於工作階段主機、應用程式伺服器、資料庫伺服器、檔案伺服器等）、虛擬網路、 儲存設備和其他Hypervisor基礎架構。
+
+VDS工作區也包含管理功能、可管理使用者、安全性群組、工作負載排程、應用程式、自動化、 VM和AVD組態。
+
+通常VDS工作區與單一公司或（企業部署）業務單位保持一致。
+
+
+
+==== VDS站台
+
+在部署中、可以建立多個站台來代表不同的基礎架構供應商、所有站台都是在單一部署中進行管理。
+
+當單一公司或業務單位需要在多個實體位置（例如北美和EMEA）、Hypervisor訂閱（以使成本與業務單位一致）、甚至Hypervisor（例如Azure、Google Compute和vSphere內部部署HCI的使用者）上代管使用者和應用程式時、這項功能就很有幫助。
+
+
+
+==== AVD工作區
+
+
+WARNING: 「* VD* Workspace」與「* AVD* Workspace」之間有差異。
+
+AVD工作區是位於VDS工作區和VDS站台內的邏輯容器。它可與VDS站台類似、用於在同一個部署中分割管理和作業原則。
+
+
+
+==== AVD主機集區
+
+AVD主機集區是邏輯容器、位於AVD工作區內、可讓工作階段主機和應用程式群組使用者為使用者工作階段提供伺服器、並控制個別資源的存取。
+
+
+
+==== AVD應用程式群組
+
+每個AVD主機集區都以單一「桌面」應用程式群組為開頭。使用者和/或群組可指派給此（或其他）應用程式群組、以便指派給應用程式群組中的資源存取權。
+
+您可以在VDS的主機集區內建立其他應用程式群組。所有其他的應用程式群組都是「RemoteApp」應用程式群組、提供的是RemoteApp資源、而非完整的Windows桌面體驗。

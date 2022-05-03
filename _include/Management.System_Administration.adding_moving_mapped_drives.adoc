@@ -1,0 +1,101 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+根據預設、終端使用者工作階段會有三個共用資料夾。這些資料夾位於定義的儲存層。這可能位於檔案伺服器（TSD1或D1）或儲存服務、例如Azure Files、Azure NetApp Files 支援區、NetApp CVO和NetApp CVS。
+
+為了清楚說明、本文將以公司代碼「NECA」為範例客戶。 本範例假設已部署名為NECATSD1的單一台TDS1伺服器。我們將逐步將資料夾移至另一個VM（稱為「NECAD1」）。此策略可用於在同一台機器或另一台機器的分割區之間移動、如下列範例所示…
+
+資料夾起始位置：
+
+* 資料：NECATSD1\C：\data\NECA\（TSD1is表示它是第一部終端機伺服器、也可做為資料伺服器）
+* FTP：NECATSD1\C：\FTP\NECA\
+* 主頁：NECATSD1\C：\home\NECA\
+
+
+資料夾結束位置：
+
+* 資料：NECAD1\G:\data\NECA\（D1is it is it is the 1st Data Server）
+* FTP：相同的程序適用、不需要描述3倍
+* 主頁：相同的程序適用、不需要描述3倍
+
+
+
+
+== 在NECAD1上新增G:磁碟
+
+. 為了將共享資料夾放在E：磁碟機上、我們需要透過Hypervisor（例如 Azure管理入口網站）、然後初始化並格式化
++
+image:mapped1.png[""]
+
+. 將現有資料夾（NECATSD1、C:\）路徑複製到新位置（NECAD1、G:\）
+. 將資料夾從原始位置複製到新位置。
++
+image:mapped2.png[""]
+
+
+
+
+
+== 從原始資料夾共用（NECATSD1、C：\data\NECA\）收集資訊
+
+. 使用與原始位置資料夾完全相同的路徑來共用新資料夾。
+. 開啟新的NECAD1、G:\data\資料夾、您會在範例中看到一個名為「NECA」的資料夾。
++
+image:mapped3.png[""]
+
+. 請注意原始資料夾共用的安全性權限：
++
+image:mapped4.png[""]
+
+. 這是典型的設定、但如果有需要保留的現有自訂項目、請務必複製原始設定。所有其他使用者/群組權限應從新的資料夾共用區中移除
++
+** 系統：允許所有權限
+** 本地計算機上的LocalClientDHPAccess：允許的所有權限
+** ClientDHPAccess（網域上）：允許的所有權限
+** NECA-All使用者（網域上）：允許「完全控制」以外的所有權限
+
+
+
+
+
+
+== 將共用路徑和安全性權限複寫到新的共用資料夾
+
+. 返回新位置（NECAD1、G:\data\NECA\）、並以相同的網路路徑（機器除外）共用NECA資料夾、範例為「NECA-data$」
++
+image:mapped5.png[""]
+
+. 為確保使用者安全、請新增所有使用者、並將其權限設定為相符。
++
+image:mapped6.png[""]
+
+. 移除可能存在的任何其他使用者/群組權限。
++
+image:mapped7.png[""]
+
+
+
+
+
+== 編輯群組原則（僅當資料夾移至新機器時）
+
+. 接下來您將在群組原則管理編輯器中編輯磁碟機對應。對於Azure AD網域服務、對應位於：
++
+ “Cloud Workspace Users > User Configuration > Preferences > Windows Settings> Drive Maps”
++
+image:mapped8.png[""]
+
+. 一旦群組原則更新之後，每位使用者下次連線時，都會看到對應的磁碟機，這些磁碟機會指向新的位置。
+. 此時您可以刪除NECATSD1、C:\上的原始資料夾。
+
+
+
+
+== 疑難排解
+
+如果終端使用者看到對應的磁碟機有紅色X、請在磁碟機上按一下滑鼠右鍵、然後選取中斷連線。登出磁碟機後再重新登入磁碟機將會正確顯示。image:mapped9.png[""]

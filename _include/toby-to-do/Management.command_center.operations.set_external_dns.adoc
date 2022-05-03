@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.set_external_dns-abf19.png[Management.command center.operations.set external DNS abf19]

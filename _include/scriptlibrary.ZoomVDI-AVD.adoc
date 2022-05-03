@@ -1,0 +1,24 @@
+= VDI/AVD縮放概觀
+:allow-uri-read: 
+
+
+
+
+== VDI/AVD縮放概觀
+
+此指令碼套件會使用PowerShell安裝/解除安裝_Zoom VDI-AVD_以執行部署。
+
+
+NOTE: 如果VDI/AVD環境也啟用音訊重新導向、則可改善縮放效能。
+
+
+
+=== 預設捷徑路徑
+
+下方將輸入預設的捷徑路徑、此應用程式的捷徑為：「\shortcutes\Zoom VDI.lnk」
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallZoomVDI-AVD.png[指令碼library.activity：InstallZoomVDI AVD]

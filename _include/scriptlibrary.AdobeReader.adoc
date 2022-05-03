@@ -1,0 +1,21 @@
+= Adobe Reader DC總覽
+:allow-uri-read: 
+
+
+
+
+== Adobe Reader DC總覽
+
+此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_adobe Ready_DC_ (https://chocolatey.org/)[] 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。
+
+
+
+=== 預設捷徑路徑
+
+預設的捷徑路徑如下所示、此應用程式的捷徑為：「\shortcuts\acrobatReader.lnk」
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallAdobeReader.png[scriptlibrary.activity：InstallAdobeReader.]

@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.create_azure_netapp_files_share-90774.png[Management.command center.operations。建立Azure NetApp Files 共用90774]

@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.create_domain_admin_account.html 
+summary: 如何建立層級3管理帳戶 
+keywords:  
+---
+= 建立網域管理員（「層級3」）帳戶
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+VDS系統管理員偶爾需要網域層級的認證來管理環境。在VDS中、這些稱為「層級3」或「.tech」帳戶。
+
+這些指示說明如何以適當的權限建立這些帳戶。
+
+
+
+=== Windows伺服器網域控制器
+
+執行內部託管網域控制器（或透過VPN/Express Route連結至Azure的本機DC）時、可直接在Active Directory Manager中管理.tech帳戶。
+
+. 使用網域管理員（.tech）帳戶連線至網域控制器（CWMGR1、DC01或現有VM）。
+. 建立新使用者（如有需要）。
+. 將使用者新增至「Level 3技術人員」安全性群組
++
+image::Management.System_Administration.create_domain_admin_account-9ee17.png[Management.System Administration。建立網域管理帳戶9ee17]
+
++
+.. 如果缺少「Level 3技術人員」安全性群組、請建立該群組、並將其成為「CW-Infrastructure」安全性群組的成員。
++
+image::Management.System_Administration.create_domain_admin_account-0fc27.png[管理：系統管理。建立網域管理帳戶0fc27]
+
+
+
+
+
+
+NOTE: 在使用者名稱結尾新增「.tech」是建議的最佳實務做法、有助於從終端使用者帳戶劃分管理帳戶。
+
+
+
+=== Azure AD網域服務
+
+如果在Azure AD網域服務中執行或管理Azure AD中的使用者、則可在Azure管理入口網站中以一般Azure AD使用者的身分管理這些帳戶（例如變更密碼）。
+
+您可以建立新帳戶、將新帳戶新增至這些角色、應賦予他們所需的權限：
+
+. AAD DC管理員
+. ClientDHPAccess
+. 目錄中的全域管理。
+
+
+
+NOTE: 在使用者名稱結尾新增「.tech」是建議的最佳實務做法、有助於從終端使用者帳戶劃分管理帳戶。
+
+image:l33.png[""]

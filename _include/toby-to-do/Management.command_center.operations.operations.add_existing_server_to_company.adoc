@@ -1,0 +1,13 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.add_existing_server_to_company-f1a26.png[Management.command center.operations。將現有伺服器新增至公司f1a26]
+
+image::Management.command_center.operations.add_existing_server_to_company-41370.png[Management.command center.operations。將現有伺服器新增至公司41370]
+
+image::Management.command_center.operations.add_existing_server_to_company-10a25.png[Management.command center.operations。將現有伺服器新增至10a25公司]

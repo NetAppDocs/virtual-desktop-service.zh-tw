@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVD_hostpool_54.html 
+summary: 使用NetApp VDS v5.4建立AVD主機集區 
+keywords:  
+---
+= 使用NetApp VDS v5.4建立AVD主機集區
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+video::kaHZm9yCv8g[youtube, ]

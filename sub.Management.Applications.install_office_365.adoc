@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: Management.Applications.install_office_365.html 
+summary: Office 365安裝指南 
+keywords:  
+---
+= 安裝Microsoft Office 365
+:allow-uri-read: 
+
+
+
+
+== 手動步驟總覽
+
+授權規則可防止系統管理員只是下載Microsoft Office、使其無法登入使用者的帳戶、並將其安裝到共用的終端機伺服器上、並依照預期為多位使用者運作。系統管理員需要依照特定程序來安裝已啟動共用電腦啟動旗標的Office Pro Plus。
+
+
+
+=== 程序步驟摘要
+
+. 請從下載Office部署工具 https://www.microsoft.com/en-us/download/details.aspx?id=49117[]
+. 瀏覽至Office組態工具： https://config.office.com/deploymentsettings[]。
+
+
+
+NOTE: 本指南將跳過所需最低和共享電腦啟動以外的選項。如果需要其他選項、您可以透過Microsoft指南深入瞭解： https://docs.microsoft.com/en-us/deployoffice/deploy-office-365-proplus-from-the-cloud)[]
+
+. 為您的部署選擇適當的架構–除非有特定理由使用32位元（例如需要32位元版本Office的舊版Office外掛程式）、否則建議使用64位元。
++
+image:office1.png[""]
+
+. 選取所需的Office應用程式和版本：附註：只有Office Pro Plus支援共用電腦啟動。無論您使用的Office版本為何（Office 365 Pro Plus、Office 365 e3。Office 365 E5、Microsoft 365 Business、Microsoft 365 E3、Microsoft 365 E5）您仍可在此處安裝Office 365 Pro Plus。
++
+image:office2.png[""]
+
+. 選取所需的語言、然後按「Next（下一步）」繼續。
++
+image:office3.png[""]
+
+. 在「安裝選項」下、建議您取消選取「將圖示固定至工作列」：
++
+image:office4.png[""]
+
+. 這是最重要的步驟、將產品啟動設定為共用電腦。系統管理員可選擇按一下自動接受EULA的切換、以獲得使用者體驗。
++
+image:office5.png[""]
+
+. 返回頁面頂端、然後按一下「匯出」。
++
+image:office6.png[""]
+
+. 選取「保留目前設定」、然後按一下「確定」繼續。
++
+image:office7.png[""]
+
+. 接受合約條款、並保留或變更安裝檔案名稱、然後按一下「匯出」繼續。本指南假設您保留預設的「組態」名稱。
++
+image:office8.png[""]
+
+. 按一下「Export」（匯出）之後、「Configuration．XML」（組態.xml）的下載就會開始。
+. 執行您先前下載的officedeploymentool exe /自我解壓縮檔案（officedeploymenttool_11901-20022.exe是寫入時的檔案版本）、擷取到新的資料夾（我們假設本範例使用「C：\Office」）、 然後將configuration.xml檔案複製到相同的目錄（覆寫已擷取的範例）。
+. 接下來、以系統管理員身分開啟命令提示字元、並將目錄變更為「C：\Office」（執行「CD \Office」）。
+. 接下來、請執行「setup.exe /downloadConfiguration．xml」（變更「Configuration．xml」以符合您在步驟10中匯出的XML檔案）、如果似乎沒有發生任何問題、請勿擔心、此步驟可能需要一段時間。
+. 最後、執行「setup.exe /configure Configuration．xml」（再次調整XML檔案名稱以符合您的檔案）。
+
+
+
+
+== 不支援的自動化部署
+
+
+WARNING: 此自動化程序仰賴自訂的ps1和預先建置的XML。不受支援的意義在於、NetApp不保證它能正常運作、也不會對任何目標機器造成影響。ps1由NetApp代管、隨時可能變更/消失。我們建議您將此方法當作範本、用來建置及裝載您自己的自動化程序。此程序已於2019年8月30日在Azure的Windows Server 2016 Datacenter 10.0.14393和Windows 10 Enterprise for Virtual Desktop 10.0.18362上驗證。
+
+
+
+=== 程序步驟摘要
+
+. 執行命令以下載並執行裝載的.ps1
+. ps1會下載代管的Office部署組態.xml（此處提供此XML所使用之Office組態工具設定的擷取畫面）
+. ps1會執行ProPlus Install參考.xml
+. ps1會將Microsoft Office捷徑複製到單一資料夾、以供應用程式發佈之用
+
+
+
+
+=== 自訂步驟
+
+. 從下載及編輯代管的ps1 http://getAVD.com/proplus_minus_onedrive.ps1[]
++
+.. 建立您自己的XML檔案（如上所述）、然後上傳至您自己的URL
+.. 編輯「$downloads」變數、將您自己的組態XML檔案指向您自己的URL
+.. 編輯「$officedapps」變數、以納入組態XML檔案所安裝的所有捷徑
++
+image:office9.png[""]
+
+
+
+. 將編輯過的ps1檔案上傳至您自己的託管URL
+. 編輯指令碼式事件指令碼、以下載並執行自訂和自訂的ps1（步驟3.1）。以下）
+
+
+
+
+=== 指令碼事件步驟
+
+這與一般應用程式安裝指令碼事件的工作流程相同。這些指示假設已依照應用程式管理計畫中的步驟安裝chalatey。Office 365 ProPlus含chalatey的自動安裝
+
+若要安裝O365 ProPlus、您將會建立一個新的指令碼、其中包含下列設定：
+
+. 無指令碼檔案
+. 執行方式：powershell.exe
+. 引數（選用）：Set-ExecutionPolicy Bypass -scield Process -Force；IX（New-Object System.Net.WebClient).DownloadString(‘http://getAVD.com/proplus_minus_onedrive.ps1’）
+. 編輯 http://getAVD.com/proplus_minus_onedrive.ps1[] 並以URL取代您自己的代管ps1檔案。
++
+image:office10.png[""]
+
+
+
+儲存指令碼後、下一步是將該指令碼與觸發程式建立關聯。在這種情況下、我們會在VDS中要求安裝應用程式時觸發指令碼。如需詳細資訊、請參閱《應用程式管理指南》。

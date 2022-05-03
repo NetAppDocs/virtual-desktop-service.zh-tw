@@ -1,0 +1,15 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.load_resource_pool_data-e7092.png[Management.command center.opers.load資源池資料e7092]
+
+image::Management.command_center.operations.load_resource_pool_data-c9810.png[Management.command center.opers.load資源池資料c9810]
+
+image::Management.command_center.operations.load_resource_pool_data-cb3a8.png[Management.command center.opers.load資源池資料cb3a8]
+
+image::Management.command_center.operations.load_resource_pool_data-6ae0e.png[Management.command center.opers.load資源池資料6ae0e]

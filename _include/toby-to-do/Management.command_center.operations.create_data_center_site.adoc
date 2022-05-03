@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.create_data_center_site-6e0fa.png[Management.command center.operations。建立資料中心站台6e0fa]

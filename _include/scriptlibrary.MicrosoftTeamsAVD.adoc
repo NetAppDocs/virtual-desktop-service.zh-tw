@@ -1,0 +1,24 @@
+= Microsoft AVD團隊總覽
+:allow-uri-read: 
+
+
+
+
+== Microsoft AVD團隊總覽
+
+此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_Microsoft Teams AVD_ (https://chocolatey.org/)[] 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。
+
+
+WARNING: 此Microsoft Team安裝是專為部署至AVD環境而設定、其中包含Azure中AVD專屬的自訂和元件。 link:scriptlibrary.MicrosoftTeams.html["不同的Microsoft團隊指令碼"] 適用於RDS部署。
+
+
+
+=== 預設捷徑路徑
+
+預設的捷徑路徑將輸入於下方、此應用程式的捷徑為：「\shortcut\Microsoft Teams AVD.lnk」
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallMicrosoftTeamsAVD.png[指令碼library.activity。安裝Microsoft TeamsAVD]

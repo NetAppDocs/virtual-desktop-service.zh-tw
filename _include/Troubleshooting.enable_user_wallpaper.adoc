@@ -1,0 +1,27 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+根據預設、遠端工作階段會停用牆紙顯示、以改善效能。結果是使用者經常想要自訂的黑色牆紙。此設定可透過簡單的GPO編輯加以變更
+
+
+
+=== 指示：
+
+. 登入平台伺服器（例如 CWMGR1）、使用第3層.tech帳戶
+. 開啟群組原則管理主控台
+. 找到rdsh GPO（標示為「公司代碼」rdsh）（例如 「xyz1 rdsh」））右鍵按一下「xyz1 rdsh」GPO、然後選擇「Edit（編輯）」
++
+.. 在Azure AD網域服務中、GPO稱為「AADDC「Computers > Cloud Workspace Computers」
+
+
+. 修改原則：電腦組態>原則>系統管理範本> Windows元件>遠端桌面服務>遠端桌面工作階段主機>遠端工作階段環境>移除遠端桌面背景牆將此設定為停用
+
+
+image:wallpaper1.png[""]
+image:wallpaper2.png[""]
+image:wallpaper3.png[""]

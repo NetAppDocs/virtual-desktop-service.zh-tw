@@ -1,0 +1,200 @@
+---
+settings:
+  name: Virtual Desktop Service
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: zh-tw,us-en,ja-jp,zh-cn,ko-kr
+sidebar:
+  entries:
+  - title: 虛擬桌面服務文件
+    url: "/index.html"
+  - title: 使用VDS部署
+    entries:
+    - title: Azure
+      entries:
+      - title: Azure虛擬桌面
+        entries:
+        - title: 在Azure中部署AVD
+          url: "/Deploying.Azure.AVD.Deploying_AVD_in_Azure.html"
+        - title: 補充-現有AD的AVD
+          url: "/Deploying.Azure.AVD.Supplemental_AVD_with_existing_AD.html"
+        - title: VDS V5.4元件與權限（AVD）
+          url: "/Deploying.Azure.AVD.vds_v5.4_components_and_permissions.html"
+        - title: VDS V5.4先決條件（AVD）
+          url: "/Deploying.Azure.AVD.vds_v5.4_prerequisites.html"
+        - title: VDS v6.0先決條件（AVD）
+          url: "/Deploying.Azure.AVD.vds_v6.0_prerequisites.html"
+    - title: Google
+      entries:
+      - title: 在Google中部署RDS
+        url: "/Deploying.GCP.RDS.deploying_rds_in_gcp.html"
+      - title: VDS V5.4先決條件（RS/GCP）
+        url: "/Deploying.GCP.vds_v5.4_prerequisites.html"
+  - title: 架構
+    entries:
+    - title: 變更資料層
+      url: "/Architectural.change_data_layer.html"
+      entries:
+      - title: Azure檔案
+        url: "/Architectural.change_data_layer.Azure_Files.html"
+    - title: 將資料移轉至VDS
+      url: "/Architectual.migrate_data_into_vds.html"
+    - title: 將AVD v1升級至v2
+      url: Architectual.upgrade_AVD_v1_to_v2.html
+    - title: 續約SSL憑證
+      url: "/Architectural.Wildcard_SSL_certificate_renewal_process.html"
+    - title: VDS接地指南
+      url: "/Architectural.AVD_teardown_guide.html"
+  - title: 管理
+    entries:
+    - title: 部署
+      entries:
+      - title: 資源配置集合
+        url: "/Management.Deployments.provisioning_collections.html"
+      - title: VDS邏輯階層總覽
+        url: "/Management.Deployments.logical_hierarchy_overview.html"
+    - title: 應用程式
+      entries:
+      - title: RDS的應用程式權利
+        url: "/Management.Applications.application_entitlement_workflow.html"
+      - title: AVD的應用程式權利
+        url: "/Management.Applications.AVD_application_entitlement_workflow.html"
+    - title: 指令碼事件
+      entries:
+      - title: 指令碼事件總覽
+        url: "/Management.Scripted_Events.scripted_events.html"
+    - title: 命令中心
+      entries:
+      - title: 管理命令中心總覽
+        url: "/Management.command_center.overview.html"
+      - title: 營運
+        entries:
+        - title: 將範本複製到圖庫
+          url: "/Management.command_center.operations.copy_template_to_gallery.html"
+    - title: 設定成本最佳化
+      url: "/Management.Cost_Optimization.workload_schedule.html"
+    - title: 使用者管理
+      entries:
+      - title: 管理使用者帳戶
+        url: "/Management.User_Administration.manage_user_accounts.html"
+      - title: 管理資料夾與權限
+        url: "/Management.User_Administration.manage_folders_and_permissions.html"
+      - title: 管理應用程式存取
+        url: "/Management.Applications.application_entitlement_workflow.html"
+      - title: 重設使用者密碼
+        url: "/Management.User_Administration.reset_user_password.html"
+      - title: 設定MFA
+        url: "/Management.User_Administration.multi-factor_authentication.html"
+    - title: 系統管理
+      entries:
+      - title: 建立網域管理帳戶
+        url: "/Management.System_Administration.create_domain_admin_account.html"
+      - title: 提供第三方存取
+        url: "/Management.System_Administration.provide_3rd_party_access.html"
+      - title: 設定備份
+        url: "/Management.System_Administration.configure_backup.html"
+      - title: 複製虛擬機器
+        url: "/Management.System_Administration.clone_virtual_machines.html"
+      - title: 自動新增磁碟空間
+        url: "/Management.System_Administration.auto_add_disk_space.html"
+      - title: Azure Key Vault
+        url: "/Management.System_Administration.azure_key_vault.html"
+      - title: 設定防毒軟體
+        url: "/Management.System_Administration.configure_antivirus.html"
+      - title: 新增及移動對應的磁碟機
+        url: "/Management.System_Administration.adding_moving_mapped_drives.html"
+  - title: 疑難排解
+    entries:
+    - title: 檢閱VDS記錄
+      url: "/Troubleshooting.reviewing_vds_logs.html"
+    - title: 網際網路連線品質
+      url: "/Troubleshooting.internet_connection_quality.html"
+    - title: 啟用使用者牆紙
+      url: "/Troubleshooting.enable_user_wallpaper.html"
+    - title: 列印問題
+      url: "/Troubleshooting.printing_issues.html"
+    - title: Azure VCPU核心配額
+      url: "/Troubleshooting.azure_vcpu_core_quota.html"
+    - title: 解除鎖定使用者帳戶
+      url: "/Troubleshooting.unlocking_user_accounts.html"
+    - title: 一般VM效能
+      url: "/Troubleshooting.general_vm_performance.html"
+    - title: Azure的DNS轉送新增SSO
+      url: "/Troubleshooting.dns_forwarding_for_azure_aadds_sso.html"
+    - title: 應用程式問題
+      url: "/Troubleshooting.application_issues.html"
+  - title: 參考資料
+    entries:
+    - title: 版本資訊
+      entries:
+      - title: VDS v6.0版本說明
+        url: "/Reference.Release_Notes.vds_v6.0_release_notes.html"
+      - title: VDS V5.4版本說明
+        url: "/Reference.Release_Notes.vds_v5.4_release_notes.html"
+      - title: VDS Windows用戶端版本注意事項
+        url: "/Reference.Release_Notes.vds_windows_client_release_notes.html"
+      - title: 舊版
+        entries:
+        - title: VDS v5.3版本注意事項
+          url: "/Reference.Release_Notes.vds_v5.3_release_notes.html"
+        - title: WMS v5.2版本說明
+          url: "/Reference.Release_Notes.cwms_v5.2_release_notes.html"
+        - title: CWS 5.1版發行說明
+          url: "/Reference.Release_Notes.cws_v5.1_release_notes.html"
+        - title: CWS 5.0版發行說明
+          url: "/Reference.Release_Notes.cws_v5.0_release_notes.html"
+    - title: 終端使用者存取
+      url: "/Reference.end_user_access.html"
+    - title: VDS變更環境
+      url: "/Reference.vds_change_environments.html"
+    - title: 指令碼庫文件
+      entries:
+      - title: Adobe讀取器DC
+        url: "/scriptlibrary.AdobeReader.html"
+      - title: AMD Radeon本能驅動程式
+        url: "/scriptlibrary.AMDRadeonInstinctDrivers.html"
+      - title: Ezeep. Print應用程式
+        url: "/scriptlibrary.EzeepPrintApp.html"
+      - title: Google Chrome
+        url: "/scriptlibrary.GoogleChrome.html"
+      - title: Microsoft Edge Chromium
+        url: "/scriptlibrary.MicrosoftEdgeChromium.html"
+      - title: Microsoft Office 365
+        url: "/scriptlibrary.MicrosoftOffice365.html"
+      - title: Microsoft One Drive
+        url: "/scriptlibrary.MicrosoftOneDrive.html"
+      - title: Microsoft團隊
+        url: "/scriptlibrary.MicrosoftTeams.html"
+      - title: Microsoft AVD團隊
+        url: "/scriptlibrary.MicrosoftTeamsAVD.html"
+      - title: NVIDIA Cuda驅動程式
+        url: "/scriptlibrary.NvidiaCudaDrivers.html"
+      - title: NVIDIA Grid驅動程式
+        url: "/scriptlibrary.NvidiaGridDrivers.html"
+      - title: AVD螢幕擷取保護
+        url: "/scriptlibrary.AVDScreenCaptureProtection.html"
+      - title: 適用於AVD的Zoom
+        url: "/scriptlibrary.ZoomVDI-AVD.html"
+    - title: 進階
+      entries:
+      - title: FSLogix設定檔縮小
+        url: "/Advanced.fslogix_profile_shrink.html"
+  - title: NetApp VDS v5.4影片
+    entries:
+    - title: NetApp TV內容
+      url: "/video_content_netapptv.html"
+    - title: 部署AVD或RDS
+      url: "/video_azure_AVDRDS_deploy_54.html"
+    - title: 在Azure中新增AVD主機集區
+      url: "/video_azure_AVD_hostpool_54.html"
+    - title: 管理AVD使用者和應用程式群組
+      url: "/video_azure_AVD_users_appgroups_54.html"
+    - title: 管理資源並將成本降至最低
+      url: "/video_azure_AVDRDS_optimize_resources_54.html"
+    - title: 自動化AVD和RDS的應用程式管理
+      url: "/video_VDS_day_in_the_life.html"
+    - title: 將v1 AVD主機集區升級至v2
+      url: "/Architectual.upgrade_AVD_v1_to_v2.html"

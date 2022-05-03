@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.rename_server-db4c9.png[Management.command center.operations。重新命名伺服器db4c9]

@@ -1,0 +1,37 @@
+= RDS工作階段主機更新程序
+:allow-uri-read: 
+
+
+
+
+=== RDS工作階段主機更新程序
+
+VDS提供一種簡單的方法、讓您使用資源配置集合和*新增伺服器*功能、來更新RDS環境中的工作階段主機。此程序可在不影響終端使用者的情況下完成、並在先前的映像迭代基礎上、以後續映像更新重複執行。
+
+.RDS工作階段主機更新程序如下：
+. 根據上述指示建立新的VDI資源配置集合、自訂及驗證集合。
++
+.. 一般而言、此資源配置集合會建置在先前的VM範本上、模擬「Open、Save As」程序。
+
+
+. 一旦資源配置集合通過驗證、請瀏覽至「_Workspace > Servers_」頁面、然後按一下「*+ Add Server*」
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning colles.RDS工作階段裝載e8204.]
+
+. 選擇* TS*作為*伺服器角色*
+. 選取最新的* VM範本*。根據您的需求、選擇適當的*機器尺寸*和*儲存類型*。保留*資料磁碟機*未核取。
+. 請針對環境所需的工作階段主機總數重複此步驟。
+. 按一下「*新增伺服器*」、工作階段主機將根據所選的VM範本建置、並在10到15分鐘內（視Hypervisor而定）開始上線。
++
+.. 請注意、環境中目前的工作階段主機最終會在這些新主機上線後停用。計畫建置足夠的新主機、以支援此環境中的整個工作負載。
+
+
+. 當新主機上線時、預設設定為保留*不允許新工作階段*。對於每個工作階段主機、可以使用*允許新工作階段*切換來管理哪些主機可以接收新的使用者工作階段。此設定可透過編輯每個個別工作階段主機伺服器的設定來存取。一旦建立足夠的新主機並確認功能、即可在新舊主機上管理此設定、將所有新工作階段路由傳送至新主機。將*允許新工作階段*設為*停用*的舊主機、可以繼續執行並裝載現有的使用者工作階段。
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning collections。RDS工作階段主機726d1]
+
+. 當使用者登出舊主機、且沒有新的使用者工作階段加入舊主機時、按一下*「Actions」（動作）*圖示並選取*「DELETE」（刪除）、即可刪除*工作階段= 0*的舊主機。
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning colles.RDS工作階段裝載45d32]
+
+

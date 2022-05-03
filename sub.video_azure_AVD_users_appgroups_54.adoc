@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVD_users_appgroups_54.html 
+summary: 使用NetApp VDS v5.4在Azure中新增及管理AVD使用者和應用程式群組 
+keywords:  
+---
+= 使用NetApp VDS v5.4在Azure中新增及管理AVD使用者和應用程式群組
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+video::RftG7v9n8hw[youtube, ]

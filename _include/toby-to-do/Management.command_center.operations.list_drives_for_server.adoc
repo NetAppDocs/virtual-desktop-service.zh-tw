@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.list_drives_for_server-534a5.png[Management.command center.operations。列出伺服器534a5的磁碟機]

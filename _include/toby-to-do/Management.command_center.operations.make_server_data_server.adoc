@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.make_server_data_server-67eee.png[Management.command center.opers.make server data server 67eee]

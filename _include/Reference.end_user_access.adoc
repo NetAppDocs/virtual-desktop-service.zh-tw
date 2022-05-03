@@ -1,0 +1,272 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+NetApp VDS不會追蹤或建議不同的使用者端點裝置。我們確實建議一些基本概念、但這並不排除其他可能的端點選項。
+
+遠端桌面環境可從各種端點裝置存取。用戶端可直接從Microsoft和協力廠商取得。NetApp VDS提供適用於Windows裝置的自訂連線用戶端（適用於Windows的_NetApp VDS用戶端）、以及與HTML 5瀏覽器相容的Web用戶端。
+
+Azure Virtual Desktop環境可從各種端點裝置存取。與RDS不同的是、AVD環境只能由Microsoft原生用戶端存取。Microsoft已發佈適用於Windows、MacOS、Android、iOS及網路用戶端的用戶端。此外、他們也與IGEL合作、提供Linux型精簡型用戶端產品。
+
+
+
+== 終端使用者連線選項
+
+
+
+=== 遠端桌面服務
+
+
+
+==== 適用於Windows的NetApp VDS用戶端
+
+NetApp VDS Client for Windows是使用者連線至RDS環境的最佳方式。這項簡單的安裝程式可讓使用者僅使用其使用者名稱和密碼進行連線。不需要伺服器或閘道組態。列印和本機磁碟機對應會自動啟用、而且此方法的效能最高。
+
+
+
+===== VDS用戶端URL安全性
+
+如果傳出網路連線是控制器、為了保證能繼續使用適用於Windows的NetApp VDS用戶端、我們建議將下列項目新增至安全名單：* api.cloudworkspace.com * vdsclient.app * API.vdsclient.app * BI.vdsclient.app * vds.client.app
+
+如有需要、可利用合作夥伴的標誌和聯絡資訊來建立此應用程式的品牌版本。請聯絡支援部門以申請。
+
+NetApp VDS用戶端可從下列網址下載： https://cwc.cloudworkspace.com/download/cwc-win-setup.exe[]
+
+*列印：*當與適用於Windows的NetApp VDS用戶端連線時、會使用ThinPrint自動設定列印。
+
+*本機檔案存取：*根據預設、適用於Windows的NetApp VDS用戶端會與雲端使用者工作階段共用本機裝置磁碟機（HDD、USB和網路）。使用者可以從Windows檔案總管的「這台電腦」位置來回瀏覽及傳輸資料。您可以在VDS中編輯工作區或使用者、來停用此功能。
+
+_VDS >工作區>使用者與群組>安全性設定_image:win_client_disk_access.png[""]
+
+
+
+==== NetApp VDS Web用戶端
+
+NetApp VDS Web用戶端可從存取 https://login.cloudworkspace.com/[]
+
+只要終端使用者的瀏覽器支援HTML5、他們也可以透過網頁存取桌面。您可以在查看HTML5的瀏覽器相容性 https://html5test.com/[]
+
+您可以為NetApp VDS合作夥伴建立此頁面的完整品牌版本。合作夥伴必須提供SSL憑證、而且需要支付少許的專業服務費用。請聯絡支援部門以開始此程序。
+
+*列印：*透過HTML5連線時、從Virtual Desktop列印會產生PDF、並在瀏覽器中下載、然後在本機列印。
+
+*本機檔案存取：*透過HTML5連線時、使用者可以將檔案上傳至雲端磁碟機。若要這麼做、使用者將按一下浮動雲端圖示、上傳檔案、然後瀏覽至「此電腦>雲端於…」 在Windows檔案總管中存取該檔案的位置。
+
+
+
+==== 手動設定的RDS用戶端
+
+第二種最佳連線方法是手動設定Microsoft遠端桌面應用程式。這是適用於MacOS、Linux、iOS、Android和ThiClients的理想選擇。唯一的需求是、裝置/軟體必須能夠透過RDP連線並設定RDS閘道。
+
+手動設定RDP用戶端所需的資訊為（連結可前往該資訊所在位置）：
+
+* 使用者名稱
+* 密碼
+* 伺服器位址（也稱為電腦名稱）
+* 閘道位址
+
+
+*列印：*當設定本機RDP用戶端時、使用者可選擇將其印表機轉送至雲端環境進行列印。
+
+*本機檔案存取：*手動設定RDP用戶端時、使用者可以選擇與Virtual Desktop使用者工作階段共用特定的資料夾。
+
+
+
+===== 尋找RDS閘道位址
+
+. 導覽至VDS (https://manage.cloudworkspace.com)[]
+. 按一下「部署」
+. 按一下部署名稱
+. 在部署詳細資料下找到RDP閘道
+
+
+image:manual_client1.png[""]
+
+
+
+===== 找出共用工作階段主機上使用者的伺服器位址
+
+導覽至VDS (https://manage.cloudworkspace.com)[]
+
+. 按一下「工作區
+. 按一下工作區名稱
+. 在「公司詳細資料」下找到「伺服器位址image:manual_client2.png[""]
+
+
+
+
+===== 尋找VDI使用者的伺服器位址
+
+. 導覽至VDS (https://manage.cloudworkspace.com)[]
+. 按一下「工作區
+. 按一下工作區名稱
+. 在「公司詳細資料」下找到「伺服器位址image:manual_client3.png[""]
+. 按一下「使用者與群組」索引標籤
+. 按一下使用者名稱
+. 找出VDI Server位址image:manual_client4.png[""]
+. 此VDI使用者的伺服器位址為：vy.ADa.cloudWorkclase.app、但公司代碼（例如、vey）已取代為VDI Server值（例如 DVYTS1）…
++
+ e.g. DVYTS1.ada.cloudworkspace.app
+
+
+
+
+==== RDS需求對照表
+
+[cols="25,25,25,25"]
+|===
+| 類型 | 作業系統 | RDS用戶端存取方法 | RDS Web用戶端 
+
+
+| Windows電腦 | Windows 7或更新版本搭配Microsoft RDP 8應用程式 | NetApp VDS用戶端手動設定用戶端 | https://login.cloudworkspace.com/[] 
+
+
+| MacOS | MacOS 10.10或更新版本、以及Microsoft遠端桌面8應用程式 | 手動設定用戶端 | https://login.cloudworkspace.com/[] 
+
+
+| iOS | IOS 8.0或更新版本、以及任何 link:https://itunes.apple.com/us/app/microsoft-remote-desktop/id714464092?mt=8["遠端桌面應用程式"] 支援RD閘道 | 手動設定用戶端 | https://login.cloudworkspace.com/[] 
+
+
+| Android | 可執行的Android版本 link:https://play.google.com/store/apps/details?id=com.microsoft.rdc.android&hl=en_US["Microsoft遠端桌面應用程式"] | 手動設定用戶端 | https://login.cloudworkspace.com/[] 
+
+
+| Linux | 幾乎所有版本都有支援RD閘道的RDS應用程式 | 手動設定用戶端 | https://login.cloudworkspace.com/[] 
+
+
+| 精簡型用戶端 | 各種精簡型用戶端都能正常運作、只要它們支援RD閘道即可。建議使用Windows型精簡型用戶端 | 手動設定用戶端 | https://login.cloudworkspace.com/[] 
+|===
+
+
+===== 比較對照表
+
+[cols="20,20,20,20,20,20"]
+|===
+| 元素/功能 | HTML5瀏覽器 | 適用於Windows的VDS用戶端 | MacOS RDP用戶端 | 行動裝置上的RDP用戶端 | 行動裝置上的HTML5用戶端 
+
+
+| 本機磁碟機存取 | 按一下背景、然後在畫面頂端中央顯示雲端圖示 | 可在Windows檔案總管中使用 | 按一下滑鼠右鍵編輯RDP。移至重新導向索引標籤。然後選擇您要對應的資料夾。登入桌面、桌面將顯示為對應的磁碟機。 | 不適用 | 不適用 
+
+
+| 顯示擴充 | 可以調整大小、並根據瀏覽器視窗的大小而變更。這絕不能大於端點的解析度（發生多個監視器時、為主要端點監控器） | 可重新調整規模、但一律等於端點的螢幕解析度（在多個顯示器的情況下、為主要端點監控器） | 可重新調整規模、但一律等於端點的螢幕解析度（在多個顯示器的情況下、為主要端點監控器） | 不適用 | 不適用 
+
+
+| 複製/貼上 | 透過剪貼簿重新導向啟用。 | 透過剪貼簿重新導向啟用。 | 透過剪貼簿重新導向啟用。在虛擬桌面內、請使用Control + C或V、而非命令+ C或V | 透過剪貼簿重新導向啟用。 | 透過剪貼簿重新導向啟用。 
+
+
+| 印表機對應 | 透過瀏覽器用來偵測本機和網路印表機的PDF列印驅動程式來處理列印 | 所有透過ThinPrint公用程式對應的本機和網路印表機 | 所有透過ThinPrint公用程式對應的本機和網路印表機 | 所有透過ThinPrint公用程式對應的本機和網路印表機 | 透過瀏覽器用來偵測本機和網路印表機的PDF列印驅動程式來處理列印 
+
+
+| 效能 | 未啟用RemoteFX（增強音訊和視訊） | 透過RDP啟用RemoteFX、提升音訊/視訊效能 | 透過RDP啟用RemoteFX、提升音訊/視訊效能 | 啟用RemoteFX、提升音訊/視訊效能 | 未啟用RemoteFX（音訊/視訊增強） 
+
+
+| 在行動裝置上使用滑鼠 | 不適用 | 不適用 | 不適用 | 點選畫面以移動滑鼠、然後按一下 | 按住螢幕並拖曳以移動滑鼠、點選即可按一下 
+|===
+
+
+==== 周邊設備
+
+
+
+===== 列印
+
+* 虛擬桌面用戶端內含ThiPrint、可將本機印表機無縫傳送至雲端桌面。
+* HTML5連線方法會在瀏覽器中下載PDF、以便進行本機列印。
+* MacOS上的Microsoft遠端桌面8應用程式可讓使用者將印表機共用至雲端桌面
+
+
+
+
+===== USB周邊設備
+
+掃描儀、相機、讀卡器、音訊裝置等項目都有混合效果。虛擬桌面部署沒有什麼獨特之處、可以避免這種情況發生、但最佳選擇是測試任何必要的裝置。您的銷售代表可視需要協助設定測試帳戶。
+
+
+
+===== 頻寬
+
+* NetApp建議每位使用者至少擁有150KB頻寬。容量越大、使用者體驗就越好。
+* 網際網路延遲低於100毫秒、且極低的Jitter也同樣重要。知識庫文章
+* 貴公司使用VoIP、視訊串流、音訊串流及一般網際網路瀏覽功能、將會帶來額外的頻寬需求。
+* 在計算使用者頻寬需求時、Virtual Desktop本身所耗用的頻寬量將是最小的元件之一。
+
+
+
+
+====== Microsoft頻寬建議
+
+https://docs.microsoft.com/en-us/azure/virtual-desktop/bandwidth-recommendations[]
+
+
+
+====== 應用程式建議
+
+[cols="20,60,20"]
+|===
+| 工作負載 | 範例應用程式 | 建議頻寬 
+
+
+| 工作工作者 | Microsoft Word、Outlook、Excel、Adobe Reader | 1.5 Mbps 
+
+
+| 辦公室員工 | Microsoft Word、Outlook、Excel、Adobe Reader、PowerPoint、 相片檢視器 | 3 Mbps 
+
+
+| 知識工作者 | Microsoft Word、Outlook、Excel、Adobe Reader、PowerPoint、 相片檢視器、Java | 5 Mbps 
+
+
+| 電力工作者 | Microsoft Word、Outlook、Excel、Adobe Reader、PowerPoint、 相片檢視器、Java、CAD/CAM、圖例/發佈 | 15 Mbps 
+|===
+
+NOTE: 無論工作階段中有多少使用者、這些建議都適用。
+
+
+
+===== 顯示解析度建議
+
+[cols="60,40"]
+|===
+| 一般顯示解析度為30 fps | 建議頻寬 
+
+
+| 約1024 x 768像素 | 1.5 Mbps 
+
+
+| 約為1、280 x 720像素 | 3 Mbps 
+
+
+| 約1920 x 1080像素 | 5 Mbps 
+
+
+| 約3840 x 2160像素（4K） | 15 Mbps 
+|===
+
+
+===== 本機裝置系統資源
+
+* RAM、CPU、網路卡和圖形功能等本機系統資源、將會導致使用者體驗的差異。
+* 網路與圖形功能最符合此要求。
+* 1 GB的RAM和低功耗的處理器、位於經濟實惠的Windows裝置上。建議至少使用2-4 GB RAM。
+
+
+
+
+=== Azure虛擬桌面
+
+
+
+==== AVD Windows用戶端
+
+請從下載Windows 7/10用戶端 https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-windows-7-10[] 並使用終端使用者使用者名稱和密碼登入。請注意、遠端應用程式和桌面連線（RADC）、遠端桌面連線（mstsc）和NetApp VDS用戶端for Windows應用程式目前不支援登入AVD執行個體的功能。
+
+
+
+==== AVD Web用戶端
+
+在瀏覽器中、瀏覽至Azure Resource Manager整合式版本的Azure Virtual Desktop Web用戶端、網址為 https://rdweb.AVD.microsoft.com/arm/webclient[] 並使用您的使用者帳戶登入。
+
+
+NOTE: 如果您使用Azure Virtual Desktop（傳統）、但未整合Azure Resource Manager、請連線至您的資源： https://rdweb.AVD.microsoft.com/webclient[] 而是。

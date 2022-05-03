@@ -1,0 +1,102 @@
+= 總覽
+:allow-uri-read: 
+
+
+NetApp讓客戶深入瞭解如何疑難排解使用者/應用程式的伺服器效能。如果安裝SQL Standard、則所有公司會根據一次登入的終端使用者人數、應用程式使用量、以及與之相比、以不同的方式使用資源SQL Express等、因此能夠審查使用者回報效能問題時發生的情況非常重要。
+
+
+
+== 總覽
+
+每個應用程式都不一樣、即使相同數量的使用者執行相同的軟體、也可能有不同的資源使用模式。這就是為什麼它有助於瞭解使用者正在執行的應用程式、以及該應用程式真正的強大功能。是CPU、RAM還是儲存設備？這些考量將有助於集中疑難排解。
+
+根據我們的經驗、這些證明通常是真正的陳述、可協助您開始：
+
+....
+CPU: this is usually the culprit/limiting factor if the app in question is home-grown and/or an Excel issue
+RAM: this is usually the culprit/limiting factor if SQL Standard is used
+Storage: this is usually a contributing factor if disk consumption is greater than 90%.
+....
+
+NOTE: 如果使用SQL Express、這可能是限制因素、將RAM使用量限制為1 GB、可能受軟體廠商的必要規格限制。
+
+
+
+== 使用夜間資源報告
+
+VDS會在夜間傳送報告、並提供每個VM的相關資訊。該報告提供許多實用資訊、包括關於增加或減少資源的建議。以下是一些摘要：
+
+此影像顯示您是否應該增加或減少特定工作區VM上的CPU / RAM。image:vm_performance1.png[""]
+
+在下圖中、我們看到有一欄顯示伺服器重新開機後的時間長度。image:vm_performance2.png[""]
+
+在此映像中、我們可以看到已配置的儲存設備與已用–這是一開始或驗證CPU / RAM不是問題之後、可以簡短調查的好主題。image:vm_performance3.png[""]
+
+
+
+== 即時檢視CPU / RAM資源使用量
+
+. 登入VDS、然後按一下「組織」模組、選取有問題的組織。
++
+image:vm_performance4.png[""]
+
+. 您可以在「使用者」區段中找到使用者登入的伺服器。
++
+image:vm_performance5.png[""]
+
+. 接著、向下捲動直到看到「Servers（伺服器）」區段–找出回報問題的使用者登入的伺服器、然後按一下設定輪、再連線。
++
+image:vm_performance6.png[""]
+
+. 連線至伺服器後、請按一下「開始」按鈕。接著、按一下「工作管理員」。
++
+image:vm_performance7.png[""]
+
+. 工作管理員可讓您深入瞭解當下的情況。這絕對是瞭解使用者向您報告問題時會影響哪些項目的最佳方式。
+. 您可以檢閱伺服器上執行的程序、找出造成問題的原因、並與客戶溝通或現場結束程序。
++
+image:vm_performance8.png[""]
+
+. 您也可以檢視「效能」索引標籤、以顯示目前的現況。這是一個巨大的疑難排解步驟、要求終端使用者重複他們為了造成效能問題而採取的步驟、然後查看發生的情況。同樣地、如果他們遵循一般建議（關閉多餘的Chrome瀏覽器索引標籤、因為Google Chrome索引標籤是常見的資源使用者）、您也可以看到資源使用量減少。
++
+image:vm_performance9.png[""]
+
+. 使用者索引標籤可顯示哪些使用者正在耗用資源、導致使用量激增。
++
+image:vm_performance10.png[""]
+
+. 您可以擴充每個終端使用者、查看他們執行的特定程序、以及每個程序的使用量。
++
+image:vm_performance11.png[""]
+
+. 另一個選項是檢視正在執行的服務。
++
+image:vm_performance12.png[""]
+
+. 客戶也可以開啟資源監視器、以深入調查。
++
+image:vm_performance13.png[""]
+
+
+
+
+
+== 考慮儲存效能問題
+
+VM效能問題的其中一個較常見原因是磁碟效能不足。標準（甚至是SSD）磁碟的設計無法處理VDS工作負載所需的高I/O負載。使用者登入通常會發生在集區中、每個登入都需要大量I/O、因為設定檔和設定都會載入。NetApp的高效能儲存技術（例如Azure NetApp Files ：功能完善的功能、例如功能完善、CVO和CVS）特別適合此工作負載、因此應視為VDS工作負載的預設選項。
+
+
+
+== 考慮儲存使用量
+
+Microsoft長期以來的最佳實務做法是禁止任何磁碟機的磁碟使用量超過90%。在他們眼中、這會導致效能驟降、並可能引發許多其他挑戰、例如沒有足夠的儲存空間來完成備份、而且不允許使用者儲存工作。
+
+RMM工具可提供儲存監控服務、包括設定臨界值和警示的功能。如果儲存設備成為您的挑戰、建議您與RMM廠商合作、以啟用這些類型的警示。
+
+如需深入調查、請安裝軟體以審查磁碟機使用量。
+
+從與客戶的對話中、Windirstat或Treesize已證實是檢驗磁碟機使用量的首選應用程式。
+
+如果沒有足夠空間可在本機安裝/執行應用程式、或登入遭到封鎖、則Windirstat可透過網路檢查整個磁碟機：
+
++image:vm_performance14.png[""]

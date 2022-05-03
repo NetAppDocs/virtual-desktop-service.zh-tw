@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: Advanced.fslogix_profile_shrink.html 
+summary: FSLogix設定檔縮小功能摘要 
+keywords:  
+---
+= FSLogix設定檔縮小
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+VDS具有內建的設定檔壓縮作業、可在夜間執行。如果可以儲存5GB以上的資料、此自動化功能會自動縮小使用者設定檔的FSLogix容器。此自動化作業會在夜間12：01 AM執行。5GB臨界值可在CWMGR1伺服器上的DCConfig中設定。
+
+image::Advanced.fslogix_profile_shrink-ea982.png[進階的.fslergix設定檔縮小ea982]

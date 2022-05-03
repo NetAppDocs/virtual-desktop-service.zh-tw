@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.resource_allocation_enable-97401.png[Management.command center.operations。資源配置可啟用97401]

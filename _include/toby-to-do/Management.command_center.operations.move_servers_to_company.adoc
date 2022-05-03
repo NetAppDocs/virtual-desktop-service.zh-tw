@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.move_servers_to_company-cec7b.png[Management.command center.operations。將伺服器移至公司cec7b]

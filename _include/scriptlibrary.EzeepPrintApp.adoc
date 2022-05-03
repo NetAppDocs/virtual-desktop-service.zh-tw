@@ -1,0 +1,21 @@
+= Ezeep列印應用程式總覽
+:allow-uri-read: 
+
+
+
+
+== Ezeep列印應用程式總覽
+
+此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_EzeepPrint App_ (https://chocolatey.org/)[] 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。
+
+
+
+=== 預設捷徑路徑
+
+預設的捷徑路徑將輸入如下、此應用程式的捷徑為：「\shortcutes\Printer Self Service.lnk」
+
+
+
+=== 新增活動對話方塊視窗快照
+
+image::scriptlibrary.activity.InstallEzeepPrintApp.png[指令碼library.activity：InstallEzeepPrintApp]

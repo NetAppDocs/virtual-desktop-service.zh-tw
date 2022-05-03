@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.load_machine_series-fcd2c.png[Management.command center.opers.load machine series fcd2c]

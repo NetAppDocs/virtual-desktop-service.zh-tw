@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_VDS_day_in_the_life.html 
+summary: NetApp VDS v5.4的RDS和AVD日常管理 
+keywords:  
+---
+= NetApp VDS v5.4的RDS和AVD日常管理
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+video::uGEgA3hFdM4[youtube, ]

@@ -1,0 +1,21 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.create_server_from_backup-cac47.png[Management.command center.operations。從備份cac47建立伺服器]
+
+image::Management.command_center.operations.create_server_from_backup-eabc4.png[Management.command center.operations。從備份eabc4建立伺服器]
+
+image::Management.command_center.operations.create_server_from_backup-14061.png[Management.command center.operations：從備份14061建立伺服器]
+
+image::Management.command_center.operations.create_server_from_backup-c7d6b.png[Management.command center.operations。從備份c7d6b建立伺服器]
+
+image::Management.command_center.operations.create_server_from_backup-a487e.png[Management.command center.operations：從備份a487e建立伺服器]
+
+image::Management.command_center.operations.create_server_from_backup-51ac2.png[Management.command center.operations。從備份51ac2建立伺服器]
+
+image::Management.command_center.operations.create_server_from_backup-b0fa0.png[Management.command center.operations。從備份b0fa0建立伺服器]

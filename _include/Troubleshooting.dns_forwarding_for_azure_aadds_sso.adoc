@@ -1,0 +1,46 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+使用者無法存取主要電子郵件網域上的公司網站。
+
+例如、VDS工作區中的NetApp員工如果SSO帳戶為user@netapp.com_、就無法存取netapp.com
+
+專屬的VDS部署使用Azure租戶的內部網域。
+
+
+
+== 解決方案
+
+為解決此問題、管理DNS的組織團隊必須為內部網域建立DNS轉送查詢區域、以便解析正確的外部IP（為了NetApp的目的、這可讓NetApp員工從虛擬桌面瀏覽至netapp.com）。
+
+
+
+== 逐步指南
+
+. 在CWMGR1上安裝DNS伺服器工具–這可讓您管理DNS。
++
+image:dns1.png[""]
+
++
+image:dns2.png[""]
+
++
+image:dns3.png[""]
+
++
+image:dns4.png[""]
+
++
+image:dns5.png[""]
+
+. 安裝完成後、您可以前往「控制台」→「系統與安全性」→「系統管理工具」、然後開啟DNS。
++
+image:dns6.png[""]
+
+. 當系統詢問執行DNS的DNS伺服器時、您會想要輸入您的網域名稱（在我們使用的範例中、這是_netapp.com）。
+

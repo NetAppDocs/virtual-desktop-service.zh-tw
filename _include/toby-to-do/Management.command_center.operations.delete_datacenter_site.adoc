@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.delete_datacenter_site-6df98.png[Management.command center.operations.delete資料中心網站6df98]

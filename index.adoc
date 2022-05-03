@@ -1,0 +1,112 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+summary: 歡迎使用虛擬桌面服務的文件入口網站。 
+keywords:  
+---
+= 虛擬桌面服務文件
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+NetApp的虛擬桌面服務（VDS）解決了在公有雲中部署和管理虛擬桌面的複雜度、既可提供彈性的軟體服務來管理虛擬桌面基礎架構（VDI）、也可作為完全託管的VDI即服務平台。虛擬桌面服務消除了在雲端部署桌面的複雜性、只需花費2-3天的時間、就能完成數百項工作。
+
+
+
+=== 虛擬桌面服務的優點：
+
+* *降低基礎架構成本*
++
+我們可自訂的資源排程系統可將基礎架構支出最佳化達50%。
+
+* *降低風險*
++
+根據雲端最佳實務做法、將桌面部署至邏輯工作流程、例如Microsoft Azure Virtual Desktop（AVD）的最佳實務做法標準。
+
+* *自訂自動化*
++
+事件導向的自動化與協調引擎運用您目前的指令碼、讓管理變得如此簡單、一般IT管理員可以管理您的雲端桌面！
+
+* *多雲端*
++
+使用單一圖形化使用者介面、即可控制AWS、Azure和Google的多個租戶。
+
+* *靈活控制*
++
+透過單一入口網站來控制技術堆疊的每一層、充分發揮企業靈活度。
+
+
+
+深入瞭解： https://cloud.netapp.com/virtual-desktop-service[]
+
+
+
+== 取得支援
+
+電子郵件支援： support@spotpc.netapp.com
+
+電話支援：8444.645.6789
+
+link:https://support.spot.io["VDS支援入口網站"]
+
+正常支援營業時間：週一至週五、中部時間上午7：00至下午7：00。
+
+* 非營業時間（待命）支援僅透過電話提供。
+
+
+
+
+== 其他資源
+
+
+
+=== 成本計算機
+
+
+
+==== Azure
+
+* https://manage.vds.netapp.com/azure-cost-estimator[]
+
+
+
+
+==== Google Cloud
+
+* https://manage.vds.netapp.com/google-cost-estimator[]
+
+
+
+
+=== 下載
+
+
+
+==== 遠端桌面服務（RDS）用戶端
+
+* link:https://bin.vdsclient.app/v5client/cwc-win-setup.exe["適用於Windows的VDS RDS用戶端"]
+* link:https://login.cloudworkspace.com/["VDS Web用戶端"]
+* link:https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-clients["Microsoft RD用戶端"]
+
+
+
+
+==== Azure Virtual Desktop（AVD）用戶端
+
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-windows-7-10["適用於Windows用戶端的Microsoft AVD"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-web["Microsoft AVD Web用戶端"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-android["適用於Android Client的Microsoft AVD"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-macos["適用於MacOS用戶端的Microsoft AVD"]
+* link:https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-ios["適用於iOS用戶端的Microsoft AVD"]
+
+
+
+
+==== 其他下載
+
+* link:https://cloudjumper.com/wp-content/uploads/2019/12/RemoteScanEnterpriseUser.zip["RemoteScan用戶端"]
+* link:https://bin.vdsclient.app/v5client/cwc-designer-win-setup.exe["VDS RDS Windows用戶端設計工具"]
+

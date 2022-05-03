@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: Management.command_center.operations.copy_template_to_gallery.html 
+summary: VDS命令中心功能「將範本複製到圖庫」總覽 
+keywords:  
+---
+= 命令中心命令：將範本複製到圖庫
+:allow-uri-read: 
+
+
+
+
+== 命令中心警告
+
+
+CAUTION: Command Center是在部署中於CWMGR1平台伺服器上執行的應用程式。此應用程式是專為疑難排解、診斷及進階管理功能所設計。此應用程式主要供NetApp內部開發與支援團隊使用、但客戶管理員偶爾會使用某些功能。本文件是為了支援使用選擇功能而提供。這些命令的使用必須謹慎、並與NetApp支援團隊合作。如需詳細資訊、請參閱 link:Management.command_center.overview.html["命令中心總覽"] 文章：
+
+
+
+== 將範本複製到圖庫總覽
+
+image::Management.command_center.operations.copy_template_to_gallery-67ea4.png[Management.command center.operes.copy範本至圖庫67ea4]
+
+VDI資源配置集合完成後、映像會以映像形式儲存在Azure中、並可部署在同一個VDS站台內。為了讓映像可在同一訂閱範圍內的其他Azure地區部署、我們會使用「複製範本至圖庫」功能。此動作會將VM映像複製到共用資源庫、並將其複寫到所有選取的區域。
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command center.operations。複製範本至圖庫ed821]
+
+
+
+== VDS下拉式清單中的VM範本可用度
+
+複寫完成後、映像會顯示在VDS的下拉式清單中、以便在部署新VM時選取VM範本。共享映像可部署至複製時所選的任何區域。
+
+image::Management.command_center.operations.copy_template_to_gallery-04bd8.png[Management.command center.operations。複製範本至圖庫04bd8]
+
+儲存在共享圖片庫中的VM映像會以「-x.x.x」形式附加其版本、其中版本與Azure Portal中的映像版本相符。
+
+image::Management.command_center.operations.copy_template_to_gallery-ee598.png[Management.command center.operes.copy範本至資源庫ee598]
+
+
+NOTE: 映像複寫可能需要一段時間（視映像大小而定）、按一下版本（例如 #1.0.0#）。
+
+
+
+== 區域可用度
+
+部署只能在複寫映像的區域中執行。您可以在Azure入口網站中按一下#1.x.x#、然後按一下「_Update Replicat_」以進行檢查、如下所示：
+
+image::Management.command_center.operations.copy_template_to_gallery-9b63a.png[Management.command center.operations。複製範本至圖庫9b63a]

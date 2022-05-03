@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.backups_run_all_scheduled-be912.png[Management.command center.operations。備份會執行所有排定的be912]

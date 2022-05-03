@@ -1,0 +1,9 @@
+= 總覽
+:allow-uri-read: 
+
+
+
+
+== 總覽
+
+image::Management.command_center.operations.reload_monitored_applications-6d616.png[Management.command center.operations。重新載入受監控的應用程式6d616]
