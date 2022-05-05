@@ -67,15 +67,15 @@ image::Management.Deployments.vds_sites-0e880.png[Management．ed部署。VDS站
 .若要為VDS中的使用者啟用桌面資源：
 . 瀏覽至「工作區」>「AVD」>「主機集區」>「應用程式群組」頁面、然後按一下「桌面」資源的「應用程式」群組。
 +
-image::Management.Applications.AVD_application_entitlement_workflow-349fe.png[Management.Applications.AVD應用程式權益工作流程349fe]
+image::Management.Applications.avd_application_entitlement_workflow-349fe.png[Management.Applications.AVD應用程式權益工作流程349fe]
 
 . 進入應用程式群組後、按一下「Edit（編輯）」
 +
-image::Management.Applications.AVD_application_entitlement_workflow-3bcfc.png[Management.Applications.AVD應用程式權益工作流程3bcfc]
+image::Management.Applications.avd_application_entitlement_workflow-3bcfc.png[Management.Applications.AVD應用程式權益工作流程3bcfc]
 
 . 在編輯對話方塊中、您可以依使用者和/或群組、將使用者新增或移除至此應用程式群組。
 +
-image::Management.Applications.AVD_application_entitlement_workflow-07ff0.png[Management.Applications.AVD應用程式權益工作流程07ff0]
+image::Management.Applications.avd_application_entitlement_workflow-07ff0.png[Management.Applications.AVD應用程式權益工作流程07ff0]
 
 
 
@@ -94,11 +94,11 @@ NOTE: 指派給此主機集區「桌面」AppGroup的任何使用者、都可以
 
 . 瀏覽至「Workspaces（工作區）」>「AVD（AVD）」>「Host Pool（主機資源池）」>「App Groups（應用程式群組）」頁面、然後按一下「__ Add App Group
 +
-image::Management.Applications.AVD_application_entitlement_workflow-d33da.png[Management.Applications.AVD應用程式權利工作流程d33da]
+image::Management.Applications.avd_application_entitlement_workflow-d33da.png[Management.Applications.AVD應用程式權利工作流程d33da]
 
 . 輸入此應用程式群組的名稱、工作區和易記名稱。選取應指派的使用者和/或群組、然後按一下「_Sav__」
 +
-image::Management.Applications.AVD_application_entitlement_workflow-242eb.png[Management.Applications.AVD應用程式權益工作流程242eb]
+image::Management.Applications.avd_application_entitlement_workflow-242eb.png[Management.Applications.AVD應用程式權益工作流程242eb]
 
 
 
@@ -108,15 +108,15 @@ image::Management.Applications.AVD_application_entitlement_workflow-242eb.png[Ma
 
 . 瀏覽至「工作區」>「AVD」>「主機集區」>「應用程式群組」頁面、然後按一下「應用程式」群組以取得「RemoteApp」資源。
 +
-image::Management.Applications.AVD_application_entitlement_workflow-3dcde.png[Management.Applications.AVD應用程式權益工作流程3dcde]
+image::Management.Applications.avd_application_entitlement_workflow-3dcde.png[Management.Applications.AVD應用程式權益工作流程3dcde]
 
 . 進入應用程式群組後、按一下「Edit（編輯）」
 +
-image::Management.Applications.AVD_application_entitlement_workflow-27a41.png[Management.Applications.AVD應用程式權益工作流程27a41.]
+image::Management.Applications.avd_application_entitlement_workflow-27a41.png[Management.Applications.AVD應用程式權益工作流程27a41.]
 
 . 向下捲動至「遠端應用程式」區段。由於VDS直接查詢工作階段主機以顯示可用的串流應用程式、因此本節可能需要一些時間。
 +
-image::Management.Applications.AVD_application_entitlement_workflow-1e9f2.png[Management.Applications.AVD應用程式權益工作流程1e9f2]
+image::Management.Applications.avd_application_entitlement_workflow-1e9f2.png[Management.Applications.AVD應用程式權益工作流程1e9f2]
 
 . 搜尋並選取此應用程式群組中的使用者應能以RemoteApp資源存取的任何應用程式。
 

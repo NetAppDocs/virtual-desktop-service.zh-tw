@@ -47,7 +47,7 @@ WARNING: 此Microsoft Team安裝是專為部署至AVD環境而設定、其中包
 
 === 新增活動對話方塊視窗快照
 
-image::scriptlibrary.activity.InstallMicrosoftTeamsAVD.png[指令碼library.activity。安裝Microsoft TeamsAVD]
+image::scriptlibrary.script.InstallMicrosoftTeamsAVD.png[指令碼library.SCRIPT.InstallMicrosoft TeamsAVD]
 
 
 

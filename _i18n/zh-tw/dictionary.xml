@@ -3002,25 +3002,17 @@
   <block id="098b02c52f0db3d5ddbdd0288ca7ec20" category="paragraph">根據預設、每個主機集區都會以單一應用程式群組開始、用來指派Windows桌面體驗的存取權。指派給此應用程式群組的終端使用者將可存取安裝在這些工作階段主機上的所有應用程式。</block>
   <block id="1973c675e440465f67198c5c6a06af65" category="list-title">若要為VDS中的使用者啟用桌面資源：</block>
   <block id="4976a77bf3f5152bc054082a6f0307ae" category="list-text">瀏覽至「工作區」&gt;「AVD」&gt;「主機集區」&gt;「應用程式群組」頁面、然後按一下「桌面」資源的「應用程式」群組。</block>
-  <block id="3a9159413b8c5248957238ae412ac8d3" category="image-alt">Management.Applications.AVD應用程式權益工作流程349fe</block>
   <block id="71480c203ed7b59af7a7e9e6318c3c98" category="list-text">進入應用程式群組後、按一下「Edit（編輯）」</block>
-  <block id="e55b52acdc0847fa119a08a20ec465ee" category="image-alt">Management.Applications.AVD應用程式權益工作流程3bcfc</block>
   <block id="b7f126ce5e82a2008a4e482580ea8ae0" category="list-text">在編輯對話方塊中、您可以依使用者和/或群組、將使用者新增或移除至此應用程式群組。</block>
-  <block id="8dd96d112e4daa5e5cbdd2e088cc1538" category="image-alt">Management.Applications.AVD應用程式權益工作流程07ff0</block>
   <block id="0aeea781bb4573e7a7b80d9e0959a102" category="section-title">提供RemoteApp存取</block>
   <block id="0a14f1535ea14c5bd93244bb6dbf4792" category="paragraph">若要配置對RemoteApps的存取權、必須在主機集區內建立新的應用程式群組。建立之後、必須將適當的應用程式指派給此應用程式群組。</block>
   <block id="3d2884c0236d13ed6261947f4b728fcc" category="admonition">指派給此主機集區「桌面」AppGroup的任何使用者、都可以使用這些工作階段主機上的任何應用程式。也不需要透過RemoteApp應用程式群組來配置存取權限、只需提供應用程式的存取權限即可。只有在本機裝置上以串流應用程式的形式執行應用程式時、才需要使用RemoteApp應用程式群組。</block>
   <block id="5433662a54506604d2c01b4c71d4e834" category="section-title">建立新的應用程式群組</block>
   <block id="f5a55acd43f8d93045189303323088e0" category="list-text">瀏覽至「Workspaces（工作區）」&gt;「AVD（AVD）」&gt;「Host Pool（主機資源池）」&gt;「App Groups（應用程式群組）」頁面、然後按一下「__ Add App Group</block>
-  <block id="4827d1cb4a1c718653466145675decb0" category="image-alt">Management.Applications.AVD應用程式權利工作流程d33da</block>
   <block id="f3d6d092150d8d04d31f44e77e0ac3a7" category="list-text">輸入此應用程式群組的名稱、工作區和易記名稱。選取應指派的使用者和/或群組、然後按一下「_Sav__」</block>
-  <block id="973b2fc8ea2aeaa2d778153f723b7ec4" category="image-alt">Management.Applications.AVD應用程式權益工作流程242eb</block>
   <block id="fe21569904a64074304530d0d7b3834f" category="section-title">新增應用程式至應用程式群組</block>
   <block id="474fdb99403b967e01f54886073db222" category="list-text">瀏覽至「工作區」&gt;「AVD」&gt;「主機集區」&gt;「應用程式群組」頁面、然後按一下「應用程式」群組以取得「RemoteApp」資源。</block>
-  <block id="aa48cfc5de9c883c19cf67592140446a" category="image-alt">Management.Applications.AVD應用程式權益工作流程3dcde</block>
-  <block id="6c3e4645a69cdcb7d8eabf8fd67340f7" category="image-alt">Management.Applications.AVD應用程式權益工作流程27a41.</block>
   <block id="7ae4c2ef09690aa217f7605a240c3da4" category="list-text">向下捲動至「遠端應用程式」區段。由於VDS直接查詢工作階段主機以顯示可用的串流應用程式、因此本節可能需要一些時間。</block>
-  <block id="6c7c9b816af581d8b27f9aa09850ca3f" category="image-alt">Management.Applications.AVD應用程式權益工作流程1e9f2</block>
   <block id="2c986f5e26a059d90f20656e8c46ba09" category="list-text">搜尋並選取此應用程式群組中的使用者應能以RemoteApp資源存取的任何應用程式。</block>
   <block id="41b5357739d6b4947aecf531d958a3e8" category="doc">特殊權限帳戶管理（PAM）</block>
   <block id="2de6189cdf78df0aba6306457ad5646c" category="paragraph">此功能提供特定的稽核記錄、詳細記錄授予VDS和/或Active Directory權限帳戶的管理權限集。外部存取預設會自動過期。</block>
@@ -3791,7 +3783,6 @@
   <block id="6f3ba1bbc481f887c52659a9295e45bd" category="paragraph">此指令碼套件會使用chalatey套件管理程式來安裝/解除安裝_Microsoft Teams AVD_ <block ref="c5ec4b919c462535a88ca6c450c12437" category="inline-link-rx"></block> 以進行部署。建立VM時、會由VDS部署chlifatey、但如果缺少chlchatey、此指令碼也會檢查並安裝chlchatey作為先決條件。</block>
   <block id="a78af9cb5044239f2c73e401d610d15f" category="admonition">此Microsoft Team安裝是專為部署至AVD環境而設定、其中包含Azure中AVD專屬的自訂和元件。 <block ref="437c7738f20c22773a5ae4970a143474" category="inline-link-macro-rx"></block> 適用於RDS部署。</block>
   <block id="99ac46c040fc2191fa765181ab6d5aac" category="paragraph">預設的捷徑路徑將輸入於下方、此應用程式的捷徑為：「\shortcut\Microsoft Teams AVD.lnk」</block>
-  <block id="edac1fb47b396115723f32b843b89a55" category="image-alt">指令碼library.activity。安裝Microsoft TeamsAVD</block>
   <block id="3a3c2f183ce6144c6dbb57b702b245a2" category="paragraph">VDS能夠在某些基礎架構供應商（包括Azure）中設定及管理原生備份服務。</block>
   <block id="2d5dc75ae0469095c0637f057c402dd9" category="inline-link-macro">Azure Cloud Backup</block>
   <block id="8913cc7788b298aa780f3224869e4a04" category="paragraph">在Azure中、VDS可以使用原生環境自動設定備份 <block ref="ec91135da0e64bcbb6a4909a510f9421" category="inline-link-macro-rx"></block> 使用本機備援儲存設備（LRS）。如有需要、可在Azure管理入口網站中設定地理備援儲存設備（GRS）。</block>
@@ -4749,4 +4740,13 @@
   <block id="40b4efb37895d327a4e6134b05f98845" category="sidebar">管理資源並將成本降至最低</block>
   <block id="b0e9038d535164893f7c6af3eac68b19" category="sidebar">自動化AVD和RDS的應用程式管理</block>
   <block id="160a4c43add4282278f715aef7950d51" category="sidebar">將v1 AVD主機集區升級至v2</block>
+  <block id="d75afdafc6f7225842e083ec218d848b" category="image-alt">Management.Applications.AVD應用程式權益工作流程349fe</block>
+  <block id="7b719da5fae273115c3fe35eb79582f1" category="image-alt">Management.Applications.AVD應用程式權益工作流程3bcfc</block>
+  <block id="f592ebe1f3f1646e8f20b2c2fa1dbd61" category="image-alt">Management.Applications.AVD應用程式權益工作流程07ff0</block>
+  <block id="249122c2d8a6270528965d090670bb01" category="image-alt">Management.Applications.AVD應用程式權利工作流程d33da</block>
+  <block id="bee50d9bdee1e6b1f7e8ee84532418c2" category="image-alt">Management.Applications.AVD應用程式權益工作流程242eb</block>
+  <block id="ad0c47a5f55e9205bdf8bf8b85043167" category="image-alt">Management.Applications.AVD應用程式權益工作流程3dcde</block>
+  <block id="a7dab824482b734079866a316af7ae4a" category="image-alt">Management.Applications.AVD應用程式權益工作流程27a41.</block>
+  <block id="b6c688be79377537acc1844f52e4ad41" category="image-alt">Management.Applications.AVD應用程式權益工作流程1e9f2</block>
+  <block id="e943abf86369cd490191063c26874ded" category="image-alt">指令碼library.SCRIPT.InstallMicrosoft TeamsAVD</block>
 </blocks>
