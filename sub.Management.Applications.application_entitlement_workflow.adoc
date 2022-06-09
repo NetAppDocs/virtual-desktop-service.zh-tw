@@ -31,7 +31,7 @@ NOTE: 此工作流程僅適用於RDS部署。如需AVD應用程式權益文件�
 NOTE: 步驟3和4可透過指令碼事件完全自動化、如下圖所示
 
 .影片逐步解說
-video::19NpO8v15BE[youtube, ]
+video::19NpO8v15BE[youtube]
 
 
 == 將應用程式新增至應用程式目錄

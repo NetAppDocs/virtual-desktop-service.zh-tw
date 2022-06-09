@@ -31,7 +31,7 @@
 
 === 刪除連續波代理服務影片
 
-video::l9ASmM5aap0[youtube, ]
+video::l9ASmM5aap0[youtube]
 
 
 == 刪除連續波代理程式目錄
@@ -43,7 +43,7 @@ video::l9ASmM5aap0[youtube, ]
 
 === 刪除連續波代理目錄影片
 
-video::hMM_z4K2-iI[youtube, ]
+video::hMM_z4K2-iI[youtube]
 
 
 == 移除啟動捷徑
@@ -58,7 +58,7 @@ video::hMM_z4K2-iI[youtube, ]
 
 === 移除開機捷徑影片
 
-video::U0YLZ3Qfu9w[youtube, ]
+video::U0YLZ3Qfu9w[youtube]
 
 
 == 取消「使用者」與「公司」GPO的連結
@@ -80,7 +80,7 @@ VDS實作了三個GPO。我們建議您取消連結其中兩個項目、然後�
 
 === 取消「使用者」與「公司」GPO的連結影片
 
-video::cb68ri3HKUw[youtube, ]
+video::cb68ri3HKUw[youtube]
 
 
 == 關閉CWMGR1
@@ -98,7 +98,7 @@ video::cb68ri3HKUw[youtube, ]
 
 === 關閉CWMGR1視訊
 
-video::avk9HyIiC_s[youtube, ]
+video::avk9HyIiC_s[youtube]
 
 
 == 刪除NetApp VDS服務帳戶
@@ -120,7 +120,7 @@ VDS使用的Azure AD服務帳戶可以移除。登入Azure Management Portal並�
 
 === 刪除NetApp VDS服務帳戶影片
 
-video::_VToVNp49cg[youtube, ]
+video::_VToVNp49cg[youtube]
 
 
 == 刪除應用程式註冊
@@ -135,7 +135,7 @@ video::_VToVNp49cg[youtube, ]
 
 === 刪除應用程式註冊影片
 
-video::iARz2nw1Oks[youtube, ]
+video::iARz2nw1Oks[youtube]
 
 
 == 刪除企業應用程式
@@ -150,7 +150,7 @@ video::iARz2nw1Oks[youtube, ]
 
 === 刪除企業應用程式影片
 
-video::3eQzTPdilWk[youtube, ]
+video::3eQzTPdilWk[youtube]
 
 
 == 確認已停止CWMGR1
@@ -161,7 +161,7 @@ video::3eQzTPdilWk[youtube, ]
 
 === 確認CWMGR1已停止影片
 
-video::Ux9nkDk5lU4[youtube, ]
+video::Ux9nkDk5lU4[youtube]
 
 
 == 登入與終端使用者
@@ -172,4 +172,4 @@ video::Ux9nkDk5lU4[youtube, ]
 
 === 登入與終端使用者影片
 
-video::SuS-OTHJz7Y[youtube, ]
+video::SuS-OTHJz7Y[youtube]

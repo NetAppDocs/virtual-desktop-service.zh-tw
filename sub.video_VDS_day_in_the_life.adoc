@@ -12,4 +12,4 @@ keywords:
 
 == 總覽
 
-video::uGEgA3hFdM4[youtube, ]
+video::uGEgA3hFdM4[youtube]

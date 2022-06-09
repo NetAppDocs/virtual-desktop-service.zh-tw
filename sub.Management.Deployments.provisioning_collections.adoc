@@ -24,7 +24,7 @@ keywords:
 
 === 影片示範：管理VDI工作階段主機的VM映像
 
-video::rRDPnDzVBTw[youtube, ]
+video::rRDPnDzVBTw[youtube]
 
 
 === 資源配置集合類型

@@ -37,5 +37,5 @@ image:upgrade1.png[""]
 
 === 影片示範
 
-video::e4T_Ze6IlMo[youtube, ]
+video::e4T_Ze6IlMo[youtube]
 如有任何其他問題、請聯絡您的服務代表。
